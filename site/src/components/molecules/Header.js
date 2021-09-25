@@ -15,7 +15,7 @@ export function Header() {
         <>
             <HeaderBox>
                 <Logo>
-                    <MenuOutlined style={IconsHeader} />
+                    {/* <MenuOutlined style={IconsHeader} /> */}
                     <img src={LogoRosa} alt="Logotipo Just Geek" />
                     <h2>JustGEEK</h2>
                 </Logo>
@@ -26,7 +26,7 @@ export function Header() {
                     <UserOutlined style={IconsHeader} />
                     <div>
                         <p>Olá, visitante!</p>
-                        <p>Faça login ou cadastre-se</p>
+                        <p><u>Faça login</u> ou <u>cadastre-se</u></p>
                     </div>
                 </ProfileHeader>
                 <Icons>
@@ -39,8 +39,10 @@ export function Header() {
 }
 
 const HeaderBox = styled.div`
+position: fixed;
+z-index: 1000;
 width: 100%;
-height: 80px;
+height: 85px;
 background-color: ${Colors.blue.darkPurple};
 border-bottom: 2px dashed ${Colors.gray.light};
 display: flex;
@@ -102,13 +104,23 @@ align-items: center;
 p {
     margin: 0;
 }
+u {
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+u:hover {
+    color: ${Colors.blue.light};
+}
 `
+
 const Icons = styled.div`
 display: flex;
 `
 
 const IconsHeader = {
+    cursor: 'pointer',
     color: Colors.gray.white,
-    fontSize: '25px',
+    fontSize: '28px',
     padding: '20px'
 }
