@@ -1,8 +1,9 @@
+import Home from "./components/pages/Home";
 
 const App = () => {
     return(
         <>
-        <h3>Hello World</h3>
+        <Home />
         </>
     )
 }
