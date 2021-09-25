@@ -4,17 +4,18 @@ import { Colors } from '../../shared/Colors';
 import { Input } from 'antd';
 import { UserOutlined, HeartOutlined, ShoppingOutlined, MenuOutlined } from "@ant-design/icons";
 import LogoRosa from '../../assets/logo-rosa.svg'
+import { useHistory } from 'react-router';
 
 const { Search } = Input;
 
 export function Header() {
-
-    const onSearch = value => console.log(value);
+    const history = useHistory()
+    const onSearch = value => console.log(value)
 
     return (
         <>
             <HeaderBox>
-                <Logo>
+                <Logo onClick={() => history.push('/')}>
                     {/* <MenuOutlined style={IconsHeader} /> */}
                     <img src={LogoRosa} alt="Logotipo Just Geek" />
                     <h2>JustGEEK</h2>
@@ -26,7 +27,7 @@ export function Header() {
                     <UserOutlined style={IconsHeader} />
                     <div>
                         <p>Olá, visitante!</p>
-                        <p><u>Faça login</u> ou <u>cadastre-se</u></p>
+                        <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
                     </div>
                 </ProfileHeader>
                 <Icons>
@@ -49,6 +50,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 0 2%;
+font-family: 'Exo 2', sans-serif;
 `
 
 const Logo = styled.div`
