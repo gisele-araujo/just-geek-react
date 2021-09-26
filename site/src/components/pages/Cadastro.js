@@ -75,7 +75,7 @@ display: flex;
 const ContainerCadastro = styled.div`
 display: flex;
 justify-content: center;
-width: 50%;
+width: 55%;
 height: 100%;
 background-color: ${Colors.gray.dark};
 font-family: 'Exo 2', sans-serif;
@@ -126,7 +126,7 @@ h3 {
 `
 
 const ImgPostIt = styled.div`
-width: 50%;
+width: 45%;
 display: flex;
 justify-content: center;
 align-items: center;

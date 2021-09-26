@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
 import { BackTopButton } from "../atoms/BackTopButton";
 import { CarouselPattern } from "../molecules/CarouselPattern";
+import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
                 <CarouselPattern />
                 <BackTopButton />
             </Homepage>
+            <Footer />
         </>
     )
 }
