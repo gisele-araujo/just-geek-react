@@ -45,7 +45,7 @@ z-index: 1000;
 width: 100%;
 height: 85px;
 background-color: ${Colors.blue.darkPurple};
-border-bottom: 2px dashed ${Colors.gray.light};
+/* border-bottom: 2px dashed ${Colors.gray.light}; */
 display: flex;
 align-items: center;
 justify-content: space-between;

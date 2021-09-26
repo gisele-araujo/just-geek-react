@@ -103,4 +103,8 @@ background-color: #E9E9E9;
 border-radius: 10px;
 width: 250px;
 height: 60px;
+
+p {
+    margin: 0;
+}
 `

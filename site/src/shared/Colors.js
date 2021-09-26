@@ -2,6 +2,7 @@ export const Colors = {
     gray: {
         white: '#FFF',
         hot: '#8B80A5',
+        ultraLight: '#E9E9E9',
         light: '#5E5769',
         medium: '#34313A',
         dark: '#2C2831',
@@ -31,5 +32,8 @@ export const Colors = {
         secondLight: '#4361EE',
         secondMediumLighter: '#4895EF',
         secondMedium: '#4CC9F0'
+    },
+    green: {
+        light: '#13B898'
     }
 }
