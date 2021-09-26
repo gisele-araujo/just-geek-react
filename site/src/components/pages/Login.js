@@ -1,4 +1,5 @@
 import React from "react";
+import './style.css'
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
 import { Header } from "../molecules/Header";
@@ -44,7 +45,6 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-family: 'Exo 2', sans-serif;
-
 `
 
 const ContainerLogin = styled.div`
@@ -66,7 +66,7 @@ animation: animate-box 1s ;
     }
 
     to {
-        bottom: 0;
+        bottom: 0px;
         opacity: 1;
     }
 }
@@ -89,12 +89,6 @@ h3 {
 
 .input-login {
     padding: 10px 0;
-
-    .ant-input {
-        font-size: 16px;
-        height: 37px;
-        background-color: #E9E9E9;
-    }
 }
 
 .options-login {
