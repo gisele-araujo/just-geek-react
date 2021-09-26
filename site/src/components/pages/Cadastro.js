@@ -3,7 +3,7 @@ import './style.css'
 import styled from "styled-components";
 import PostIt from './../../assets/conhecer-cliente.png'
 import { Colors } from "../../shared/Colors";
-import { Header } from "../molecules/Header";
+import { Header } from "../organisms/Header";
 import { Button } from '../atoms/Button';
 import { Input } from "antd";
 import { useHistory } from "react-router";

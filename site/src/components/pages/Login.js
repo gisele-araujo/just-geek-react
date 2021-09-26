@@ -2,7 +2,7 @@ import React from "react";
 import './style.css'
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
-import { Header } from "../molecules/Header";
+import { Header } from "../organisms/Header";
 import { Button } from '../atoms/Button';
 import { Input } from "antd";
 import { useHistory } from "react-router";

@@ -26,4 +26,9 @@ width: 100%;
 padding: 35px 0 ;
 text-align: center;
 background-color: ${Colors.gray.medium};
+
+.vitrine-products {
+    display: flex;
+    justify-content: center; 
+}
 `

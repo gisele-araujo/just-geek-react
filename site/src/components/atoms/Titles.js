@@ -27,6 +27,14 @@ export function NameTitle(props) {
     )
 }
 
+export function SecondaryTitle(props) {
+    return (
+        <>
+            <SecondaryTitleText>{props.text}</SecondaryTitleText>
+        </>
+    )
+}
+
 const TitleText = styled.h2`
 color: ${Colors.gray.white};
 font-weight: 500;
@@ -47,4 +55,10 @@ const NameTitleText = styled.h4 `
 color: ${Colors.gray.white};
 font-weight: 500;
 font-size: 20px;
+`
+
+const SecondaryTitleText = styled.h4 `
+color: ${Colors.gray.white};
+font-weight: 300;
+font-size: 18px;
 `

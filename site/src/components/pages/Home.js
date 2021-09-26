@@ -4,7 +4,7 @@ import { Colors } from "../../shared/Colors";
 import { BackTopButton } from "../atoms/BackTopButton";
 import { CarouselPattern } from "../molecules/CarouselPattern";
 import { Footer } from "../molecules/Footer";
-import { Header } from "../molecules/Header";
+import { Header } from "../organisms/Header";
 import { CategoryHome } from "../organisms/CategoryHome";
 import { PromotionsHome } from "../organisms/PromotionsHome";
 import { PopularHome } from "../organisms/PopularHome";

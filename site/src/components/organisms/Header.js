@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import './../pages/style.css'
 import { Colors } from '../../shared/Colors';
 import { Input } from 'antd';
 import { UserOutlined, HeartOutlined, ShoppingOutlined, MenuOutlined } from "@ant-design/icons";
 import LogoRosa from '../../assets/logo-rosa.svg'
 import { useHistory } from 'react-router';
+import { Drawer } from 'antd';
+import { EmptyStateBag } from '../molecules/EmptyStateBag';
 
 const { Search } = Input;
 
 export function Header() {
     const history = useHistory()
     const onSearch = value => console.log(value)
+    const [visible, setVisible] = useState(false);
+    const showDrawer = () => {
+        setVisible(true);
+    };
+    const onClose = () => {
+        setVisible(false);
+    }
 
     return (
         <>
@@ -31,10 +41,13 @@ export function Header() {
                     </div>
                 </ProfileHeader>
                 <Icons>
-                    <HeartOutlined style={IconsHeader} />
-                    <ShoppingOutlined style={IconsHeader} />
+                    <HeartOutlined style={IconsHeader} onClick={() => history.push('/login')} style={IconsHeader}/>
+                    <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
                 </Icons>
             </HeaderBox>
+            <Drawer placement="right" onClose={onClose} visible={visible} width={400} className="drawer-bag">
+                    <EmptyStateBag />
+            </Drawer>
         </>
     )
 }

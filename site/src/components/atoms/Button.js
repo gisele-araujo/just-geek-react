@@ -66,5 +66,6 @@ transition: all 0.5s;
 
 &:hover {
     background-color: ${props => props.primary && props.enabled ? Colors.blue.dark : null};
+    border: ${props => props.primary && props.enabled ? Colors.blue.dark : null};
 }
 `
