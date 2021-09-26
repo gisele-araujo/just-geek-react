@@ -19,6 +19,13 @@ export function SubTitle(props) {
         </>
     )
 }
+export function NameTitle(props) {
+    return (
+        <>
+            <NameTitleText>{props.text}</NameTitleText>
+        </>
+    )
+}
 
 const TitleText = styled.h2`
 color: ${Colors.gray.white};
@@ -34,4 +41,10 @@ const SubTitleText = styled.h3`
 color: ${Colors.gray.white};
 font-weight: 300;
 font-size: 24px;
+`
+
+const NameTitleText = styled.h4 `
+color: ${Colors.gray.white};
+font-weight: 500;
+font-size: 20px;
 `

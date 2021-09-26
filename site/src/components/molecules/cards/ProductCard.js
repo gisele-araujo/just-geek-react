@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from '../../shared/Colors'
-import { Button } from '../atoms/Button'
+import { Colors } from '../../../shared/Colors'
+import { Button } from '../../atoms/Button'
 import { Card } from 'antd';
-import ShirtExemple from '../../assets/shirt.png'
+import ShirtExemple from '../../../assets/shirt.png'
 
 export function CardProduto() {
     return (
