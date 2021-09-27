@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import './../pages/style.css'
 import { Colors } from '../../shared/Colors';
@@ -25,28 +25,30 @@ export function Header() {
     return (
         <>
             <HeaderBox>
-                <Logo onClick={() => history.push('/')}>
-                    {/* <MenuOutlined style={IconsHeader} /> */}
-                    <img src={LogoRosa} alt="Logotipo Just Geek" />
-                    <h2>JustGEEK</h2>
-                </Logo>
-                <SearchSpace>
-                    <Search placeholder="O que você procura?" onSearch={onSearch} style={{ width: '100%' }} />
-                </SearchSpace>
-                <ProfileHeader className="profile">
-                    <UserOutlined style={IconsHeader} />
-                    <div>
-                        <p>Olá, visitante!</p>
-                        <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
-                    </div>
-                </ProfileHeader>
-                <Icons>
-                    <HeartOutlined style={IconsHeader} onClick={() => history.push('/login')} style={IconsHeader}/>
-                    <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
-                </Icons>
+                <ContainerHeader>
+                    <Logo onClick={() => history.push('/')}>
+                        {/* <MenuOutlined style={IconsHeader} /> */}
+                        <img src={LogoRosa} alt="Logotipo Just Geek" />
+                        <h2>JustGEEK</h2>
+                    </Logo>
+                    <SearchSpace>
+                        <Search placeholder="O que você procura?" onSearch={onSearch} style={{ width: '100%' }} />
+                    </SearchSpace>
+                    <ProfileHeader className="profile">
+                        <UserOutlined style={IconsHeader} />
+                        <div>
+                            <p>Olá, visitante!</p>
+                            <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
+                        </div>
+                    </ProfileHeader>
+                    <Icons>
+                        <HeartOutlined style={IconsHeader} onClick={() => history.push('/login')} style={IconsHeader} />
+                        <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
+                    </Icons>
+                </ContainerHeader>
             </HeaderBox>
             <Drawer placement="right" onClose={onClose} visible={visible} width={400} className="drawer-bag">
-                    <EmptyStateBag />
+                <EmptyStateBag />
             </Drawer>
         </>
     )
@@ -59,11 +61,17 @@ width: 100%;
 height: 85px;
 background-color: ${Colors.blue.darkPurple};
 /* border-bottom: 2px dashed ${Colors.gray.light}; */
+padding: 0 2%;
+font-family: 'Exo 2', sans-serif;
+`
+
+const ContainerHeader = styled.div `
+max-width: 1600px;
+height: 100%;
+margin: 0 auto;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 0 2%;
-font-family: 'Exo 2', sans-serif;
 `
 
 const Logo = styled.div`

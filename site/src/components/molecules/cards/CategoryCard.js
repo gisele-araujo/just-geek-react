@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
 
 export function CategoryCard(props) {

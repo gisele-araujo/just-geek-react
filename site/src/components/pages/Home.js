@@ -10,6 +10,7 @@ import { PromotionsHome } from "../organisms/elements-home/PromotionsHome";
 import { PopularHome } from "../organisms/elements-home/PopularHome";
 import { BannerHome } from "../organisms/elements-home/BannerHome";
 import { ArtistsHome } from "../organisms/elements-home/ArtistsHome";
+import { NewslatterFooter } from "../molecules/NewslatterFooter";
 
 const Home = () => {
     return (
@@ -22,6 +23,7 @@ const Home = () => {
                 <PopularHome />
                 <CategoryHome />
                 <ArtistsHome />
+                <NewslatterFooter />
                 <BackTopButton />
             </Homepage>
             <Footer />

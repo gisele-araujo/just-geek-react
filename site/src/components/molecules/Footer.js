@@ -23,13 +23,15 @@ export function Footer() {
                     <div>
                         <ul>
                             <p className="list-title">Dúvidas</p>
-                            <li>FAQ - Dúvidas frequêntes</li>
+                            <li>Formas de pagamento</li>
                             <li>Trocas e devoluções</li>
-                            <li>Como fazer um pedido customizado?</li>
+                            <li>Fretes e entregas</li>
+                            <li>Pedidos customizados</li>
                         </ul>
                     </div>
                     <div>
-                        <p>Deseja receber nossa newsletter? <u>Acesse</u></p>
+                        <p>Envie um email: <u>contato@justgeek.com</u></p>
+                        <p className='service-hours'>Horário de atendimento: Segunda a sexta-feira, das 8h às 18h.</p>
                         <AppBanner>
                              <p>Baixe nosso App</p>
                             <img src={GooglePlay} style={{width: '100px'}}/>
@@ -51,6 +53,8 @@ font-family: 'Exo 2', sans-serif;
 const FooterList = styled.div `
 justify-content: space-around;
 padding: 30px 2%;
+max-width: 1600px;
+margin: 0 auto;
 display: flex;
 color: ${Colors.gray.white};
 font-size: 14px;
@@ -82,6 +86,12 @@ ul li:hover {
     img {
         width: 90px;
     }
+}
+
+.service-hours {
+    font-weight: 300;
+    font-size: 12px;
+    width: 200px;
 }
 
 `

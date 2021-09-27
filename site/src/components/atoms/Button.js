@@ -53,11 +53,10 @@ font-weight: 500;
 background-color: ${props => props.action === 'positive' ? Colors.green.light :
         props.action === 'negative' ? Colors.pink.hot :
             !props.enabled ? Colors.gray.light :
-                props.primary ? Colors.blue.medium : Colors.gray.white};
-color: ${props => props.action === 'positive' || props.action === 'negative' ? Colors.gray.white :
-        !props.primary ? Colors.blue.medium : Colors.gray.white};
+                props.primary ? Colors.blue.medium : 'transparent'};
+color: ${props => props.action === 'positive' || props.action === 'negative' ? Colors.gray.white : Colors.gray.white};
 border-radius: 5px;
-border: ${props => !props.enabled || props.action ? "none" : `1px solid ${Colors.blue.medium}`};
+border: ${props => !props.enabled || props.action || props.primary ? "none" : `1px solid ${Colors.gray.white}`};
 padding: ${props => props.size === 'small' ? "6px 16px" : props.size === 'large' ? "18px" : "10px 40px"};
 cursor: ${props => props.loading || !props.enabled ? "default" : "pointer"}; 
 display: block;

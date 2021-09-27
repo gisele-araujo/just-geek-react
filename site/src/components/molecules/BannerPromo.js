@@ -16,8 +16,8 @@ export function BannerPromo() {
 
 const Banner = styled.div`
 width: 60%;
-height: 110px;
 background-color: ${Colors.gray.dark};
+padding: 15px 0;
 display: flex;
 align-items: center;
 justify-content: space-around;
@@ -27,5 +27,9 @@ border: 2px dashed ${Colors.gray.ultraLight};
     font-size: 42px;
     font-weight: 800;
     color: ${Colors.pink.hot};
+}
+
+h3 {
+    margin: 0;
 }
 `

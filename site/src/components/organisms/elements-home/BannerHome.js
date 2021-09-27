@@ -17,6 +17,8 @@ export function BannerHome() {
 const BannerSection = styled.section `
 width: 100%;
 padding: 40px 0;
+max-width: 1600px;
+margin: 0 auto;
 display: flex;
 justify-content: center;
 
