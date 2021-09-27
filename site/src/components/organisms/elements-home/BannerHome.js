@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { BannerPromo } from "../molecules/BannerPromo";
-import Arrow from './../../assets/arrow.svg'
+import { BannerPromo } from "../../molecules/BannerPromo";
+import Arrow from './../../../assets/arrow.svg'
 
 export function BannerHome() {
     return (

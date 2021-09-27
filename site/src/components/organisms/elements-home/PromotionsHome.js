@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import './../pages/style.css'
-import { Colors } from "../../shared/Colors";
-import { SubTitle, TitlePattern } from "../atoms/Titles";
-import { CardProduto } from "../molecules/cards/ProductCard";
+import { Colors } from "../../../shared/Colors";
+import { SubTitle, TitlePattern } from "../../atoms/Titles";
+import { CardProduto } from "../../molecules/cards/ProductCard";
 
 export function PromotionsHome() {
     return (

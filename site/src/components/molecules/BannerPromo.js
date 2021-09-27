@@ -4,21 +4,17 @@ import { Colors } from "../../shared/Colors";
 import { SubTitle } from "../atoms/Titles";
 
 export function BannerPromo() {
-    return(
+    return (
         <>
-        <Banner>
-            <div>
+            <Banner>
                 <h3 className="promotion-text">ATÉ <strong>70% OFF</strong></h3>
-            </div>
-            <div>
                 <SubTitle text='Veja as nossas promoções semanais' />
-            </div>
-        </Banner>
+            </Banner>
         </>
     )
 }
 
-const Banner = styled.div `
+const Banner = styled.div`
 width: 60%;
 height: 110px;
 background-color: ${Colors.gray.dark};

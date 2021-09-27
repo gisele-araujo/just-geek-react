@@ -65,7 +65,7 @@ opacity: ${props => props.loading || !props.enabled ? "0.6" : null};
 transition: all 0.5s;
 
 &:hover {
-    background-color: ${props => props.primary && props.enabled ? Colors.blue.dark : null};
-    border: ${props => props.primary && props.enabled ? Colors.blue.dark : null};
+    background-color: ${props => props.primary && props.enabled ? '#3945a7' : props.action === 'positive' ? '#03886e' : null};
+    border: '#3945a7';
 }
 `

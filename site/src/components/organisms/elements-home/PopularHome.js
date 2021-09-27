@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import './../pages/style.css'
-import { SubTitle, TitlePattern } from "../atoms/Titles";
-import { CardProduto } from "../molecules/cards/ProductCard";
+import { SubTitle, TitlePattern } from "../../atoms/Titles";
+import { CardProduto } from "../../molecules/cards/ProductCard";
 
 export function PopularHome() {
     return (

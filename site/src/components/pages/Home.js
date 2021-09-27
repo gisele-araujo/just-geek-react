@@ -5,10 +5,11 @@ import { BackTopButton } from "../atoms/BackTopButton";
 import { CarouselPattern } from "../molecules/CarouselPattern";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../organisms/Header";
-import { CategoryHome } from "../organisms/CategoryHome";
-import { PromotionsHome } from "../organisms/PromotionsHome";
-import { PopularHome } from "../organisms/PopularHome";
-import { BannerHome } from "../organisms/BannerHome";
+import { CategoryHome } from "../organisms/elements-home/CategoryHome";
+import { PromotionsHome } from "../organisms/elements-home/PromotionsHome";
+import { PopularHome } from "../organisms/elements-home/PopularHome";
+import { BannerHome } from "../organisms/elements-home/BannerHome";
+import { ArtistsHome } from "../organisms/elements-home/ArtistsHome";
 
 const Home = () => {
     return (
@@ -20,6 +21,7 @@ const Home = () => {
                 <PromotionsHome />
                 <PopularHome />
                 <CategoryHome />
+                <ArtistsHome />
                 <BackTopButton />
             </Homepage>
             <Footer />

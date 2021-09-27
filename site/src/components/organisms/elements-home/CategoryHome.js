@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { CategoryCard } from "../molecules/cards/CategoryCard";
-import Anime from '../../assets/anime-category.png'
-import Custom from '../../assets/custom-category.png'
-import Vaporwave from '../../assets/vaporwave-category.png'
-import Cartoon from '../../assets/cartoons-category.png'
-import { Colors } from "../../shared/Colors";
-import { SubTitle } from "../atoms/Titles";
+import { CategoryCard } from "../../molecules/cards/CategoryCard";
+import Anime from '../../../assets/anime-category.png'
+import Custom from '../../../assets/custom-category.png'
+import Vaporwave from '../../../assets/vaporwave-category.png'
+import Cartoon from '../../../assets/cartoons-category.png'
+import { Colors } from "../../../shared/Colors";
+import { SubTitle } from "../../atoms/Titles";
 
 export function CategoryHome() {
     return (
