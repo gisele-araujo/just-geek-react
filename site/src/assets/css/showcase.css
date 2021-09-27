@@ -7,6 +7,7 @@
     padding: 15px 0;
     filter: grayscale(1);
     background-color: #000;
+    transition: .5s all;
 }
 
 @keyframes scroll {

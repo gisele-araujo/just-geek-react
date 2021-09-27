@@ -1,9 +1,13 @@
 import { Carousel } from 'antd';
+import BlackFriday from './../../assets/img/bg-promo.gif'
 
 export function CarouselPattern() {
     const contentStyle = {
-        height: '380px',
+        width: '100%',
+        height: '65vh',
         color: '#fff',
+        objectFit: 'cover',
+        overflow: 'hidden',
         lineHeight: '160px',
         textAlign: 'center',
         background: '#000',
@@ -13,18 +17,18 @@ export function CarouselPattern() {
         <>
             <Carousel autoplay>
                 <div>
-                    <h3 style={contentStyle}>1</h3>
+                    <img src={BlackFriday} style ={Slide} />
                 </div>
                 <div>
                     <h3 style={contentStyle}>2</h3>
                 </div>
-                <div>
-                    <h3 style={contentStyle}>3</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>4</h3>
-                </div>
             </Carousel>
         </>
     )
+}
+
+const Slide = {
+    width: '100%',
+    height: '65vh',
+    objectFit: 'cover'
 }
