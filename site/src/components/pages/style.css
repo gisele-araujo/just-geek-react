@@ -18,3 +18,7 @@
     font-size: 26px;
     padding: 5px;
 }
+
+.rate-icon .anticon svg {
+    fill: #52C1CC;
+}

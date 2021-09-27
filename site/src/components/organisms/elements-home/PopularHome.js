@@ -7,7 +7,7 @@ export function PopularHome() {
         <>
             <PopularSection>
                 <TitlePattern border='pink' text="Populares" />
-                <SubTitle text="Os produtos mais vendidos" />
+                <SubTitle text="Os produtos mais vendidos da JustGEEK" />
                 <div className="vitrine-products">
                     <CardProduto />
                     <CardProduto />

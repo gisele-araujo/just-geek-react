@@ -11,6 +11,7 @@ import { PopularHome } from "../organisms/elements-home/PopularHome";
 import { BannerHome } from "../organisms/elements-home/BannerHome";
 import { ArtistsHome } from "../organisms/elements-home/ArtistsHome";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
+import { RateHome } from "../organisms/elements-home/RateHome";
 
 const Home = () => {
     return (
@@ -23,6 +24,7 @@ const Home = () => {
                 <PopularHome />
                 <CategoryHome />
                 <ArtistsHome />
+                <RateHome />
                 <NewslatterFooter />
                 <BackTopButton />
             </Homepage>
