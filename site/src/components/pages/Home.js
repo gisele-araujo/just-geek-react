@@ -8,6 +8,7 @@ import { Header } from "../organisms/Header";
 import { CategoryHome } from "../organisms/CategoryHome";
 import { PromotionsHome } from "../organisms/PromotionsHome";
 import { PopularHome } from "../organisms/PopularHome";
+import { BannerHome } from "../organisms/BannerHome";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Header />
             <Homepage>
                 <CarouselPattern />
+                <BannerHome />
                 <PromotionsHome />
                 <PopularHome />
                 <CategoryHome />
