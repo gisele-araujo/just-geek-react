@@ -4,7 +4,7 @@
     align-items: center;
 	display: flex;
 	justify-content: center;
-    padding: 15px 0;
+    padding: 20px 0;
     filter: grayscale(1);
     background-color: #000;
     transition: .5s all;
