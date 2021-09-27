@@ -1,0 +1,66 @@
+/* SHOWCASE TEMAS */
+
+.theme-showcase{
+    align-items: center;
+	display: flex;
+	justify-content: center;
+    padding: 15px 0;
+    filter: grayscale(1);
+    background-color: #000;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+   }
+    100% {
+        transform: translateX(calc(-250px * 9));
+   }
+}
+.theme-showcase .slider {
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 98%;
+}
+.theme-showcase .slider::before, .slider::after {
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+.theme-showcase .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+.theme-showcase .slider::before {
+    left: 0;
+    top: 0;
+}
+.theme-showcase .slider .slide-track {
+    animation: scroll 25s linear infinite;
+    display: flex;
+    width: calc(250px * 18);
+}
+.theme-showcase .slider .slide-theme {
+    height: 70px;
+    max-width: 220px;
+    margin: 0 10px;
+}
+
+.slide-track .slide-theme img{
+    height: 70px;
+    max-width: 220px;
+    margin: 0 10px;
+    
+}
+
+.slider .slide-theme img:hover{
+    transform: scale(1.05);
+}
+
+.slider .slide-track:hover{
+    animation-play-state: paused;
+}

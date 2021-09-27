@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import './../pages/style.css'
+import '../../assets/css/override.css'
 import { Colors } from '../../shared/Colors';
 import { Input } from 'antd';
 import { UserOutlined, HeartOutlined, ShoppingOutlined, MenuOutlined } from "@ant-design/icons";
-import LogoRosa from '../../assets/logo-rosa.svg'
+import LogoRosa from '../../assets/img/logo-rosa.svg'
 import { useHistory } from 'react-router';
 import { Drawer } from 'antd';
 import { EmptyStateBag } from '../molecules/EmptyStateBag';

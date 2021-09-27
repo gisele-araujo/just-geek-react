@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ArtistsCard } from "../../molecules/cards/ArtistCard";
-import Artist from '../../../assets/anime-category.png'
+import Artist from '../../../assets/img/anime-category.png'
 import { SubTitle } from "../../atoms/Titles";
 
 export function ArtistsHome() {

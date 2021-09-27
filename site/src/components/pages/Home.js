@@ -12,12 +12,14 @@ import { BannerHome } from "../organisms/elements-home/BannerHome";
 import { ArtistsHome } from "../organisms/elements-home/ArtistsHome";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
 import { RateHome } from "../organisms/elements-home/RateHome";
+import { CarouselBrands } from "../molecules/CarouselBrands";
 
 const Home = () => {
     return (
         <>
             <Header />
             <Homepage>
+                <CarouselBrands />
                 <CarouselPattern />
                 <BannerHome />
                 <PromotionsHome />
@@ -36,7 +38,7 @@ const Home = () => {
 export default Home;
 
 const Homepage = styled.div`
-padding-top: 140px;
+padding-top: 85px;
 background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
 `

@@ -49,7 +49,7 @@ export function Button(props) {
 const BasicButton = styled.button`
 outline: none;
 font-size: 16px;
-font-weight: 500;
+font-weight: 400;
 background-color: ${props => props.action === 'positive' ? Colors.green.light :
         props.action === 'negative' ? Colors.pink.hot :
             !props.enabled ? Colors.gray.light :

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import '../../pages/style.css'
+import '../../../assets/css/override.css'
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
 import { Rate } from 'antd';

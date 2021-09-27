@@ -1,7 +1,7 @@
 import React from "react";
-import './style.css'
+import './../../assets/css/override.css'
 import styled from "styled-components";
-import PostIt from './../../assets/conhecer-cliente.png'
+import PostIt from './../../assets/img/conhecer-cliente.png'
 import { Colors } from "../../shared/Colors";
 import { Header } from "../organisms/Header";
 import { Button } from '../atoms/Button';

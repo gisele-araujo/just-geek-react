@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css'
+import './../../assets/css/override.css'
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
 import { Header } from "../organisms/Header";

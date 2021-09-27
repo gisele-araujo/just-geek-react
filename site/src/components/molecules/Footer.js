@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
-import Logo from '../../assets/logo-rosa.svg'
-import GooglePlay from '../../assets/google-play.png'
+import Logo from '../../assets/img/logo-rosa.svg'
+import GooglePlay from '../../assets/img/google-play.png'
 
 export function Footer() {
     return (

@@ -1,6 +1,6 @@
 import { Button } from './../atoms/Button'
 import styled from "styled-components";
-import Bag from '../../assets/shopping-bag.svg'
+import Bag from '../../assets/img/shopping-bag.svg'
 import { SecondaryTitle } from '../atoms/Titles';
 
 export function EmptyStateBag() {
