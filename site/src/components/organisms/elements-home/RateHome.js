@@ -13,6 +13,7 @@ export function RateHome() {
                     <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
                     <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
                     <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
+                    <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
                 </RateGrade>
             </RateSection>
         </>

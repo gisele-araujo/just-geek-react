@@ -80,6 +80,12 @@ height: 100%;
 background-color: ${Colors.gray.dark};
 font-family: 'Exo 2', sans-serif;
 padding: 50px 0;
+
+
+@media(max-width: 768px) {
+width: 100%;
+padding: 50px 20px;
+}
 `
 
 const FormCadastro = styled.form`
@@ -123,6 +129,11 @@ h3 {
         width: 50%;
     }
 }
+
+
+@media(max-width: 768px) {
+    max-width: 100%;
+}
 `
 
 const ImgPostIt = styled.div`
@@ -143,6 +154,13 @@ img {
 
     to {
         opacity: 1;
+    }
+}
+
+@media(max-width: 768px) {
+    width: 0;
+    img {
+        display: none;
     }
 }
 `

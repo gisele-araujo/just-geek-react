@@ -70,6 +70,11 @@ animation: animate-box 1s ;
         opacity: 1;
     }
 }
+
+
+@media(max-width: 768px) {
+padding: 40px 20px;
+}
 `
 
 const FormLogin = styled.form`

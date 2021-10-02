@@ -35,7 +35,7 @@ export function Header() {
                         <Search placeholder="O que você procura?" onSearch={onSearch} style={{ width: '100%' }} />
                     </SearchSpace>
                     <ProfileHeader className="profile">
-                        <UserOutlined style={IconsHeader} />
+                        <UserOutlined style={IconsHeader} onClick={() => history.push('/login')} />
                         <div>
                             <p>Olá, visitante!</p>
                             <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
@@ -95,6 +95,12 @@ img {
     height: 40px;
     padding: 0 15px;
 }
+
+@media(max-width: 768px) {
+    h2 {
+        display: none;
+    }
+}
 `
 
 const SearchSpace = styled.div`
@@ -117,6 +123,10 @@ width: 33%;
     color: ${Colors.gray.darkPurple};
     font-size: 18px;
 }
+
+@media(max-width: 768px) {
+display: none;
+}
 `
 
 const ProfileHeader = styled.div` 
@@ -134,6 +144,13 @@ u {
 
 u:hover {
     color: ${Colors.blue.light};
+}
+
+
+@media(max-width: 768px) {
+    p, u {
+        display: none;
+    }
 }
 `
 
