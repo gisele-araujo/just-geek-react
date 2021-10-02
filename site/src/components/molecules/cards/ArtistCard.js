@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
+import {useHistory} from 'react-router-dom'
 
 export function ArtistsCard(props) {
     const {
@@ -8,9 +9,11 @@ export function ArtistsCard(props) {
         name,
     } = props
 
+    const history = useHistory()
+
     return(
         <>
-        <CardContainer>
+        <CardContainer onClick={() => history.push('/artista')}>
             <CardImage>
                 <img src={image} />
             </CardImage>
@@ -29,6 +32,7 @@ background-color: ${Colors.blue.dark};
 border: 2px solid ${Colors.blue.dark};
 margin: 20px 15px;
 transition: .5s all;
+cursor: pointer;
 
 &:hover {
     border: 2px solid ${Colors.gray.ultraLight};
