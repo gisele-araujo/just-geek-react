@@ -43,3 +43,7 @@
 .ant-tabs-ink-bar {
     background: #52C1CC !important;
 }
+
+.ant-image-preview-mask {
+    background-color: rgb(0 0 0 / 75%) !important;
+}

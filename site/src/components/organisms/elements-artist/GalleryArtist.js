@@ -1,53 +1,48 @@
-import { useHistory } from "react-router";
-import styled from "styled-components";
-import Art from '../../../assets/img/vaporwave-category.png'
+import '../../../assets/css/override.css'
+import Art from '../../../assets/img/custom-category.png'
+import Art2 from '../../../assets/img/custom.png'
+import { Image } from 'antd';
 
 export function GalleryArtist() {
-    const history = useHistory()
 
     return (
         <>
-            <img 
-                onClick={() => history.push('/arte')}
+        <Image.PreviewGroup>
+            <Image
                 style={ArtistArt}
                 src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
+            <Image
+                style={ArtistArt}
+                src={Art2} />
+            <Image
                 style={ArtistArt}
                 src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
+            <Image
+                style={ArtistArt}
+                src={Art2} />
+            <Image
                 style={ArtistArt}
                 src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
+            <Image
+                style={ArtistArt}
+                src={Art2} />
+            <Image
                 style={ArtistArt}
                 src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
+            <Image
                 style={ArtistArt}
-                src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
-                style={ArtistArt}
-                src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
-                style={ArtistArt}
-                src={Art} />
-            <img 
-                onClick={() => history.push('/arte')}
-                style={ArtistArt}
-                src={Art} />
+                src={Art2} />
+        </Image.PreviewGroup>
+            
         </>
     )
 }
 
 const ArtistArt = {
     cursor: 'pointer',
-    margin: '18px',
-    width: '250px',
-    height: '250px',
+    padding: '16px',
+    width: '270px',
+    height: '270px',
     objectFit: 'cover',
     transition: '0.5s all'
 }
