@@ -5,22 +5,29 @@ import Arrow from './../../../assets/img/arrow.svg'
 export function BannerHome() {
     return (
         <>
-        <BannerSection>
-            <img src={Arrow} className="arrow-promotion" />
-            <BannerPromo />
-            <img src={Arrow} className="arrow-promotion" />
-        </BannerSection>
+            <BannerSection>
+                <img src={Arrow} className="arrow-promotion" />
+                <BannerPromo />
+                <img src={Arrow} className="arrow-promotion" />
+            </BannerSection>
         </>
     )
 }
 
-const BannerSection = styled.section `
+const BannerSection = styled.section`
 width: 100%;
 padding: 40px 0;
 max-width: 1600px;
 margin: 0 auto;
 display: flex;
 justify-content: center;
+
+@media(max-width: 768px) {
+padding: 20px;
+    .arrow-promotion {
+        display: none;
+    }
+}
 
 .arrow-promotion {
     animation: arrow-animate 1s infinite;

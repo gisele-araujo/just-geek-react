@@ -28,4 +28,5 @@ text-align: center;
 const RateGrade = styled.div`
 display: flex;
 justify-content: center;
+flex-wrap: wrap;
 `

@@ -7,13 +7,16 @@ export function ArtistsCard(props) {
     const {
         image,
         name,
+        primary = true,
     } = props
 
     const history = useHistory()
 
     return(
         <>
-        <CardContainer onClick={() => history.push('/artista')}>
+        <CardContainer 
+        onClick={() => history.push('/artista')}
+        primary={primary}>
             <CardImage>
                 <img src={image} />
             </CardImage>
@@ -28,14 +31,13 @@ export function ArtistsCard(props) {
 const CardContainer = styled.div `
 width: 240px;
 height: 270px;
-background-color: ${Colors.blue.dark};
-border: 2px solid ${Colors.blue.dark};
+background-color: ${props => props.primary ? Colors.purple.secondDark : Colors.gray.darkPurple};
+border-radius: 5px;
 margin: 20px 15px;
 transition: .5s all;
 cursor: pointer;
 
 &:hover {
-    border: 2px solid ${Colors.gray.ultraLight};
     filter: brightness(0.8);
 }
 `
@@ -46,6 +48,8 @@ img {
     width: 100%;
     object-fit: cover;
     height: 210px;
+    border: 5px solid ${Colors.gray.light};
+    border-radius: 5px 5px 0px 0px;
 }
 `
 
@@ -56,4 +60,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
+
+h4 {
+    font-size: 18px !important;
+}
 `

@@ -29,5 +29,6 @@ background-color: ${Colors.gray.medium};
 .vitrine-products {
     display: flex;
     justify-content: center; 
+    flex-wrap: wrap;
 }
 `

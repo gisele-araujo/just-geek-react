@@ -9,10 +9,10 @@ export function ArtistsHome() {
             <ArtistsSection>
                 <SubTitle text='Conheça os nossos produtos customizados desenhados pela nossa equipe' />
                 <ArtistsGrade>
-                    <ArtistsCard image={Artist} name='Gabriel' />
-                    <ArtistsCard image={Artist} name='Gabriel' />
-                    <ArtistsCard image={Artist} name='Gabriel' />
-                    <ArtistsCard image={Artist} name='Gabriel' />
+                    <ArtistsCard image={Artist} name='Gabriel Santos' />
+                    <ArtistsCard image={Artist} name='Gabriel Santos' />
+                    <ArtistsCard image={Artist} name='Gabriel Santos' />
+                    <ArtistsCard image={Artist} name='Gabriel Santos' />
                 </ArtistsGrade>
             </ArtistsSection>
         </>
@@ -27,4 +27,5 @@ text-align: center;
 const ArtistsGrade = styled.div `
 display: flex;
 justify-content: center;
+flex-wrap: wrap;
 `

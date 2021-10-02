@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { NameTitle, SecondaryTitle } from '../atoms/Titles'
 import { TwitterOutlined, InstagramFilled } from '@ant-design/icons'
 import { Colors } from '../../shared/Colors'
+import BgProfile from '../../assets/img/bg-section-artist.jpeg'
 
 export function ProfileArtist(props) {
     const {
@@ -30,7 +31,8 @@ export function ProfileArtist(props) {
 }
 
 const ContainerProfile = styled.div` 
-background-color: ${Colors.gray.medium};
+background-image: url(${BgProfile});
+background-position: right;
 width: 100%;
 height: 300px;
 display: flex;

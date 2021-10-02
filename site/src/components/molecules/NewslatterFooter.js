@@ -29,6 +29,25 @@ width: 100%;
 display: flex;
 align-items: center;
 
+@media(max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .newslatter-form {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .newslatter-input {
+        width: 100% !important;
+        margin: 10px 0;
+    }
+
+    button {
+        width: 100% !important;
+    }
+}
+
 .newslatter-title h3 {
     width: 285px;
     margin-right: 30px;

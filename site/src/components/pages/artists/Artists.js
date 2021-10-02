@@ -9,12 +9,10 @@ import { Tabs } from 'antd';
 import { BackTopButton } from "../../atoms/BackTopButton";
 import { BioArtist } from "../../organisms/elements-artist/BioArtist";
 import { GalleryArtist } from "../../organisms/elements-artist/GalleryArtist";
+import { OthersArtists } from "../../organisms/elements-artist/OthersArtists";
+import { NewslatterFooter } from "../../molecules/NewslatterFooter";
 
 const { TabPane } = Tabs;
-
-function callback(key) {
-    console.log(key);
-}
 
 const Artists = () => {
     return (
@@ -22,7 +20,7 @@ const Artists = () => {
             <Header />
             <ArtistsSection>
                 <ProfileArtist name='Carolina Franco' bio='Artista freelancer, tatuadora, apaixonada em arte digital.' pic={Artist} />
-                <Tabs defaultActiveKey="1" onChange={callback}>
+                <Tabs defaultActiveKey="1">
                     <TabPane tab="Galeria" key="1">
                         <PageTab>
                             <GalleryArtist />
@@ -34,7 +32,9 @@ const Artists = () => {
                         </PageTab>
                     </TabPane>
                 </Tabs>
+                <OthersArtists />
                 <BackTopButton />
+                <NewslatterFooter />
             </ArtistsSection>
             <Footer />
         </>
@@ -54,4 +54,8 @@ padding: 20px 2%;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
+
+img:hover {
+    filter: brightness(0.8);
+}
 `

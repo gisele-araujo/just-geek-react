@@ -21,6 +21,7 @@ padding: 15px 0;
 display: flex;
 align-items: center;
 justify-content: space-around;
+flex-wrap: wrap;
 border: 2px dashed ${Colors.gray.ultraLight};
 
 .promotion-text {
@@ -31,5 +32,16 @@ border: 2px dashed ${Colors.gray.ultraLight};
 
 h3 {
     margin: 0;
+}
+
+@media(max-width: 768px) {
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+
+    .promotion-text {
+        font-size: 24px;
+        font-weight: 600;
+    }
 }
 `

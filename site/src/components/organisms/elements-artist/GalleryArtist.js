@@ -1,32 +1,42 @@
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Art from '../../../assets/img/vaporwave-category.png'
-import { Image } from 'antd';
 
 export function GalleryArtist() {
+    const history = useHistory()
+
     return (
         <>
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
-            <Image
+            <img 
+                onClick={() => history.push('/arte')}
                 style={ArtistArt}
                 src={Art} />
         </>
@@ -34,8 +44,10 @@ export function GalleryArtist() {
 }
 
 const ArtistArt = {
-    padding: '18px',
-    width: '300px',
-    height: '300px',
-    objectFit: 'cover'
+    cursor: 'pointer',
+    margin: '18px',
+    width: '250px',
+    height: '250px',
+    objectFit: 'cover',
+    transition: '0.5s all'
 }

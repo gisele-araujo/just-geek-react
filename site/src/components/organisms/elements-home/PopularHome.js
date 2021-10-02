@@ -27,5 +27,6 @@ text-align: center;
 .vitrine-products {
     display: flex;
     justify-content: center; 
+    flex-wrap: wrap;
 }
 `

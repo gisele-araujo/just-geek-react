@@ -34,4 +34,5 @@ const CategoryGrade = styled.div`
 margin-top: 20px;
 display: flex;
 justify-content: center;
+flex-wrap: wrap;
 `

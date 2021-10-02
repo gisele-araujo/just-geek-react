@@ -30,12 +30,14 @@ export function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <p>Envie um email: <u>contato@justgeek.com</u></p>
-                        <p className='service-hours'>Horário de atendimento: Segunda a sexta-feira, das 8h às 18h.</p>
-                        <AppBanner>
-                             <p>Baixe nosso App</p>
-                            <img src={GooglePlay} style={{width: '100px'}}/>
-                        </AppBanner>
+                        <ul>
+                            <p>Envie um email: <u>contato@justgeek.com</u></p>
+                            <p className='service-hours'>Horário de atendimento: Segunda a sexta-feira, das 8h às 18h.</p>
+                            <AppBanner>
+                                <p>Baixe nosso App</p>
+                                <img src={GooglePlay} style={{ width: '100px' }} />
+                            </AppBanner>
+                        </ul>
                     </div>
                 </FooterList>
 
@@ -50,7 +52,7 @@ width: 100%;
 background-color: ${Colors.blue.darkPurple};
 font-family: 'Exo 2', sans-serif;
 `
-const FooterList = styled.div `
+const FooterList = styled.div`
 justify-content: space-around;
 padding: 30px 2%;
 max-width: 1600px;
@@ -58,6 +60,15 @@ margin: 0 auto;
 display: flex;
 color: ${Colors.gray.white};
 font-size: 14px;
+
+@media(max-width: 768px) {
+    flex-direction: column;
+
+    ul {
+        padding-left: 0;
+        padding-top: 15px;
+    }
+}
 
 ul li {
     list-style: none;
@@ -102,7 +113,7 @@ border-top: 1px solid ${Colors.pink.hot};
 color: ${Colors.gray.white};
 `
 
-const AppBanner = styled.div `
+const AppBanner = styled.div`
 margin: 20px 0;
 display: flex;
 align-items: center;
