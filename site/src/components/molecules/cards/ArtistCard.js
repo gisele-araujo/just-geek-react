@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export function ArtistsCard(props) {
     const {
@@ -12,23 +12,24 @@ export function ArtistsCard(props) {
 
     const history = useHistory()
 
-    return(
+    return (
         <>
-        <CardContainer 
-        onClick={() => history.push('/artista')}
-        primary={primary}>
-            <CardImage>
-                <img src={image} />
-            </CardImage>
-            <CardName>
-                <NameTitle text={name} />
-            </CardName>
-        </CardContainer>
+            <a href="./artista">
+                <CardContainer
+                    primary={primary}>
+                    <CardImage>
+                        <img src={image} />
+                    </CardImage>
+                    <CardName>
+                        <NameTitle text={name} />
+                    </CardName>
+                </CardContainer>
+            </a>
         </>
     )
 }
 
-const CardContainer = styled.div `
+const CardContainer = styled.div`
 width: 240px;
 height: 270px;
 background-color: ${props => props.primary ? Colors.purple.secondDark : Colors.gray.darkPurple};
@@ -42,7 +43,7 @@ cursor: pointer;
 }
 `
 
-const CardImage = styled.div `
+const CardImage = styled.div`
 
 img {
     width: 100%;
@@ -53,7 +54,7 @@ img {
 }
 `
 
-const CardName = styled.div `
+const CardName = styled.div`
 width: 100%;
 height: 60px;
 display: flex;

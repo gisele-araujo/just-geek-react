@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './../../assets/css/override.css'
 import styled from "styled-components";
 import PostIt from './../../assets/img/conhecer-cliente.png'
@@ -7,51 +7,125 @@ import { Header } from "../organisms/Header";
 import { Button } from '../atoms/Button';
 import { Input } from "antd";
 import { useHistory } from "react-router";
+import { User } from "../../services/User";
 
 const Cadastro = () => {
     const history = useHistory()
+    const [nome, setNome] = useState('')
+    const [sobrenome, setSobrenome] = useState('')
+    const [dataNascimento, setDataNascimento] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [celular, setCelular] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const dataFormatada = new Date(dataNascimento).toLocaleDateString('pt-BR', { timeZone: 'UTC' }).replace(/\//g, '-');
+
+        let data = {
+            nome: nome,
+            sobrenome: sobrenome,
+            dataNascimento: dataFormatada,
+            cpf: cpf,
+            celular: celular,
+            email: email,
+            senha: senha
+        }
+
+        const response = await User.signUpUser(data)
+
+        if (response.status) {
+            console.log('cadastro realizado com sucesso!')
+        } else {
+            console.log('erro ao cadastrar')
+        }
+    }
 
     return (
         <>
             <Header />
             <CadastroPage>
                 <ContainerCadastro>
-                    <FormCadastro>
+                    <FormCadastro onSubmit={handleSubmit}>
                         <h3>Preencha seus dados</h3>
                         <div className='double-input'>
                             <div className='input-register' style={{ marginRight: '10px' }}>
                                 <label>Nome</label>
-                                <Input type='text' />
+                                <Input
+                                    value={nome}
+                                    onChange={e => setNome(e.target.value)}
+                                    id="name"
+                                    name="name"
+                                    required
+                                    type='text' />
                             </div>
                             <div className='input-register'>
                                 <label>Sobrenome</label>
-                                <Input type='text' />
+                                <Input
+                                    value={sobrenome}
+                                    onChange={e => setSobrenome(e.target.value)}
+                                    id="sobrenome"
+                                    name="sobrenome"
+                                    required
+                                    type='text' />
                             </div>
                         </div>
                         <div className='double-input'>
                             <div className='input-register' style={{ marginRight: '10px' }}>
                                 <label>CPF</label>
-                                <Input type='text' />
+                                <Input
+                                    value={cpf}
+                                    onChange={e => setCpf(e.target.value)}
+                                    id="cpf"
+                                    name="cpf"
+                                    required
+                                    type='text' />
                             </div>
                             <div className='input-register'>
                                 <label>Data de nascimento</label>
-                                <Input type='date' />
+                                <Input
+                                    value={dataNascimento}
+                                    onChange={e => setDataNascimento(e.target.value)}
+                                    id="dataNascimento"
+                                    name="dataNascimento"
+                                    required
+                                    type='date' />
                             </div>
                         </div>
                         <div className='input-register'>
                             <label>Email</label>
-                            <Input type='email' />
+                            <Input
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                id="email"
+                                name="email"
+                                required
+                                type='email' />
                         </div>
                         <div className='input-register'>
                             <label>Telefone</label>
-                            <Input type='text' />
+                            <Input
+                                value={celular}
+                                onChange={e => setCelular(e.target.value)}
+                                id="celular"
+                                name="celular"
+                                required
+                                type='text' />
                         </div>
                         <div className='input-register'>
                             <label>Senha</label>
-                            <Input type='password' />
+                            <Input
+                                value={senha}
+                                onChange={e => setSenha(e.target.value)}
+                                id="senha"
+                                name="senha"
+                                required
+                                type='password' />
                         </div>
-                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='CRIAR CONTA' />
-                        <span className='options-register'>Já possui uma conta? <u onClick={() => history.push('/register')}>Acesse!</u></span>
+                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='CRIAR CONTA' type="submit" />
+                        <span className='options-register'>Já possui uma conta? <u onClick={() => history.push('/login')}>Acesse!</u></span>
                     </FormCadastro>
                 </ContainerCadastro>
                 <ImgPostIt>
@@ -164,5 +238,5 @@ img {
     }
 }
 `
-    
+
 

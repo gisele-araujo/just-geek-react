@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import '../../../assets/css/override.css'
-import { Colors } from "../../../shared/Colors";
-import { Footer } from "../../molecules/Footer";
-import { ProfileArtist } from "../../molecules/ProfileArtist";
-import { Header } from "../../organisms/Header";
-import Artist from '../../../assets/img/anime-category.png';
+import '../../assets/css/override.css'
+import { Colors } from "../../shared/Colors";
+import { Footer } from "../molecules/Footer";
+import { ProfileArtist } from "../molecules/ProfileArtist";
+import { Header } from "../organisms/Header";
+import Artist from '../../assets/img/anime-category.png';
 import { Tabs } from 'antd';
-import { BackTopButton } from "../../atoms/BackTopButton";
-import { BioArtist } from "../../organisms/elements-artist/BioArtist";
-import { GalleryArtist } from "../../organisms/elements-artist/GalleryArtist";
-import { OthersArtists } from "../../organisms/elements-artist/OthersArtists";
-import { NewslatterFooter } from "../../molecules/NewslatterFooter";
+import { BackTopButton } from "../atoms/BackTopButton";
+import { BioArtist } from "../organisms/elements-artist/BioArtist";
+import { GalleryArtist } from "../organisms/elements-artist/GalleryArtist";
+import { OthersArtists } from "../organisms/elements-artist/OthersArtists";
+import { NewslatterFooter } from "../molecules/NewslatterFooter";
 
 const { TabPane } = Tabs;
 

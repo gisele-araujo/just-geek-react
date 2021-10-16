@@ -4,11 +4,14 @@ import { Colors } from '../../../shared/Colors'
 import { Button } from '../../atoms/Button'
 import { Card } from 'antd';
 import ShirtExemple from '../../../assets/img/shirt.png'
+import { useHistory } from "react-router";
 
 export function CardProduto() {
+    const history = useHistory();
     return (
         <>
             <Card
+                onClick={() => history.push('/produto')}
                 hoverable
                 style={CardStyle}
                 cover={<img style={{ backgroundColor: Colors.gray.light, padding: '15px' }} alt="example" src={ShirtExemple} />}
