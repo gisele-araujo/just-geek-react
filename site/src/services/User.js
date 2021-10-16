@@ -29,5 +29,29 @@ export const User = {
                 status: false
             }
         }
-    }
+    },
+
+    async signInUser(data) {
+
+        if(
+            !data ||
+            !data.email ||
+            !data.senha 
+        ) {
+            throw Error('Dados insuficientes para logar usuário')
+        }
+
+        try {
+            const response = await api.post(`/account/login`, data)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
 }
