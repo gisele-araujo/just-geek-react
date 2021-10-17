@@ -11,6 +11,7 @@ import { BioArtist } from "../organisms/elements-artist/BioArtist";
 import { GalleryArtist } from "../organisms/elements-artist/GalleryArtist";
 import { OthersArtists } from "../organisms/elements-artist/OthersArtists";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
+import { BannerApp } from "../molecules/BannerApp";
 
 const { TabPane } = Tabs;
 
@@ -33,6 +34,7 @@ const Artists = () => {
                     </TabPane>
                 </Tabs>
                 <OthersArtists />
+                <BannerApp />
                 <BackTopButton />
                 <NewslatterFooter />
             </ArtistsSection>

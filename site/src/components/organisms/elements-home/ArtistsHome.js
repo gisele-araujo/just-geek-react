@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ArtistsCard } from "../../molecules/cards/ArtistCard";
 import Artist from '../../../assets/img/anime-category.png'
 import { SubTitle } from "../../atoms/Titles";
+import { Colors } from "../../../shared/Colors";
 
 export function ArtistsHome() {
     return (
@@ -20,8 +21,9 @@ export function ArtistsHome() {
 }
 
 const ArtistsSection = styled.section`
-padding: 40px 0;
+padding: 40px 0 10px;
 text-align: center;
+background-color: ${Colors.gray.dark};
 `
 
 const ArtistsGrade = styled.div `

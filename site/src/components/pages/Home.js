@@ -13,6 +13,7 @@ import { ArtistsHome } from "../organisms/elements-home/ArtistsHome";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
 import { RateHome } from "../organisms/elements-home/RateHome";
 import { CarouselBrands } from "../molecules/CarouselBrands";
+import { BannerApp } from "../molecules/BannerApp";
 
 const Home = () => {
     return (
@@ -26,6 +27,7 @@ const Home = () => {
                 <PopularHome />
                 <CategoryHome />
                 <ArtistsHome />
+                <BannerApp />
                 <RateHome />
                 <NewslatterFooter />
                 <BackTopButton />
