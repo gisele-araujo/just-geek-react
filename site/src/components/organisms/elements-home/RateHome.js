@@ -9,9 +9,9 @@ export function RateHome() {
             <RateSection>
                 <SubTitle text='Avaliação dos clientes' />
                 <RateGrade>
+                    <RateCard name='Diego Silva' comment='Tudo perfeito,sem atraso,muito bem embalado, essa loja é demais' rate={5} />
                     <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
-                    <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
-                    <RateCard name='Luana Bittencourt' comment='Camiseta muito linda, amo a loja, sempre me surpreende!' rate={5} />
+                    <RateCard name='Jonas Araujo' comment='As melhores camisetas que eu tenho são da Just Geek' rate={5} />
                 </RateGrade>
             </RateSection>
         </>

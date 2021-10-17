@@ -24,7 +24,7 @@ export function RateCard(props) {
 
 const RateCardContainer = styled.div ` 
 width: 300px;
-height: 180px;
+min-height: 180px;
 background-color: ${Colors.gray.light};
 border-radius: 3px;
 padding: 20px;

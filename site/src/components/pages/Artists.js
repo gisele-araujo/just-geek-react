@@ -13,6 +13,7 @@ import { OthersArtists } from "../organisms/elements-artist/OthersArtists";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
 import { BannerApp } from "../molecules/BannerApp";
 import { BannerWarning } from "../atoms/BannerWarning";
+import Biel from '../../assets/img/artist-biel.png'
 
 const { TabPane } = Tabs;
 
@@ -22,7 +23,7 @@ const Artists = () => {
             <Header />
             <ArtistsSection>
             <BannerWarning text='ATENÇÃO! Você está visualizando uma vitrine, para realizar pedidos de camisetas com as artes de nossos artistas, baixe o aplicativo e garanta já sua peça única!' />
-                <ProfileArtist name='Carolina Franco' bio='Artista freelancer, tatuadora, apaixonada em arte digital.' pic={Artist} />
+                <ProfileArtist name='Gabriel Santos' bio='Artista freelancer, tatuador, apaixonado em arte digital.' pic={Biel} />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Galeria" key="1">
                         <PageTab>
