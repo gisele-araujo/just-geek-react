@@ -28,13 +28,13 @@ const Login = () => {
 
         if (response.status) {
             console.log('login realizado com sucesso!')
+            setLoading(false)
             alert('Login efetuado com sucesso')
-            loading(false)
             history.push('/')
         } else {
-            loading(false)
-            alert('Email ou senha inválidos, tente novamente')
             console.log('erro ao login')
+            setLoading(false)
+            alert('Email ou senha inválidos, tente novamente')
         }
     }
 
