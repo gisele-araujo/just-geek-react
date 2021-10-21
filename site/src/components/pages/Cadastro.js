@@ -11,6 +11,7 @@ import { User } from "../../services/User";
 
 const Cadastro = () => {
     const history = useHistory()
+    const [loading, setLoading] = useState(false)
     const [nome, setNome] = useState('')
     const [sobrenome, setSobrenome] = useState('')
     const [dataNascimento, setDataNascimento] = useState('')
@@ -21,6 +22,8 @@ const Cadastro = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setLoading(true)
 
         const dataFormatada = new Date(dataNascimento).toLocaleDateString('pt-BR', { timeZone: 'UTC' }).replace(/\//g, '-');
 
@@ -38,7 +41,12 @@ const Cadastro = () => {
 
         if (response.status) {
             console.log('cadastro realizado com sucesso!')
+            alert('Cadastro realizado com sucesso!')
+            setLoading(false)
+            history.push('/')
         } else {
+            setLoading(false)
+            alert('Erro ao cadastrar, tente novamente')
             console.log('erro ao cadastrar')
         }
     }
@@ -124,7 +132,7 @@ const Cadastro = () => {
                                 required
                                 type='password' />
                         </div>
-                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='CRIAR CONTA' type="submit" />
+                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='CRIAR CONTA' type="submit" loading={loading} />
                         <span className='options-register'>Já possui uma conta? <u onClick={() => history.push('/login')}>Acesse!</u></span>
                     </FormCadastro>
                 </ContainerCadastro>

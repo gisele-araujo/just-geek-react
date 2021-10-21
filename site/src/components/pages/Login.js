@@ -10,11 +10,14 @@ import { User } from "../../services/User";
 
 const Login = () => {
     const history = useHistory()
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setLoading(true)
 
         let data = {
             email: email,
@@ -25,7 +28,12 @@ const Login = () => {
 
         if (response.status) {
             console.log('login realizado com sucesso!')
+            alert('Login efetuado com sucesso')
+            loading(false)
+            history.push('/')
         } else {
+            loading(false)
+            alert('Email ou senha inválidos, tente novamente')
             console.log('erro ao login')
         }
     }
@@ -59,7 +67,7 @@ const Login = () => {
                                 type='password' />
                         </div>
                         <span className='options-login'>Esqueci minha senha</span>
-                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='ENTRAR' />
+                        <Button style={{ width: '100%', margin: '30px 0' }} contentText='ENTRAR' loading={loading} />
                         <span className='options-login'>Não possui uma conta? <u onClick={() => history.push('/cadastro')}>Cadastre-se!</u></span>
                     </FormLogin>
                 </ContainerLogin>
