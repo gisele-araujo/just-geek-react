@@ -1,6 +1,13 @@
 import '../../../assets/css/override.css'
-import Art from '../../../assets/img/custom-category.png'
-import Art2 from '../../../assets/img/custom.png'
+import ImgOne from '../../../assets/img/arts/akali-red.jpg'
+import ImgTwo from '../../../assets/img/arts/zed-colorido.jpg'
+import ImgThree from '../../../assets/img/arts/dragao.png'
+import ImgFour from '../../../assets/img/arts/jack-sparrow-amarelo.jpg'
+import ImgFive from '../../../assets/img/arts/jack-sparrow-negativo.jpg'
+import ImgSix from '../../../assets/img/arts/omniman.jpg'
+import ImgSeven from '../../../assets/img/arts/sasuke.png'
+import ImgEight from '../../../assets/img/arts/todoroki-red-blue.png'
+import ImgNine from '../../../assets/img/arts/zed-negativo.jpg'
 import { Image } from 'antd';
 
 export function GalleryArtist() {
@@ -10,28 +17,28 @@ export function GalleryArtist() {
         <Image.PreviewGroup>
             <Image
                 style={ArtistArt}
-                src={Art} />
+                src={ImgThree} />
             <Image
                 style={ArtistArt}
-                src={Art2} />
+                src={ImgTwo} />
             <Image
                 style={ArtistArt}
-                src={Art} />
+                src={ImgNine} />
             <Image
                 style={ArtistArt}
-                src={Art2} />
+                src={ImgFour} />
             <Image
                 style={ArtistArt}
-                src={Art} />
+                src={ImgFive} />
             <Image
                 style={ArtistArt}
-                src={Art2} />
+                src={ImgEight} />
             <Image
                 style={ArtistArt}
-                src={Art} />
+                src={ImgSix} />
             <Image
                 style={ArtistArt}
-                src={Art2} />
+                src={ImgSeven} />
         </Image.PreviewGroup>
             
         </>

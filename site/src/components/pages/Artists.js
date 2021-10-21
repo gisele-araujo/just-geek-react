@@ -13,7 +13,7 @@ import { OthersArtists } from "../organisms/elements-artist/OthersArtists";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
 import { BannerApp } from "../molecules/BannerApp";
 import { BannerWarning } from "../atoms/BannerWarning";
-import Biel from '../../assets/img/artist-biel.png'
+import Biel from '../../assets/img/arts/zed-negativo.jpg'
 
 const { TabPane } = Tabs;
 

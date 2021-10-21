@@ -5,21 +5,41 @@ import { Button } from '../../atoms/Button'
 import { Card } from 'antd';
 import ShirtExemple from '../../../assets/img/shirt.png'
 import { useHistory } from "react-router";
+import ShirtLoading from '../../../assets/img/shirt-loading.png'
+import { Skeleton } from 'antd'
 
-export function CardProduto() {
+export function CardProduto(props) {
     const history = useHistory();
+
+    const {
+        title,
+        preco,
+        specification,
+        description,
+        img,
+        loading = false
+    } = props
+
     return (
         <>
             <Card
                 onClick={() => history.push('/produto')}
                 hoverable
                 style={CardStyle}
-                cover={<img style={{ backgroundColor: Colors.gray.light, padding: '15px' }} alt="example" src={ShirtExemple} />}
+                cover={<img style={{ backgroundColor: Colors.gray.light, padding: '15px' }} alt="example" src={loading ? ShirtLoading : ShirtExemple} />}
             >
                 <CardDesc>
-                    <h3>Camiseta - Naruto</h3>
-                    <span><s>R$ 99,00</s> <strong>R$ 70,00</strong></span>
-                    <p>ou até 5x de R$ 14,00</p>
+                    {
+                        loading ?
+                        <Skeleton active />
+                        :
+                            <>
+                                <h3>{title}</h3>
+                                <span><s>R${preco}</s> <strong>R${(preco - (preco * 0.25)).toFixed(2)} </strong></span>
+                                <p>ou até 5x de R$ {(preco / 5).toFixed(2)} sem juros</p>
+                            </>
+                    }
+
                 </CardDesc>
                 <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='COMPRAR' />
             </Card>
@@ -37,6 +57,11 @@ const CardStyle = {
 const CardDesc = styled.div`
 h3, p, span {
    color: ${Colors.gray.white}; 
+}
+
+h3 {
+    max-height: 50px;
+    min-height: 50px;
 }
 
 s {

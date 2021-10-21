@@ -3,7 +3,8 @@ import { ArtistsCard } from "../../molecules/cards/ArtistCard";
 import Artist from '../../../assets/img/anime-category.png'
 import Grazi from '../../../assets/img//artist-grazi.png'
 import Tai from '../../../assets/img//artist-tai.png'
-import Biel from '../../../assets/img//artist-biel.png'
+import Biel from '../../../assets/img/arts/zed-negativo.jpg'
+import Gi from '../../../assets/img/arts/gisele.jpg'
 import { SubTitle } from "../../atoms/Titles";
 import { Colors } from "../../../shared/Colors";
 
@@ -16,6 +17,7 @@ export function ArtistsHome() {
                     <ArtistsCard image={Tai} name='Taiza Marques' />
                     <ArtistsCard image={Biel} name='Gabriel Santos' />
                     <ArtistsCard image={Grazi} name='Graziela Lucena' />
+                    <ArtistsCard image={Gi} name='Gisele Flor' />
                 </ArtistsGrade>
             </ArtistsSection>
         </>

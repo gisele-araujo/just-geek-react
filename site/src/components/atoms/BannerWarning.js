@@ -23,7 +23,7 @@ export function BannerWarning(props) {
 
 const ContainerBanner = styled.div` 
 width: 100%;
-background-color: ${Colors.pink.dark};
+background-color: ${Colors.gray.hot};
 
 `
 

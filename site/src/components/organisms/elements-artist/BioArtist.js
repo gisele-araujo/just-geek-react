@@ -7,11 +7,11 @@ export function BioArtist() {
             <ArtistBio>
                 <TopicBio>
                     <NameTitle text='Resumo' />
-                    <SecondaryTitle text='Artista freelancer, tatuadora, apaixonada em arte digital.' />
+                    <SecondaryTitle text='Artista freelancer, tatuador, apaixonado em arte digital.' />
                 </TopicBio>
                 <TopicBio>
                     <NameTitle text='Contato' />
-                    <SecondaryTitle text='carolina.franco@gmail.com' />
+                    <SecondaryTitle text='gabriel.santos@gmail.com' />
                 </TopicBio>
                 <TopicBio>
                     <NameTitle text='Skills' />
