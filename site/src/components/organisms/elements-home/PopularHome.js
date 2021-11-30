@@ -42,10 +42,9 @@ export function PopularHome() {
                             :
                             data.map((product) => {
                                 return (
-                                    <CardProduto title={product.nomeProduto} preco={product.preco} />
+                                    <CardProduto title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
                                 )
                             })
-
                     }
                 </div>
             </PopularSection>

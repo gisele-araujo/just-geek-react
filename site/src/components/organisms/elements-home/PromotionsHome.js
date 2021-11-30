@@ -41,7 +41,7 @@ export function PromotionsHome() {
                             :
                             data.slice(0, 4).map((product) => {
                                 return (
-                                    <CardProduto title={product.nomeProduto} preco={product.preco} loading={loading} />
+                                    <CardProduto title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
                                 )
                             })
 
