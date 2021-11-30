@@ -59,6 +59,7 @@ const Artists = () => {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         getArtist(id)
         getPhoto(id)
         getAllArts(id)

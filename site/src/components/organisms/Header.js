@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import '../../assets/css/override.css'
 import { Colors } from '../../shared/Colors';
@@ -11,7 +11,10 @@ import { EmptyStateBag } from '../molecules/EmptyStateBag';
 
 const { Search } = Input;
 
-export function Header() {
+export function Header(props) {
+    const {
+        addProduct = false
+    } = props
     const history = useHistory()
     const onSearch = value => console.log(value)
     const [visible, setVisible] = useState(false);
@@ -21,6 +24,10 @@ export function Header() {
     const onClose = () => {
         setVisible(false);
     }
+
+    useEffect(() => {
+        if(addProduct === true) setVisible(true)
+    }, [addProduct])
 
     return (
         <>

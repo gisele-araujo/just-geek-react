@@ -18,6 +18,7 @@ const Product = () => {
     const { id } = useParams()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [addProduct, setAddProduct] = useState(false)
 
     async function getOtherProducts(id) {
 
@@ -31,11 +32,12 @@ const Product = () => {
         }
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         getOtherProducts(id)
     }, [])
     return (
         <>
-            <Header />
+            <Header addProduct={addProduct} />
             <ProductSection>
                 <img src={BgProduto} className="bannerProduct" />
 
@@ -69,7 +71,10 @@ const Product = () => {
                         </Image.PreviewGroup>
                         <div className="buy-painel">
                             <SubTitle text="Camiseta Naruto - Unissex" />
-                            <p className="product-description">A camiseta Naruto - Unissex é um produto original, licenciado pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek prezamos por qualidade, diversidade e conforto. A camiseta foi confeccionada em 100% algodão. <a href='#description'> Leia +</a></p>
+                            <p className="product-description">A camiseta Naruto - Unissex é um produto original,
+                                licenciado pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek
+                                prezamos por qualidade, diversidade e conforto. A camiseta foi confeccionada em 100%
+                                algodão. <a href='#description'> Leia +</a></p>
                             <strong className="price-value">R$ 70,00</strong>
                             <p className="price-value-installment">(ou até 5x de 14,00 sem juros)</p>
                             <Radio.Group defaultValue="M" buttonStyle="solid">
@@ -79,19 +84,28 @@ const Product = () => {
                                 <Radio.Button value="G">G</Radio.Button>
                                 <Radio.Button value="GG">GG</Radio.Button>
                             </Radio.Group>
-                            <Button action='positive' primary={false} size="large" contentText="Adicionar ao carrinho" style={{ margin: '40px 0' }} />
+                            <Button onClick={() => setAddProduct(true)}
+                                action='positive'
+                                primary={false}
+                                size="large"
+                                contentText="Adicionar ao carrinho"
+                                style={{ margin: '40px 0' }} />
                             <form className="box-frete">
                                 <p className="title-frete">Consulte o frete e o prazo para sua região</p>
                                 <div className="input-frete">
                                     <Input placeholder="Digite seu CEP" />
-                                    <Button primary={false} size="small" contentText="Calcular" />
+                                    <Button primary={false}
+                                        size="small"
+                                        contentText="Calcular" />
                                 </div>
                             </form>
                         </div>
                     </ProductInfo>
                     <div id="description">
                         <NameTitle text="Descrição do Produto" />
-                        <p className="product-description">A camiseta Naruto - Unissex é um produto original, licenciado pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek prezamos por qualidade, diversidade e conforto. A camiseta foi confeccionada em 100% algodão.</p>
+                        <p className="product-description">A camiseta Naruto - Unissex é um produto original, licenciado 
+                        pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek prezamos por qualidade, 
+                        diversidade e conforto. A camiseta foi confeccionada em 100% algodão.</p>
                     </div>
                 </ProductContainer>
                 <SimilarProducts>
