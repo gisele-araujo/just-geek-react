@@ -17,7 +17,7 @@ export function PopularHome() {
             setData(response.data)
             setLoading(false)
         } else {
-            console.log('erro ao cadastrar')
+            console.log('erro ao carregar produtos populares')
         }
     }
     useEffect(() => {

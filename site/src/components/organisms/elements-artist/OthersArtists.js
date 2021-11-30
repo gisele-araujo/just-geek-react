@@ -2,17 +2,44 @@ import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { ArtistsCard } from "../../molecules/cards/ArtistCard";
 import { SubTitle } from "../../atoms/Titles";
+import { Artist } from '../../../services/Artist'
 import Grazi from '../../../assets/img/artist-grazi.png'
 import Tai from '../../../assets/img/artist-tai.png'
+import { useEffect, useState } from "react";
 
-export function OthersArtists() {
+export function OthersArtists({ id }) {
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    async function getArtists(id) {
+        const response = await Artist.getSimilarArtists(id)
+
+        if (response.status) {
+            setData(response.data)
+            setLoading(false)
+        } else {
+            console.log('erro ao carregar artistas')
+        }
+    }
+
+    useEffect(() => {
+        getArtists(id)
+    }, [])
     return (
         <>
             <OthersSection>
                 <SubTitle text='Artistas semelhantes' />
                 <OthersGrade>
-                    <ArtistsCard name="Taiza Marques" image={Tai} primary={false} />
-                    <ArtistsCard name="Graziela Lucena" image={Grazi} primary={false} />
+                    {
+                        loading ?
+                            null
+                            :
+                            data.map((artist) => {
+                                return (
+                                    <ArtistsCard primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} />
+                                )
+                            })
+                    }
                 </OthersGrade>
             </OthersSection>
         </>
@@ -26,7 +53,7 @@ padding: 35px;
 text-align: center;
 `
 
-const OthersGrade = styled.div `
+const OthersGrade = styled.div`
 display: flex;
 justify-content: center;
 flex-wrap: wrap;

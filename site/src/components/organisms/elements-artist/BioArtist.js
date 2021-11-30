@@ -1,21 +1,27 @@
 import styled from "styled-components";
 import { NameTitle, SecondaryTitle } from "../../atoms/Titles";
 
-export function BioArtist() {
+export function BioArtist(props) {
+    const {
+        bio,
+        contact,
+        skills,
+        software
+    } = props
     return (
         <>
             <ArtistBio>
                 <TopicBio>
                     <NameTitle text='Resumo' />
-                    <SecondaryTitle text='Artista freelancer, tatuador, apaixonado em arte digital.' />
+                    <SecondaryTitle text={bio} />
                 </TopicBio>
                 <TopicBio>
                     <NameTitle text='Contato' />
-                    <SecondaryTitle text='gabriel.santos@gmail.com' />
+                    <SecondaryTitle text={contact} />
                 </TopicBio>
                 <TopicBio>
                     <NameTitle text='Skills' />
-                    <SecondaryTitle text='Arte digital, Ilustração' />
+                    <SecondaryTitle text={skills} />
                 </TopicBio>
                 <TopicBio>
                     <NameTitle text='Software' />

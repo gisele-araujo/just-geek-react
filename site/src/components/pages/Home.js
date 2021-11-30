@@ -20,7 +20,6 @@ const Home = () => {
         <>
             <Header />
             <Homepage>
-                <CarouselBrands />
                 <CarouselPattern />
                 <BannerHome />
                 <PromotionsHome />

@@ -1,30 +1,48 @@
+import { useEffect, useState } from "react";
+import { Artist } from "../../../services/Artist";
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
 import { useHistory } from 'react-router-dom'
 
+
 export function ArtistsCard(props) {
     const {
+        id,
         image,
         name,
         primary = true,
     } = props
 
     const history = useHistory()
+    const [img, setImg] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    async function getPhoto() {
+        const response = await Artist.getPhotoArtist(image)
+
+        if (response.status) {
+            setImg(response.data)
+            setLoading(false)
+        } else {
+            console.log('erro ao carregar foto de artista')
+        }
+    }
+
+    useEffect(() => getPhoto(), [])
 
     return (
         <>
-            <a href="./artista">
-                <CardContainer
-                    primary={primary}>
-                    <CardImage>
-                        <img src={image} />
-                    </CardImage>
-                    <CardName>
-                        <NameTitle text={name} />
-                    </CardName>
-                </CardContainer>
-            </a>
+            <CardContainer
+                onClick={() => history.push(`/artista/${id}`)}
+                primary={primary}>
+                <CardImage>
+                    <img src={img} />
+                </CardImage>
+                <CardName>
+                    <NameTitle text={name} />
+                </CardName>
+            </CardContainer>
         </>
     )
 }
