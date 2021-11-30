@@ -1,6 +1,6 @@
 import { Carousel } from 'antd';
 import SlidePromo from './../../assets/img/bg-promo.gif'
-import SlideApp from './../../assets/img/bg-app.gif'
+import SlideApp from './../../assets/img/bg-app2.png'
 
 export function CarouselPattern() {
 

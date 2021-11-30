@@ -50,6 +50,7 @@ const BasicButton = styled.button`
 outline: none;
 font-size: 16px;
 font-weight: 400;
+text-transform: uppercase;
 background-color: ${props => props.action === 'positive' ? Colors.green.light :
         props.action === 'negative' ? Colors.pink.hot :
             !props.enabled ? Colors.gray.light :

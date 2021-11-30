@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
-import App from '../../assets/img/app-artist.png'
+import App from '../../assets/img/bg-artist-phone.png'
 import BgApp from '../../assets/img/bg-app-gray.png'
 
 export function BannerApp() {
@@ -31,13 +31,13 @@ const Banner = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-padding: 30px 2%;
+padding: 80px 2% 40px;
 max-width: 1600px;
 margin: 0 auto;
 width: 100%;
 
 .banner-img {
-    width: 38%;
+    width: 45%;
 }
 
 @media(max-width: 768px) {

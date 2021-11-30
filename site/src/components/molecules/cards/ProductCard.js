@@ -12,6 +12,7 @@ export function CardProduto(props) {
     const history = useHistory();
 
     const {
+        id,
         title,
         preco,
         specification,
@@ -23,7 +24,7 @@ export function CardProduto(props) {
     return (
         <>
             <Card
-                onClick={() => history.push('/produto')}
+                onClick={() => history.push(`/produto/${id}`)}
                 hoverable
                 style={CardStyle}
                 cover={<img style={{ backgroundColor: Colors.gray.light, padding: '15px' }} alt="example" src={loading ? ShirtLoading : img} />}

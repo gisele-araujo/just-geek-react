@@ -75,12 +75,13 @@ const Artists = () => {
                     <TabPane tab="Galeria" key="1">
                         <PageTab>
                             <Image.PreviewGroup>
-                                {
+                                { arts ? 
                                     arts.map((art) => {
                                         return (
                                             <Image style={ArtistArt} src={art} />
                                         )
                                     })
+                                    : null
                                 }
                             </Image.PreviewGroup>
                         </PageTab>
