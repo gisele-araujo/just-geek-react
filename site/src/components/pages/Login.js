@@ -27,10 +27,11 @@ const Login = () => {
         const response = await User.signInUser(data)
 
         if (response.status) {
-            console.log('login realizado com sucesso!')
+            console.log('login realizado com sucesso!', response.data)
             setLoading(false)
-            alert('Login efetuado com sucesso')
-            history.push('/')
+            sessionStorage.setItem('idUser', response.data.idUsuario)
+            sessionStorage.setItem('username', response.data.nome)
+            history.push('/perfil')
         } else {
             console.log('erro ao login')
             setLoading(false)

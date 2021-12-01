@@ -41,7 +41,7 @@ export function CardProduto(props) {
                     }
 
                 </CardDesc>
-                <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='COMPRAR' />
+                <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='Ver detalhes' />
             </Card>
         </>
     )

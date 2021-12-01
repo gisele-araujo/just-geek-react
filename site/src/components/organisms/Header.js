@@ -16,6 +16,8 @@ export function Header(props) {
     const {
         addProduct = false
     } = props
+
+    const username = sessionStorage.getItem('username')
     const history = useHistory()
     const onSearch = value => console.log(value)
     const [visible, setVisible] = useState(false);
@@ -43,14 +45,19 @@ export function Header(props) {
                         <Search placeholder="O que você procura?" onSearch={onSearch} style={{ width: '100%' }} />
                     </SearchSpace>
                     <ProfileHeader className="profile">
-                        <UserOutlined style={IconsHeader} onClick={() => history.push('/login')} />
+                        <UserOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil') : history.push('/login')} />
                         <div>
-                            <p>Olá, visitante!</p>
+                            <p>Olá, {username ? username : "visitante"}!</p>
+                            {username ? 
+                            <p><u onClick={() => history.push('/perfil')}>Ver minha conta</u></p>
+                            :
                             <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
+                            }
+                            
                         </div>
                     </ProfileHeader>
                     <Icons>
-                        <HeartOutlined style={IconsHeader} onClick={() => history.push('/login')} style={IconsHeader} />
+                        <HeartOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil') : history.push('/login')} style={IconsHeader} />
                         <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
                     </Icons>
                 </ContainerHeader>

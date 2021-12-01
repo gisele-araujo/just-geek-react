@@ -41,9 +41,9 @@ const Cadastro = () => {
 
         if (response.status) {
             console.log('cadastro realizado com sucesso!')
-            alert('Cadastro realizado com sucesso!')
+            alert('Cadastro realizado com sucesso! Faça login para continuar')
             setLoading(false)
-            history.push('/')
+            history.push('/login')
         } else {
             setLoading(false)
             alert('Erro ao cadastrar, tente novamente')
