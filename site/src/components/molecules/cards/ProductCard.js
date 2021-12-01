@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Colors } from '../../../shared/Colors'
 import { Button } from '../../atoms/Button'
 import { Card } from 'antd';
-import ShirtExemple from '../../../assets/img/shirt.png'
 import { useHistory } from "react-router";
 import ShirtLoading from '../../../assets/img/shirt-loading.png'
 import { Skeleton } from 'antd'

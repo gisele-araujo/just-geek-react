@@ -8,6 +8,7 @@ import LogoRosa from '../../assets/img/logo-rosa.svg'
 import { useHistory } from 'react-router';
 import { Drawer } from 'antd';
 import { EmptyStateBag } from '../molecules/EmptyStateBag';
+import { Bag } from './Bag';
 
 const { Search } = Input;
 
@@ -55,7 +56,12 @@ export function Header(props) {
                 </ContainerHeader>
             </HeaderBox>
             <Drawer placement="right" onClose={onClose} visible={visible} width={400} className="drawer-bag">
-                <EmptyStateBag />
+                {
+                    addProduct ?
+                    <Bag />
+                    :
+                    <EmptyStateBag />
+                }
             </Drawer>
         </>
     )
