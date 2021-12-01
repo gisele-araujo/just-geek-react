@@ -4,7 +4,12 @@ import { Button } from '../../atoms/Button'
 import Shirt from '../../../assets/img/shirt.png'
 import { DeleteFilled } from '@ant-design/icons'
 
-export function ProductBagCard() {
+export function ProductBagCard(props) {
+    const {
+        name,
+        value,
+
+    } = props
     return(
         <>
         <CardContainer>
@@ -20,7 +25,7 @@ export function ProductBagCard() {
 }
 
 const CardContainer = styled.div `
-margin: 20px 0;
+margin-bottom: 20px;
 width: 100%;
 padding: 20px;
 border-radius: 5px;

@@ -6,8 +6,6 @@ import { Colors } from "../../shared/Colors";
 import { Footer } from "../molecules/Footer";
 import { NewslatterFooter } from "../molecules/NewslatterFooter";
 import { Header } from "../organisms/Header";
-import { BannerApp } from "../molecules/BannerApp";
-import BgProduto from '../../assets/img/bg-produto.png'
 import { NameTitle, SubTitle } from '../atoms/Titles';
 import { Button } from '../atoms/Button';
 import { CardProduto } from '../molecules/cards/ProductCard';
@@ -16,6 +14,7 @@ import { useEffect, useState } from "react";
 
 const Product = () => {
     const { id } = useParams()
+    const [product, setProduct] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [addProduct, setAddProduct] = useState(false)
@@ -26,21 +25,30 @@ const Product = () => {
 
         if (response.status) {
             setData(response.data)
-            setLoading(false)
         } else {
             console.log('erro ao carregar produtos semelhantes')
         }
     }
+    async function getProduct(id) {
+
+        const response = await ProductApi.getProduct(id)
+
+        if (response.status) {
+            setProduct(response.data)
+            setLoading(false)
+        } else {
+            console.log('erro ao carregar produto específico')
+        }
+    }
     useEffect(() => {
         window.scrollTo(0, 0)
+        getProduct(id)
         getOtherProducts(id)
     }, [])
     return (
         <>
             <Header addProduct={addProduct} />
             <ProductSection>
-                <img src={BgProduto} className="bannerProduct" />
-
                 <ProductContainer>
                     <Breadcrumb>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -54,30 +62,33 @@ const Product = () => {
                                 <div className="grid-images-one">
                                     <Image
                                         className="image-pattern"
-                                        src="https://cea.vtexassets.com/arquivos/ids/43441709-1600-auto?v=637607634952200000&width=1600&height=auto&aspect=true" />
+                                        src={product.imagens ? product.imagens[0] : null} />
                                 </div>
                                 <div className="grid-images-two">
-                                    <Image
-                                        className="image-item"
-                                        src="https://cea.vtexassets.com/arquivos/ids/43441710-1600-auto?v=637607634955000000&width=1600&height=auto&aspect=true" />
-                                    <Image
-                                        className="image-item"
-                                        src="https://cea.vtexassets.com/arquivos/ids/43441711-1600-auto?v=637607634957830000&width=1600&height=auto&aspect=true" />
-                                    <Image
-                                        className="image-item"
-                                        src="https://cea.vtexassets.com/arquivos/ids/43441713-1600-auto?v=637607634960330000&width=1600&height=auto&aspect=true" />
+                                    { product.imagens ?
+                                        product.imagens.slice(1, 4).map((img) => {
+                                            return (
+                                                <Image
+                                                    className="image-item"
+                                                    src={img} />
+                                            )
+                                        })
+                                        : null
+                                    }
                                 </div>
                             </div>
                         </Image.PreviewGroup>
                         <div className="buy-painel">
-                            <SubTitle text="Camiseta Naruto - Unissex" />
-                            <p className="product-description">A camiseta Naruto - Unissex é um produto original,
-                                licenciado pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek
-                                prezamos por qualidade, diversidade e conforto. A camiseta foi confeccionada em 100%
-                                algodão. <a href='#description'> Leia +</a></p>
-                            <strong className="price-value">R$ 70,00</strong>
-                            <p className="price-value-installment">(ou até 5x de 14,00 sem juros)</p>
-                            <Radio.Group defaultValue="M" buttonStyle="solid">
+                            <SubTitle text={product.nomeProduto} />
+                            <spam className="product-description"><spam>{product.descricao}</spam><a href='#description'> Leia +</a></spam>
+                            <div className="box-values">
+
+                                <p className="product-info-generic"><spam>de </spam><s>R${product.preco}</s></p>
+                                <spam className="product-info-generic">por </spam><strong className="price-value">R$ {(product.preco - (product.preco * 0.15)).toFixed(2)}</strong> <spam className="product-info-generic">à vista</spam>
+                                <p className="product-info-generic">(ou até 5x de {(product.preco / 5).toFixed(2)} sem juros)</p>
+                            </div>
+                            <p className="title-important">Tamanho:</p>
+                            <Radio.Group buttonStyle="solid">
                                 <Radio.Button value="PP">PP</Radio.Button>
                                 <Radio.Button value="P">P</Radio.Button>
                                 <Radio.Button value="M">M</Radio.Button>
@@ -91,7 +102,8 @@ const Product = () => {
                                 contentText="Adicionar ao carrinho"
                                 style={{ margin: '40px 0' }} />
                             <form className="box-frete">
-                                <p className="title-frete">Consulte o frete e o prazo para sua região</p>
+                                <strong className="title-important">Receba em casa!</strong>
+                                <p className="product-description">Consulte o frete e o prazo para sua região</p>
                                 <div className="input-frete">
                                     <Input placeholder="Digite seu CEP" />
                                     <Button primary={false}
@@ -103,9 +115,8 @@ const Product = () => {
                     </ProductInfo>
                     <div id="description">
                         <NameTitle text="Descrição do Produto" />
-                        <p className="product-description">A camiseta Naruto - Unissex é um produto original, licenciado 
-                        pela Just Geek. Estampa inspirada no anime japonês Naruto. Na Just Geek prezamos por qualidade, 
-                        diversidade e conforto. A camiseta foi confeccionada em 100% algodão.</p>
+                        <p className="product-description">{product.descricao}</p>
+                        <p className="product-description">{product.especificacoes}</p>
                     </div>
                 </ProductContainer>
                 <SimilarProducts>
@@ -135,11 +146,7 @@ background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
 width: 100%;
 height: 100%;
-
-.bannerProduct {
-    width: 100%;
-    padding-top: 85px;
-}
+padding-top: 85px;
 `
 
 const ProductContainer = styled.div`
@@ -164,6 +171,12 @@ background-color: ${Colors.gray.medium};
     font-size: 14px;
 }
 
+.product-description spam {
+    display: inline-flex;
+    max-height: 42px;
+    overflow: hidden;
+}
+
 @media(min-width: 798px) {
     padding: 40px;
 }
@@ -182,16 +195,24 @@ padding: 40px 0;
     .grid-images-one .image-pattern {
         width: 100%;
         height: 400px;
+        border: 1px solid ${Colors.blue.light};
+        border-radius: 2px;
         object-fit: cover;
     }
     .grid-images-two .image-item {
         width: 80px;
         height: 80px;
+        border: 1px solid ${Colors.blue.light};
+        border-radius: 2px;
         object-fit: cover;
     }
 }
 
 .buy-painel {
+
+    .box-values {
+        padding: 20px 0;
+    }
 
     .ant-radio-button-wrapper {
         color: ${Colors.gray.white};
@@ -210,16 +231,17 @@ padding: 40px 0;
         font-weight: 700;
         font-size: 28px;
     }
-    .price-value-installment {
+    .product-info-generic {
         color: ${Colors.gray.ultraLight};
         font-size: 16px;
+        margin-bottom: 0;
     }
 
     .input-frete button {
         margin: 10px 0px !important;
         width: 100%;
     }
-    .title-frete {
+    .title-important {
         color: ${Colors.gray.ultraLight};
         font-size: 16px;
         text-transform: uppercase;
@@ -260,7 +282,7 @@ padding: 40px 0;
 
         .box-frete {
             max-width: 450px;
-            padding: 25px 15px;
+            padding: 20px 16px;
             background-color: ${Colors.gray.dark};
             border-radius: 4px;
             .input-frete {

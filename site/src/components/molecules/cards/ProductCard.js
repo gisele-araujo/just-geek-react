@@ -35,7 +35,7 @@ export function CardProduto(props) {
                         :
                             <>
                                 <h3>{title}</h3>
-                                <span><s>R${preco}</s> <strong>R${(preco - (preco * 0.25)).toFixed(2)} </strong></span>
+                                <span><s>R${preco}</s> <strong>R${(preco - (preco * 0.15)).toFixed(2)} </strong></span>
                                 <p>ou até 5x de R$ {(preco / 5).toFixed(2)} sem juros</p>
                             </>
                     }
