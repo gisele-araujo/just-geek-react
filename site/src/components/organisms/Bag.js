@@ -4,27 +4,69 @@ import { ProductBagCard } from "../molecules/cards/ProductBagCard";
 import { Input } from "antd";
 import { Colors } from "../../shared/Colors";
 import { useState } from "react/cjs/react.development";
+import { Product } from "../../services/Product";
+import { useEffect } from "react";
+import { EmptyStateBag } from "../molecules/EmptyStateBag";
+import { Drawer } from 'antd';
 
-export function Bag() {
+export function Bag(props) {
+    const {
+        onCloseDrawer,
+        visibleDrawer,
+        addProduct
+
+    } = props
+    const idUser = sessionStorage.getItem('idUser')
     const [amount, setAmount] = useState(0.00)
+    const [data, setData] = useState([])
+
+    async function getProducts(id) {
+        const response = await Product.getProductsBag(id)
+
+        if (response.status) {
+            setData(response.data)
+        } else {
+            console.log('erro ao carregar produtos na sacola')
+        }
+    }
+
+    useEffect(() => getProducts(idUser), [])
     return (
         <>
-            <HeaderModal />
-            <BagModal>
-                <div className="box-products">
-                    <ProductBagCard />
-                </div>
-                <div>
-                    <div className="box-cupom">
-                        <Input placeholder="Insira o cupom" />
-                        <Button size="small" primary={false} contentText="Aplicar" />
-                    </div>
-                    <div>
-                        <strong className="amount">TOTAL: R$ {amount} </strong>
-                    </div>
-                    <Button size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
-                </div>
-            </BagModal>
+            <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={400} className="drawer-bag">
+                {
+                    data || addProduct ?
+                        <>
+                            <HeaderModal />
+                            <BagModal>
+                                <div className="box-products">
+                                    {data ?
+                                        data.map((product) => {
+                                            return (
+                                                <>
+                                                    <ProductBagCard image={product.imagens[0]} name={product.nomeProduto} value={product.preco} />
+                                                </>
+                                            )
+                                        })
+                                        :
+                                        null}
+                                </div>
+                                <div>
+                                    <div className="box-cupom">
+                                        <Input placeholder="Insira o cupom" />
+                                        <Button size="small" primary={false} contentText="Aplicar" />
+                                    </div>
+                                    <div>
+                                        <strong className="amount">TOTAL: R$ {amount}  </strong>
+                                    </div>
+                                    <Button size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
+                                </div>
+                            </BagModal>
+                        </>
+                        :
+                        <EmptyStateBag />
+                }
+            </Drawer>
         </>
     )
 }

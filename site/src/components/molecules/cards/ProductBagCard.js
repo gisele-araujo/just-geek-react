@@ -6,17 +6,17 @@ import { DeleteFilled } from '@ant-design/icons'
 
 export function ProductBagCard(props) {
     const {
+        image,
         name,
         value,
-
     } = props
     return(
         <>
         <CardContainer>
-            <img src={Shirt} />
+            <img src={image} />
             <div className="info-product">
-                <p>Camiseta Naruto - Unissex (P)</p>
-                <strong>R$ 70,00</strong>
+                <p>{name}</p>
+                <strong>R$ {value}</strong>
                 <spam className="delete-product"><DeleteFilled /></spam>
             </div>
         </CardContainer>

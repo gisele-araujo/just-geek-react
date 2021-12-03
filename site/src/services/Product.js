@@ -62,4 +62,33 @@ export const Product = {
         }
     },
 
+    async addProductBag(user, product) {
+
+        try {
+            const response = await api.post(`/products/comprar/${user}/${product}/1`)
+            return {
+                status: response.status
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
+    async getProductsBag(idUser) {
+        try {
+            const response = await api.get(`/purchases/${idUser}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    }
 }

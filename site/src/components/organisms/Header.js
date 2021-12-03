@@ -6,8 +6,6 @@ import { Input } from 'antd';
 import { UserOutlined, HeartOutlined, ShoppingOutlined, MenuOutlined } from "@ant-design/icons";
 import LogoRosa from '../../assets/img/logo-rosa.svg'
 import { useHistory } from 'react-router';
-import { Drawer } from 'antd';
-import { EmptyStateBag } from '../molecules/EmptyStateBag';
 import { Bag } from './Bag';
 
 const { Search } = Input;
@@ -19,14 +17,10 @@ export function Header(props) {
 
     const username = sessionStorage.getItem('username')
     const history = useHistory()
-    const onSearch = value => console.log(value)
     const [visible, setVisible] = useState(false);
-    const showDrawer = () => {
-        setVisible(true);
-    };
-    const onClose = () => {
-        setVisible(false);
-    }
+    const showDrawer = () => setVisible(true);
+    const onClose = () => setVisible(false);
+    const onSearch = value => console.log(value)
 
     useEffect(() => {
         if(addProduct === true) setVisible(true)
@@ -62,14 +56,7 @@ export function Header(props) {
                     </Icons>
                 </ContainerHeader>
             </HeaderBox>
-            <Drawer placement="right" onClose={onClose} visible={visible} width={400} className="drawer-bag">
-                {
-                    addProduct ?
-                    <Bag />
-                    :
-                    <EmptyStateBag />
-                }
-            </Drawer>
+            <Bag onCloseDrawer={onClose} visibleDrawer={visible} addProduct={addProduct} />
         </>
     )
 }
@@ -80,7 +67,6 @@ z-index: 1000;
 width: 100%;
 height: 85px;
 background-color: ${Colors.blue.darkPurple};
-/* border-bottom: 2px dashed ${Colors.gray.light}; */
 padding: 0 2%;
 font-family: 'Exo 2', sans-serif;
 `

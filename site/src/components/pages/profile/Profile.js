@@ -65,7 +65,7 @@ const SidebarProfile = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-width: 30%;
+width: 25%;
 height: 100%;
 background-color: ${Colors.gray.darkPurple};
 

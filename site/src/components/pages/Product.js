@@ -14,9 +14,10 @@ import { useEffect, useState } from "react";
 
 const Product = () => {
     const { id } = useParams()
+    const idUser = sessionStorage.getItem('idUser')
     const [product, setProduct] = useState([])
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [addProduct, setAddProduct] = useState(false)
 
     async function getOtherProducts(id) {
@@ -35,10 +36,22 @@ const Product = () => {
 
         if (response.status) {
             setProduct(response.data)
-            setLoading(false)
         } else {
             console.log('erro ao carregar produto específico')
         }
+    }
+
+    async function addProductBag(idUser, idProduct) {
+        setLoading(true)
+        const response = await ProductApi.addProductBag(idUser, idProduct)
+
+        if(response.status) {
+            setAddProduct(true)
+        } else {
+            console.log('não foi possível adicionar o produto ao carrinho')
+        }
+        setLoading(false)
+
     }
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -95,10 +108,11 @@ const Product = () => {
                                 <Radio.Button value="G">G</Radio.Button>
                                 <Radio.Button value="GG">GG</Radio.Button>
                             </Radio.Group>
-                            <Button onClick={() => setAddProduct(true)}
+                            <Button onClick={() => addProductBag(idUser, id)}
                                 action='positive'
                                 primary={false}
                                 size="large"
+                                loading={loading}
                                 contentText="Adicionar ao carrinho"
                                 style={{ margin: '40px 0' }} />
                             <form className="box-frete">
@@ -110,6 +124,16 @@ const Product = () => {
                                         size="small"
                                         contentText="Calcular" />
                                 </div>
+                                <table className="table-frete">
+                                    <tr>
+                                        <th>Valor do frete</th>
+                                        <th>Disponibilidade</th>
+                                    </tr>
+                                    <tr>
+                                        <td>R$ 9,46</td>
+                                        <td>CORREIOS - entrega em 4 dias úteis</td>
+                                    </tr>
+                                </table>
                             </form>
                         </div>
                     </ProductInfo>
@@ -240,6 +264,22 @@ padding: 40px 0;
     .input-frete button {
         margin: 10px 0px !important;
         width: 100%;
+    }
+    .table-frete {
+        margin: 10px 0;
+        width: 100%;
+    }
+    .table-frete th {
+        background-color: ${Colors.pink.hot};
+        border: 3px solid ${Colors.gray.dark};
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+    .table-frete, .table-frete td, .table-frete th{
+        /* border: 1px solid ${Colors.gray.white}; */
+        color: ${Colors.gray.white};
+        padding: 6px;
+        text-align: start;
     }
     .title-important {
         color: ${Colors.gray.ultraLight};
