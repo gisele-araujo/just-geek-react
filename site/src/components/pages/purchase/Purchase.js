@@ -1,5 +1,6 @@
 import { Header } from "../../organisms/Header"
-import { Steps, message } from 'antd';
+import { useHistory } from "react-router"
+import { Steps } from 'antd';
 import { useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
@@ -8,6 +9,7 @@ import { Footer } from "../../molecules/Footer";
 import { Delivery } from "./Delivery";
 import { PurchaseCard } from "../../molecules/cards/PurchaseCard";
 import { Payment } from "./Payment";
+import { Success } from "./Success";
 
 const { Step } = Steps;
 
@@ -22,11 +24,12 @@ const steps = [
     },
     {
         title: 'Sucesso',
-        content: 'Last-content',
+        content: <Success />,
     },
 ];
 
 const Purchase = () => {
+    const history = useHistory()
     const [current, setCurrent] = useState(0);
 
     const next = () => {
@@ -50,7 +53,9 @@ const Purchase = () => {
                 <PurchaseBody>
                     <div className="step-purchase">
                         <div className="steps-content">{steps[current].content}</div>
-                        <PurchaseCard />
+                        {current < steps.length - 1 && (
+                            <PurchaseCard />
+                        )}
                     </div>
                     <div className="steps-action">
                         {current > 0 && (
@@ -60,7 +65,7 @@ const Purchase = () => {
                             <Button primary={false} action='positive' onClick={() => next()} contentText='Próximo' />
                         )}
                         {current === steps.length - 1 && (
-                            <Button onClick={() => message.success('Processing complete!')} contentText='Concluído' />
+                            <Button onClick={() => history.push('/perfil')} contentText='Concluído' />
                         )}
                     </div>
                 </PurchaseBody>
