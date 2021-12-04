@@ -1,5 +1,5 @@
 import { Product as ProductApi } from "../../services/Product";
-import { Breadcrumb, Image, Input, Radio } from 'antd';
+import { Breadcrumb, Image, Input, Radio, Modal } from 'antd';
 import styled from "styled-components";
 import '../../index.css'
 import { Colors } from "../../shared/Colors";
@@ -9,16 +9,32 @@ import { Header } from "../organisms/Header";
 import { NameTitle, SubTitle } from '../atoms/Titles';
 import { Button } from '../atoms/Button';
 import { CardProduto } from '../molecules/cards/ProductCard';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { useEffect, useState } from "react";
+import { Frete } from "../molecules/Frete";
 
 const Product = () => {
-    const { id } = useParams()
     const idUser = sessionStorage.getItem('idUser')
+    const { id } = useParams()
+    const history = useHistory()
     const [product, setProduct] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [addProduct, setAddProduct] = useState(false)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+        console.log('modal')
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     async function getOtherProducts(id) {
 
@@ -108,33 +124,14 @@ const Product = () => {
                                 <Radio.Button value="G">G</Radio.Button>
                                 <Radio.Button value="GG">GG</Radio.Button>
                             </Radio.Group>
-                            <Button onClick={() => addProductBag(idUser, id)}
+                            <Button onClick={() => idUser ? addProductBag(idUser, id) : showModal()}
                                 action='positive'
                                 primary={false}
                                 size="large"
                                 loading={loading}
                                 contentText="Adicionar ao carrinho"
                                 style={{ margin: '40px 0' }} />
-                            <form className="box-frete">
-                                <strong className="title-important">Receba em casa!</strong>
-                                <p className="product-description">Consulte o frete e o prazo para sua região</p>
-                                <div className="input-frete">
-                                    <Input placeholder="Digite seu CEP" />
-                                    <Button primary={false}
-                                        size="small"
-                                        contentText="Calcular" />
-                                </div>
-                                <table className="table-frete">
-                                    <tr>
-                                        <th>Valor do frete</th>
-                                        <th>Disponibilidade</th>
-                                    </tr>
-                                    <tr>
-                                        <td>R$ 9,46</td>
-                                        <td>CORREIOS - entrega em 4 dias úteis</td>
-                                    </tr>
-                                </table>
-                            </form>
+                            <Frete />
                         </div>
                     </ProductInfo>
                     <div id="description">
@@ -159,6 +156,12 @@ const Product = () => {
                 <NewslatterFooter />
                 <Footer />
             </ProductSection>
+            <ModalContainer>
+                <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Faça login para adicionar produto ao carrinho!</p>
+                    <Button contentText='Fazer login' style={{width: '100%'}} onClick={() => history.push('/login')} />
+                </Modal>
+            </ModalContainer>
         </>
     )
 }
@@ -260,34 +263,11 @@ padding: 40px 0;
         font-size: 16px;
         margin-bottom: 0;
     }
-
-    .input-frete button {
-        margin: 10px 0px !important;
-        width: 100%;
-    }
-    .table-frete {
-        margin: 10px 0;
-        width: 100%;
-    }
-    .table-frete th {
-        background-color: ${Colors.pink.hot};
-        border: 3px solid ${Colors.gray.dark};
-        font-weight: 400;
-        text-transform: uppercase;
-    }
-    .table-frete, .table-frete td, .table-frete th{
-        /* border: 1px solid ${Colors.gray.white}; */
-        color: ${Colors.gray.white};
-        padding: 6px;
-        text-align: start;
-    }
     .title-important {
         color: ${Colors.gray.ultraLight};
         font-size: 16px;
         text-transform: uppercase;
     }
-    
-    
 }
 
 @media(min-width: 798px) {
@@ -319,21 +299,6 @@ padding: 40px 0;
 
     .buy-painel {
         padding: 0 20px;
-
-        .box-frete {
-            max-width: 450px;
-            padding: 20px 16px;
-            background-color: ${Colors.gray.dark};
-            border-radius: 4px;
-            .input-frete {
-                display: flex;
-            }
-            .input-frete button {
-                margin-left: 6px !important;
-                margin-top: 0 !important;
-                width: auto !important;
-            }
-        }
     }
 }
 
@@ -354,3 +319,15 @@ text-align: center;
     flex-wrap: wrap;
 }
 `
+
+const ModalContainer = styled.div `
+font-family: 'Exo 2', sans-serif;
+`
+
+const bodyModal = {
+    backgroundColor: Colors.gray.light,
+    color: Colors.gray.white,
+    fontSize: '18px',
+    padding: '50px',
+    textAlign: 'center',
+}

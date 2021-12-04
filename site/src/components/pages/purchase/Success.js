@@ -14,6 +14,7 @@ export function Success() {
 }
 
 const SuccessPurchase = styled.div `
+margin: 30px 0;
 p {
     font-size: 16px;
     font-weight: 300;
