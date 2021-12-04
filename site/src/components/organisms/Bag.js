@@ -89,13 +89,16 @@ justify-content: space-between;
     padding-right: 10px;
 
 &::-webkit-scrollbar-track {
+    border-radius: 4px;
     background-color: #6c6674;
 }
 &::-webkit-scrollbar {
+    border-radius: 4px;
     width: 6px;
     background: #4c4852;
 }
 &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
     background: #4c4852;
 }
 }

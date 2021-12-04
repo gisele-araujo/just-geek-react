@@ -39,7 +39,7 @@ const Settings = () => {
 export default Settings
 
 const SettingsPage = styled.div`
-width: max-content;
+max-width: max-content;
 `
 
 const SettingsTable = styled.table`
