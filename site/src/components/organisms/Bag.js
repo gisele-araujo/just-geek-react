@@ -35,7 +35,7 @@ export function Bag(props) {
         <>
             <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={400} className="drawer-bag">
                 {
-                    data || addProduct ?
+                    data && idUser || addProduct ?
                         <>
                             <HeaderModal />
                             <BagModal>

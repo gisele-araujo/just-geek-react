@@ -3,6 +3,7 @@ import Artists from './components/pages/Artists';
 import Cadastro from './components/pages/Cadastro';
 import Home from "./components/pages/Home";
 import Login from './components/pages/Login';
+import Purchase from './components/pages/purchase/Purchase';
 import Product from './components/pages/Product';
 import Profile from './components/pages/profile/Profile';
 
@@ -16,6 +17,7 @@ const App = () => {
                     <Route path='/cadastro' component={Cadastro} />
                     <Route path='/artista/:id' component={Artists} />
                     <Route path='/produto/:id' component={Product} />
+                    <Route path='/compra' component={Purchase} />
                     <Route path='/perfil' component={Profile} />
                     {/* <Route path='*' component={} /> */}
                 </Switch>

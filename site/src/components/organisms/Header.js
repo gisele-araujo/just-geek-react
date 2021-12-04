@@ -51,7 +51,7 @@ export function Header(props) {
                         </div>
                     </ProfileHeader>
                     <Icons>
-                        <HeartOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil') : history.push('/login')} style={IconsHeader} />
+                        <HeartOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil/favoritos') : history.push('/login')} style={IconsHeader} />
                         <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
                     </Icons>
                 </ContainerHeader>

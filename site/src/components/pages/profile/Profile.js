@@ -36,7 +36,6 @@ const Profile = () => {
                             {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
                         </button>
                         <Menu
-                            defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1', 'sub2']}
                             mode="inline"
                             theme="dark"

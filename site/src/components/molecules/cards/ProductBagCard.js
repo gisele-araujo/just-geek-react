@@ -9,27 +9,33 @@ export function ProductBagCard(props) {
         image,
         name,
         value,
+        deleteProduct = true,
+        primary = true
     } = props
-    return(
+    return (
         <>
-        <CardContainer>
-            <img src={image} />
-            <div className="info-product">
-                <p>{name}</p>
-                <strong>R$ {value}</strong>
-                <spam className="delete-product"><DeleteFilled /></spam>
-            </div>
-        </CardContainer>
+            <CardContainer
+            primary={primary}>
+                <img src={image} />
+                <div className="info-product">
+                    <p>{name}</p>
+                    <strong>R$ {value}</strong>
+                    {deleteProduct ?
+                        <spam className="delete-product"><DeleteFilled /></spam>
+                        : null}
+
+                </div>
+            </CardContainer>
         </>
     )
 }
 
-const CardContainer = styled.div `
+const CardContainer = styled.div`
 margin-bottom: 20px;
 width: 100%;
 padding: 20px;
 border-radius: 5px;
-background-color: ${Colors.gray.medium};
+background-color: ${props => props.primary ? Colors.gray.medium : Colors.gray.darkPurple};
 display: flex;
 
 img {
