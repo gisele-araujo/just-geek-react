@@ -32,6 +32,21 @@ export const Product = {
         }
     },
 
+    async getPromotionProducts() {
+        try {
+            const response = await api.get(`/filter/promotion`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
     async getProduct(id) {
         try {
             const response = await api.get(`/filter/product/${id}`)
@@ -50,6 +65,22 @@ export const Product = {
     async getSimilarProducts(id) {
         try {
             const response = await api.get(`/filter/similar/${id}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
+    async calculateShipping(cep) {
+
+        try {
+            const response = await api.post(`/products/frete/${cep}`)
             return {
                 status: response.status,
                 data: response.data
@@ -90,5 +121,5 @@ export const Product = {
                 status: false
             }
         }
-    }
+    },
 }

@@ -26,7 +26,7 @@ export function CardProduto(props) {
                 onClick={() => history.push(`/produto/${id}`)}
                 hoverable
                 style={CardStyle}
-                cover={<img style={{ backgroundColor: Colors.gray.light, padding: '15px' }} alt="example" src={loading ? ShirtLoading : img} />}
+                cover={<img style={{ backgroundColor: Colors.gray.light}} alt="example" src={loading ? ShirtLoading : img} />}
             >
                 <CardDesc>
                     {
@@ -62,6 +62,7 @@ h3, p, span {
 h3 {
     max-height: 50px;
     min-height: 50px;
+    overflow: hidden;
 }
 
 s {

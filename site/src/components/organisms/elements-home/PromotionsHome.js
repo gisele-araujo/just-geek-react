@@ -11,7 +11,7 @@ export function PromotionsHome() {
     const [loading, setLoading] = useState(true)
 
     async function getProductInfo() {
-        const response = await Product.getAllProducts()
+        const response = await Product.getPromotionProducts()
 
         if (response.status) {
             setData(response.data)

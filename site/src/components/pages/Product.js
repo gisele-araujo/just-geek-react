@@ -11,7 +11,7 @@ import { Button } from '../atoms/Button';
 import { CardProduto } from '../molecules/cards/ProductCard';
 import { useParams, useHistory } from 'react-router';
 import { useEffect, useState } from "react";
-import { Frete } from "../molecules/Frete";
+import { Shipping } from "../molecules/Shipping";
 
 const Product = () => {
     const idUser = sessionStorage.getItem('idUser')
@@ -131,7 +131,7 @@ const Product = () => {
                                 loading={loading}
                                 contentText="Adicionar ao carrinho"
                                 style={{ margin: '40px 0' }} />
-                            <Frete />
+                            <Shipping />
                         </div>
                     </ProductInfo>
                     <div id="description">
