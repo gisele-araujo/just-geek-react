@@ -18,6 +18,7 @@ export function Shipping() {
 
         if (response.status) {
             setShipping(response.data)
+            sessionStorage.setItem('shippingValue', response.data.valorAPagar)
             setLoading(false)
             setDisplayShipping(true)
 

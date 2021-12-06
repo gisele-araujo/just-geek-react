@@ -93,10 +93,10 @@ export const Product = {
         }
     },
 
-    async addProductBag(user, product) {
+    async addProductBag(user, product, quantity, size) {
 
         try {
-            const response = await api.post(`/products/comprar/${user}/${product}/1`)
+            const response = await api.post(`/products/add-product/${user}/${product}/${quantity}/${size}`)
             return {
                 status: response.status
             }

@@ -17,6 +17,7 @@ const Product = () => {
     const idUser = sessionStorage.getItem('idUser')
     const { id } = useParams()
     const history = useHistory()
+    const [size, setSize] = useState('')
     const [product, setProduct] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -35,6 +36,10 @@ const Product = () => {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+
+    const onChangeSize = (e) => {
+        setSize(e.target.value)
+    }
 
     async function getOtherProducts(id) {
 
@@ -57,9 +62,9 @@ const Product = () => {
         }
     }
 
-    async function addProductBag(idUser, idProduct) {
+    async function addProductBag(idUser, idProduct, size) {
         setLoading(true)
-        const response = await ProductApi.addProductBag(idUser, idProduct)
+        const response = await ProductApi.addProductBag(idUser, idProduct, 1, size)
 
         if(response.status) {
             setAddProduct(true)
@@ -117,14 +122,14 @@ const Product = () => {
                                 <p className="product-info-generic">(ou até 5x de {(product.preco / 5).toFixed(2)} sem juros)</p>
                             </div>
                             <p className="title-important">Tamanho:</p>
-                            <Radio.Group buttonStyle="solid">
+                            <Radio.Group onChange={onChangeSize} buttonStyle="solid" value={size}>
                                 <Radio.Button value="PP">PP</Radio.Button>
                                 <Radio.Button value="P">P</Radio.Button>
                                 <Radio.Button value="M">M</Radio.Button>
                                 <Radio.Button value="G">G</Radio.Button>
                                 <Radio.Button value="GG">GG</Radio.Button>
                             </Radio.Group>
-                            <Button onClick={() => idUser ? addProductBag(idUser, id) : showModal()}
+                            <Button onClick={() => idUser ? addProductBag(idUser, id, size) : showModal()}
                                 action='positive'
                                 primary={false}
                                 size="large"

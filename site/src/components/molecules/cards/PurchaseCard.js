@@ -1,16 +1,40 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { Product } from "../../../services/Product"
 import { Colors } from "../../../shared/Colors"
 import { ProductBagCard } from "./ProductBagCard"
 
 export function PurchaseCard() {
+    const idUser = sessionStorage.getItem('idUser')
+    const [data, setData] = useState([])
+
+    async function getProducts(id) {
+        const response = await Product.getProductsBag(id)
+
+        if (response.status) {
+            setData(response.data)
+        } else {
+            console.log('erro ao carregar produtos na sacola')
+        }
+    }
+
+    useEffect(() => getProducts(idUser), [])
     return (
         <>
             <ContainerPurchaseCard>
                 <div className="products-purchase">
                     <div className="container-products-purchase">
-                        <ProductBagCard primary={false} deleteProduct={false} image='https://cea.vtexassets.com/arquivos/ids/43441710/Camiseta-Naruto-Plus-Size-Manga-Curta-Gola-Careca-Preta-9998737-Preto_2.jpg?v=637607634955000000' name='camiseta qualquer de um anime de eboy' value={50.00} />
-                        <ProductBagCard primary={false} deleteProduct={false} image='https://cea.vtexassets.com/arquivos/ids/43441710/Camiseta-Naruto-Plus-Size-Manga-Curta-Gola-Careca-Preta-9998737-Preto_2.jpg?v=637607634955000000' name='camiseta qualquer de um anime de eboy' value={50.00} />
-                        <ProductBagCard primary={false} deleteProduct={false} image='https://cea.vtexassets.com/arquivos/ids/43441710/Camiseta-Naruto-Plus-Size-Manga-Curta-Gola-Careca-Preta-9998737-Preto_2.jpg?v=637607634955000000' name='camiseta qualquer de um anime de eboy' value={50.00} />
+
+                        {data ?
+                            data.map((product) => {
+                                return (
+                                    <>
+                                        <ProductBagCard primary={false} deleteProduct={false} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} qt={product.quantidade} />
+                                    </>
+                                )
+                            })
+                            :
+                            null}
                     </div>
                 </div>
                 <div className="products-info">

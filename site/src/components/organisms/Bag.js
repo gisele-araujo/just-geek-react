@@ -7,6 +7,7 @@ import { useState } from "react/cjs/react.development";
 import { Product } from "../../services/Product";
 import { useEffect } from "react";
 import { EmptyStateBag } from "../molecules/EmptyStateBag";
+import { useHistory } from 'react-router';
 import { Drawer } from 'antd';
 
 export function Bag(props) {
@@ -17,6 +18,7 @@ export function Bag(props) {
 
     } = props
     const idUser = sessionStorage.getItem('idUser')
+    const history = useHistory()
     const [amount, setAmount] = useState(0.00)
     const [data, setData] = useState([])
 
@@ -30,7 +32,7 @@ export function Bag(props) {
         }
     }
 
-    useEffect(() => getProducts(idUser), [])
+    useEffect(() => getProducts(idUser), [addProduct])
     return (
         <>
             <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={400} className="drawer-bag">
@@ -44,7 +46,7 @@ export function Bag(props) {
                                         data.map((product) => {
                                             return (
                                                 <>
-                                                    <ProductBagCard image={product.imagens[0]} name={product.nomeProduto} value={product.preco} />
+                                                    <ProductBagCard image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} qt={product.quantidade} />
                                                 </>
                                             )
                                         })
@@ -59,7 +61,7 @@ export function Bag(props) {
                                     <div>
                                         <strong className="amount">TOTAL: R$ {amount}  </strong>
                                     </div>
-                                    <Button size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
+                                    <Button onClick={() => data ? history.push('/compra') : null} size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
                                 </div>
                             </BagModal>
                         </>

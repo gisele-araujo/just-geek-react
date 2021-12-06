@@ -9,6 +9,8 @@ export function ProductBagCard(props) {
         image,
         name,
         value,
+        size,
+        qt,
         deleteProduct = true,
         primary = true
     } = props
@@ -19,6 +21,8 @@ export function ProductBagCard(props) {
                 <img src={image} />
                 <div className="info-product">
                     <p>{name}</p>
+                    <p>Tam. {size}</p>
+                    <p>Qt. {qt}</p>
                     <strong>R$ {value}</strong>
                     {deleteProduct ?
                         <spam className="delete-product"><DeleteFilled /></spam>

@@ -4,8 +4,9 @@ import { Colors } from "../../../shared/Colors"
 import { NameTitle } from "../../atoms/Titles"
 import { CheckCircleOutlined } from '@ant-design/icons'
 
-export function Payment() {
+export function Payment(props) {
     const history = useHistory()
+
     return(
         <>
         <PaymentContainer>

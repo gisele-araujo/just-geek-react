@@ -10,35 +10,58 @@ import { Delivery } from "./Delivery";
 import { PurchaseCard } from "../../molecules/cards/PurchaseCard";
 import { Payment } from "./Payment";
 import { Success } from "./Success";
+import { Payment as PaymentAPI } from "../../../services/Payment"
 
 const { Step } = Steps;
 
-const steps = [
-    {
-        title: 'Entrega',
-        content: <Delivery />,
-    },
-    {
-        title: 'Pagamento',
-        content: <Payment />,
-    },
-    {
-        title: 'Sucesso',
-        content: <Success />,
-    },
-];
-
 const Purchase = () => {
     const history = useHistory()
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(0)
+    const [loading, setLoading] = useState(false)
+    const idUser = sessionStorage.getItem('idUser')
+    const shippingValue = sessionStorage.getItem('shippingValue')
+    const steps = [
+        {
+            title: 'Entrega',
+            content: <Delivery />,
+        },
+        {
+            title: 'Pagamento',
+            content: <Payment />,
+        },
+        {
+            title: 'Sucesso',
+            content: <Success />,
+        },
+    ];
 
     const next = () => {
         setCurrent(current + 1);
+
+        if(current === 1) {
+            console.log(current)
+            payPurchase()
+            
+          }
     };
 
     const prev = () => {
         setCurrent(current - 1);
     };
+
+    const payPurchase = async () => {
+        setLoading(true)
+
+        const response = await PaymentAPI.payPurchase(idUser, shippingValue)
+
+        if (response.status) {
+            console.log(response.data)
+            window.open(response.data.url, "_blank")
+        } else {
+            console.log('erro ao realizar pagamento')
+        }
+        setLoading(false)
+    }
     return (
         <>
             <Header />
@@ -58,11 +81,11 @@ const Purchase = () => {
                         )}
                     </div>
                     <div className="steps-action">
-                        {current > 0 && (
+                        {current > 0 || current < steps.length - 1 && (
                             <Button primary={false} style={{ margin: '0 8px' }} onClick={() => prev()} contentText='Voltar' />
                         )}
                         {current < steps.length - 1 && (
-                            <Button primary={false} action='positive' onClick={() => next()} contentText='Próximo' />
+                            <Button primary={false} action='positive' loading={loading} onClick={() => loading ? setTimeout(next(), 500) : next()} contentText='Próximo' />
                         )}
                         {current === steps.length - 1 && (
                             <Button onClick={() => history.push('/perfil')} contentText='Concluído' />
