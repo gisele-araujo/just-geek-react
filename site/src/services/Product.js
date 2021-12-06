@@ -122,4 +122,19 @@ export const Product = {
             }
         }
     },
+
+    async getCoupon(coupon) {
+        try {
+            const response = await api.get(`/coupons/${coupon}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
 }

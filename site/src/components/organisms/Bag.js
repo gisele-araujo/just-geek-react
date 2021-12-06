@@ -19,6 +19,8 @@ export function Bag(props) {
     } = props
     const idUser = sessionStorage.getItem('idUser')
     const history = useHistory()
+    const [coupon, setCoupon] = useState('')
+    const [infoCoupon, setInfoCoupon] = useState([])
     const [amount, setAmount] = useState(0.00)
     const [data, setData] = useState([])
 
@@ -32,7 +34,36 @@ export function Bag(props) {
         }
     }
 
-    useEffect(() => getProducts(idUser), [addProduct])
+    async function addCoupon(e) {
+        e.preventDefault()
+        const response = await Product.getCoupon(coupon)
+
+        if (response.status) {
+            setInfoCoupon(response.data)
+            sessionStorage.setItem('couponValue', response.data.porcentagemDesconto)
+            sessionStorage.setItem('couponName', response.data.nomeCupom)
+            console.log(response.data)
+        } else {
+            console.log('cupom invalido')
+        }
+    }
+
+    function calculatePurchaseAmount() {
+        let calculate = 0.00
+
+        for (let i = 0; i < data.length; i++) {
+            calculate = calculate + (Number(data[i].preco) * Number(data[i].quantidade))
+            setAmount(calculate)
+        }
+    }
+
+    useEffect(() => {
+        getProducts(idUser)
+    }, [addProduct])
+
+    useEffect(() => {
+        calculatePurchaseAmount()
+    }, [data])
     return (
         <>
             <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={400} className="drawer-bag">
@@ -54,10 +85,15 @@ export function Bag(props) {
                                         null}
                                 </div>
                                 <div>
-                                    <div className="box-cupom">
-                                        <Input placeholder="Insira o cupom" />
-                                        <Button size="small" primary={false} contentText="Aplicar" />
-                                    </div>
+                                    <form onSubmit={addCoupon} className="box-cupom">
+                                        <Input placeholder="Insira o cupom"
+                                            value={coupon}
+                                            onChange={e => setCoupon(e.target.value)}
+                                            id="coupon"
+                                            name="coupon"
+                                            required />
+                                        <Button type='submit' size="small" primary={false} contentText="Aplicar" />
+                                    </form>
                                     <div>
                                         <strong className="amount">TOTAL: R$ {amount}  </strong>
                                     </div>

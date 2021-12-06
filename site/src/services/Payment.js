@@ -2,10 +2,10 @@ import api from "../api/api";
 
 export const Payment = {
 
-    async payPurchase(idUser, shippingCost) {
+    async payPurchase(idUser, shippingCost, coupon) {
 
         try {
-            const response = await api.post(`/payment/${idUser}/${shippingCost}/?coupon=`)
+            const response = await api.post(`/payment/${idUser}/${shippingCost}/?coupon=${coupon}`)
             return {
                 status: response.status,
                 data: response.data

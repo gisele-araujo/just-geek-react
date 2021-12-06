@@ -117,8 +117,8 @@ const Product = () => {
                             <spam className="product-description"><spam>{product.descricao}</spam><a href='#description'> Leia +</a></spam>
                             <div className="box-values">
 
-                                <p className="product-info-generic"><spam>de </spam><s>R${product.preco}</s></p>
-                                <spam className="product-info-generic">por </spam><strong className="price-value">R$ {(product.preco - (product.preco * 0.15)).toFixed(2)}</strong> <spam className="product-info-generic">à vista</spam>
+                                <p className="product-info-generic"><spam>de </spam><s>R${(Number(product.preco) + (Number(product.preco) * 0.10)).toFixed(2)}</s></p>
+                                <spam className="product-info-generic">por </spam><strong className="price-value">R${product.preco} </strong> <spam className="product-info-generic">à vista</spam>
                                 <p className="product-info-generic">(ou até 5x de {(product.preco / 5).toFixed(2)} sem juros)</p>
                             </div>
                             <p className="title-important">Tamanho:</p>

@@ -6,7 +6,10 @@ import { ProductBagCard } from "./ProductBagCard"
 
 export function PurchaseCard() {
     const idUser = sessionStorage.getItem('idUser')
+    const shippingValue = sessionStorage.getItem('shippingValue')
+    const couponValue = sessionStorage.getItem('couponValue')
     const [data, setData] = useState([])
+    const [amount, setAmount] = useState(0.00)
 
     async function getProducts(id) {
         const response = await Product.getProductsBag(id)
@@ -17,8 +20,17 @@ export function PurchaseCard() {
             console.log('erro ao carregar produtos na sacola')
         }
     }
+    function calculatePurchaseAmount() {
+        let calculate = 0.00
+
+        for (let i = 0; i < data.length; i++) {
+            calculate = calculate + (Number(data[i].preco) * Number(data[i].quantidade))
+            setAmount(calculate)
+        }
+    }
 
     useEffect(() => getProducts(idUser), [])
+    useEffect(() => calculatePurchaseAmount(), [data])
     return (
         <>
             <ContainerPurchaseCard>
@@ -39,21 +51,21 @@ export function PurchaseCard() {
                 </div>
                 <div className="products-info">
                     <p>
+                        <strong>Subtotal</strong>
+                        <spam>R$ {amount}</spam>
+                    </p>
+                    <p>
                         <strong>Frete</strong>
-                        <spam>0,00</spam>
+                        <spam>R$ {shippingValue ? Number(shippingValue).toFixed(2) : "0.00"}</spam>
                     </p>
                     <p>
                         <strong>Cupom</strong>
-                        <spam>- 0,00</spam>
-                    </p>
-                    <p>
-                        <strong>Subtotal</strong>
-                        <spam>0,00</spam>
+                        <spam>- R$ {couponValue ? (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2) : "0.00"}</spam>
                     </p>
                     <spam className="divisor"></spam>
                     <p>
                         <strong>Total</strong>
-                        <spam>0,00</spam>
+                        <spam>R$ {((Number(amount) + Number(shippingValue)) - (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue)))).toFixed(2)}</spam>
                     </p>
                 </div>
 

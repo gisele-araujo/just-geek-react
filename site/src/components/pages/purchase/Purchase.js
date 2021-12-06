@@ -20,6 +20,7 @@ const Purchase = () => {
     const [loading, setLoading] = useState(false)
     const idUser = sessionStorage.getItem('idUser')
     const shippingValue = sessionStorage.getItem('shippingValue')
+    const couponName = sessionStorage.getItem('couponName')
     const steps = [
         {
             title: 'Entrega',
@@ -52,7 +53,7 @@ const Purchase = () => {
     const payPurchase = async () => {
         setLoading(true)
 
-        const response = await PaymentAPI.payPurchase(idUser, shippingValue)
+        const response = await PaymentAPI.payPurchase(idUser, shippingValue, couponName ? couponName : '')
 
         if (response.status) {
             console.log(response.data)
@@ -81,11 +82,11 @@ const Purchase = () => {
                         )}
                     </div>
                     <div className="steps-action">
-                        {current > 0 || current < steps.length - 1 && (
+                        {current === 1 && (
                             <Button primary={false} style={{ margin: '0 8px' }} onClick={() => prev()} contentText='Voltar' />
                         )}
                         {current < steps.length - 1 && (
-                            <Button primary={false} action='positive' loading={loading} onClick={() => loading ? setTimeout(next(), 500) : next()} contentText='Próximo' />
+                            <Button primary={false} action='positive' loading={loading} onClick={() => loading ? setTimeout(next(), 5000) : next()} contentText='Próximo' />
                         )}
                         {current === steps.length - 1 && (
                             <Button onClick={() => history.push('/perfil')} contentText='Concluído' />
