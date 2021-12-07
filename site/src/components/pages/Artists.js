@@ -71,7 +71,7 @@ const Artists = () => {
             <Header />
             <ArtistsSection>
                 <BannerWarning text='ATENÇÃO! Você está visualizando uma vitrine, para realizar pedidos de camisetas com as artes de nossos artistas, baixe o aplicativo e garanta já sua peça única!' />
-                <ProfileArtist name={user.nome} bio={user.biografia} pic={img} />
+                <ProfileArtist name={user.nome} username={user.apelido} bio={user.biografia} pic={img} />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Galeria" key="1">
                         <PageTab>

@@ -7,6 +7,7 @@ import BgProfile from '../../assets/img/bg-section-artist.jpeg'
 export function ProfileArtist(props) {
     const {
         name,
+        username,
         pic,
         bio,
         twitter,
@@ -18,7 +19,7 @@ export function ProfileArtist(props) {
             <ContainerProfile>
                 <ProfileBox>
                     <img src={pic} />
-                    <NameTitle text={name} />
+                    <NameTitle text={`${username} (${name})`} />
                     <SecondaryTitle text={bio} />
                     <NetworkBox>
                         <TwitterOutlined style={Network} />

@@ -11,6 +11,7 @@ export function ArtistsCard(props) {
         id,
         image,
         name,
+        username,
         primary = true,
     } = props
 
@@ -40,7 +41,7 @@ export function ArtistsCard(props) {
                     <img src={img} />
                 </CardImage>
                 <CardName>
-                    <NameTitle text={name} />
+                    <NameTitle text={username} />
                 </CardName>
             </CardContainer>
         </>
@@ -51,7 +52,7 @@ const CardContainer = styled.div`
 width: 240px;
 height: 270px;
 background-color: ${props => props.primary ? Colors.purple.secondDark : Colors.gray.darkPurple};
-border-radius: 5px;
+border-radius: 4px;
 margin: 20px 15px;
 transition: .5s all;
 cursor: pointer;
@@ -67,7 +68,6 @@ img {
     width: 100%;
     object-fit: cover;
     height: 210px;
-    border: 5px solid ${Colors.gray.light};
     border-radius: 5px 5px 0px 0px;
 }
 `

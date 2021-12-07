@@ -36,7 +36,7 @@ export function OthersArtists({ id }) {
                             :
                             data.map((artist) => {
                                 return (
-                                    <ArtistsCard primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} />
+                                    <ArtistsCard primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} username={artist.apelido} />
                                 )
                             })
                     }

@@ -36,11 +36,9 @@ background-size: cover;
 width: 250px;
 height: 250px;
 transition: 0.5s all;
-
-&:hover {
-    filter: brightness(0.8);
-    /* transform: scale(1.1); */
-}
+filter: grayscale(1);
+border: 3px solid ${Colors.gray.darkPurple};
+border-radius: 4px;
 `
 
 const CardText = styled.div `
