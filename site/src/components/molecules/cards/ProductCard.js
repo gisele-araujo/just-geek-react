@@ -25,7 +25,7 @@ export function CardProduto(props) {
                     onClick={() => history.push(`/produto/${id}`)}
                     hoverable
                     style={CardStyle}
-                    cover={<img style={{ backgroundColor: Colors.gray.light }} alt="example" src={loading ? ShirtLoading : img} />}
+                    cover={loading? <Skeleton.Image /> : <img style={{ backgroundColor: Colors.gray.light }} alt="example" src={img} />}
                 >
                     <CardDesc>
                         {
@@ -59,7 +59,11 @@ const CardContainer = styled.div `
 .ant-card-cover > * {
     height: 280px;
     object-fit: cover;
-}  
+}
+.ant-skeleton-element .ant-skeleton-image {
+    width: 240px;
+    height: 100%;
+}
 `
 
 const CardDesc = styled.div`

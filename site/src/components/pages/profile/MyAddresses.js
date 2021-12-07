@@ -5,15 +5,18 @@ import { PlusCircleOutlined } from '@ant-design/icons'
 import { Colors } from "../../../shared/Colors"
 import { useEffect, useState } from "react"
 import { User } from "../../../services/User"
+import { Empty } from "antd"
 
 const MyAddresses = () => {
     const idUser = sessionStorage.getItem('idUser')
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
 
     async function getAllAddresses() {
         const response = await User.getAddressesByUser(idUser)
         if (response.status) {
             setData(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao exibir endereços')
         }
@@ -27,13 +30,21 @@ const MyAddresses = () => {
                 <PlusCircleOutlined style={AddAddress} />
             </ContainerAddAddress>
             <AddressPage>
-                {data ?
-                    data.map((address) => {
-                        return (
-                            <AddressCard name={address.nomeDestinatario} address={address.endereco} city={address.bairroCidade} cep={address.cep} />
-                        )
-                    })
-                    : null
+                {
+                    loading ?
+                        <>
+                            <AddressCard loading />
+                        </>
+
+                        :
+                        data ?
+                            data.map((address) => {
+                                return (
+                                    <AddressCard name={address.nomeDestinatario} address={address.endereco} city={address.bairroCidade} cep={address.cep} />
+                                )
+                            })
+                            : 
+                            <Empty style={{ margin: "50px" }} description="Você não possui endereços cadastrados, adicione um novo para comprar " />
                 }
             </AddressPage>
         </>

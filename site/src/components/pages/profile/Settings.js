@@ -5,16 +5,19 @@ import { User } from "../../../services/User"
 import { Colors } from "../../../shared/Colors"
 import { Button } from "../../atoms/Button"
 import { SubTitle } from "../../atoms/Titles"
+import { Skeleton } from "antd"
 
 const Settings = () => {
     const idUser = sessionStorage.getItem('idUser')
     const username = sessionStorage.getItem('username')
+    const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
 
     async function getUser(id) {
         const response = await User.getInfoUser(id)
         if (response.status) {
             setData(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao carregar informações do usuário')
         }
@@ -29,23 +32,23 @@ const Settings = () => {
                 <SettingsTable>
                     <tr>
                         <th>Nome</th>
-                        <td>{data.nomeCompleto}</td>
+                        <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.nomeCompleto}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td>{data.email}</td>
+                        <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.email}</td>
                     </tr>
                     <tr>
                         <th>Telefone</th>
-                        <td>{data.celular}</td>
+                        <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.celular}</td>
                     </tr>
                     <tr>
                         <th>Data de nascimento</th>
-                        <td>{data.dataNascimento}</td>
+                        <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.dataNascimento}</td>
                     </tr>
                     <tr>
                         <th>CPF</th>
-                        <td>{data.cpf}</td>
+                        <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.cpf}</td>
                     </tr>
                 </SettingsTable>
                 <Button contentText='Alterar dados cadastrais' style={{width: '100%'}} />

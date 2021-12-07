@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Colors } from '../../../shared/Colors'
 import { DeleteFilled } from '@ant-design/icons'
+import { Skeleton } from "antd";
 
 export function ProductBagCard(props) {
     const {
@@ -12,23 +13,34 @@ export function ProductBagCard(props) {
         qt,
         deleteProduct = true,
         deleteProductFunction,
-        primary = true
+        primary = true,
+        loading,
     } = props
 
     return (
         <>
             <CardContainer
                 primary={primary}>
-                <img src={image} />
+                {loading ? <Skeleton.Image /> : <img src={image} />}
                 <div className="info-product">
-                    <p>{name}<strong className="size">(Tam. <strong className="size--value">{size})</strong></strong></p>
-                    <p className="qt">Qt. {qt}</p>
-                    <div className="container-info">
-                        <strong>R$ {value}</strong>
-                        {deleteProduct ?
-                            <spam className="delete-product"><DeleteFilled onClick={() => deleteProductFunction(id, size)} /></spam>
-                            : null}
-                    </div>
+                    {
+                        loading ?
+                            <>
+                                <Skeleton.Input style={{ width: 200 }} active />
+                                <Skeleton.Input style={{ width: 100, marginTop: 20 }} active />
+                            </>
+                            :
+                            <>
+                                <p>{name}<strong className="size">(Tam. <strong className="size--value">{size})</strong></strong></p>
+                                <p className="qt">Qt. {qt}</p>
+                                <div className="container-info">
+                                    <strong>R$ {value}</strong>
+                                    {deleteProduct ?
+                                        <spam className="delete-product"><DeleteFilled onClick={() => deleteProductFunction(id, size)} /></spam>
+                                        : null}
+                                </div>
+                            </>
+                    }
                 </div>
             </CardContainer>
         </>

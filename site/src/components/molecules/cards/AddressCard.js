@@ -1,26 +1,36 @@
 import styled from "styled-components"
 import { Colors } from "../../../shared/Colors"
-import { FormOutlined} from '@ant-design/icons'
+import { FormOutlined } from '@ant-design/icons'
+import { Skeleton } from "antd"
 
 export function AddressCard(props) {
     const {
         name,
         address,
         city,
-        cep
+        cep,
+        loading
     } = props
     return (
         <>
             <ContainerAddressCard>
-                <strong>{name}</strong>
-                <div className='container-address'>
-                   <div className='address-data'>
-                    <p>{address}</p>
-                    <p>{city}</p>
-                    <p>{cep}</p>
-                </div>
-                <FormOutlined style={setAddress} /> 
-                </div>
+                {
+                    loading ?
+                    <Skeleton active />
+                    :
+                        <>
+                            <strong>{name}</strong>
+                            <div className='container-address'>
+                                <div className='address-data'>
+                                    <p>{address}</p>
+                                    <p>{city}</p>
+                                    <p>{cep}</p>
+                                </div>
+                                <FormOutlined style={setAddress} />
+                            </div>
+                        </>
+                }
+
             </ContainerAddressCard>
         </>
     )

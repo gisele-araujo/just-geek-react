@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components"
 import { Colors } from "../../../shared/Colors"
 import { SubTitle } from "../../atoms/Titles"
@@ -5,22 +6,37 @@ import { ArtistsCard } from '../../molecules/cards/ArtistCard'
 import { CardProduto } from '../../molecules/cards/ProductCard'
 
 const MyFavorites = () => {
+    const [loading, setLoading] = useState(true)
     return (
         <>
             <FavoritePage>
                 <SubTitle text='Meus produtos favoritos' />
                 <FavoriteProducts className='section-scroll'>
-                    <CardProduto />
-                    <CardProduto />
-                    <CardProduto />
-                    <CardProduto />
+                    {
+                        loading ?
+                            <>
+                                <CardProduto loading />
+                                <CardProduto loading />
+                                <CardProduto loading />
+                            </>
+                            :
+                            null
+                    }
+
                 </FavoriteProducts>
                 <spam className='border'></spam>
                 <SubTitle text='Meus artistas favoritos' />
                 <FavoriteArtists>
-                    <ArtistsCard />
-                    <ArtistsCard />
-                    <ArtistsCard />
+                    {
+                        loading ?
+                            <>
+                                <ArtistsCard primary={false} loading />
+                                <ArtistsCard primary={false} loading />
+                                <ArtistsCard primary={false} loading />
+                            </>
+                            :
+                            null
+                    }
                 </FavoriteArtists>
             </FavoritePage>
         </>
@@ -29,7 +45,7 @@ const MyFavorites = () => {
 
 export default MyFavorites
 
-const FavoritePage = styled.div `
+const FavoritePage = styled.div`
 
 .border {
     border: 1px solid ${Colors.gray.light};
@@ -54,13 +70,13 @@ const FavoritePage = styled.div `
 
 `
 
-const FavoriteProducts = styled.div `
+const FavoriteProducts = styled.div`
 padding: 20px 0;
 display: flex;
 overflow-x: scroll;
 `
 
-const FavoriteArtists = styled.div `
+const FavoriteArtists = styled.div`
 padding: 20px 0;
 display: flex;
 flex-wrap: wrap;

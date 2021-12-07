@@ -8,7 +8,7 @@ import { Product } from "../../services/Product";
 import { useEffect } from "react";
 import { EmptyStateBag } from "../molecules/EmptyStateBag";
 import { useHistory } from 'react-router';
-import { Drawer } from 'antd';
+import { Drawer, Skeleton } from 'antd';
 
 export function Bag(props) {
     const {
@@ -26,12 +26,14 @@ export function Bag(props) {
     const [deleteProduct, setDeleteProduct] = useState(false)
     const [coupon, setCoupon] = useState('')
     const [amount, setAmount] = useState(0.00)
+    const [loading, setLoading] = useState(true)
 
     async function getProducts(id) {
         const response = await Product.getProductsBag(id)
 
         if (response.status) {
             setData(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao carregar produtos na sacola')
         }
@@ -40,7 +42,6 @@ export function Bag(props) {
     async function deleteProductBag(idProduct, size) {
         await Product.deleteProductBag(idUser, idProduct, 1, size)
         setDeleteProduct(true)
-        
     }
 
     async function addCoupon(e) {
@@ -66,7 +67,7 @@ export function Bag(props) {
 
     function calculateDiscount() {
         let calculate = 0.00
-        
+
         if (couponValue) {
             calculate = (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2)
         }
@@ -81,23 +82,27 @@ export function Bag(props) {
     }, [data])
     return (
         <>
-            <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={window.screen.width <= 768 ? 375 :420} className="drawer-bag">
+            <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={window.screen.width <= 768 ? 375 : 420} className="drawer-bag">
                 {
                     data && idUser || addProduct ?
                         <>
                             <HeaderModal />
                             <BagModal>
                                 <div className="box-products">
-                                    {data ?
-                                        data.map((product, index) => {
-                                            return (
-                                                <>
-                                                    <ProductBagCard key={index} id={product.idProduto} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} deleteProductFunction={deleteProductBag} />
-                                                </>
-                                            )
-                                        })
+                                    {loading ?
+                                        <ProductBagCard loading />
                                         :
-                                        null}
+
+                                        data ?
+                                            data.map((product, index) => {
+                                                return (
+                                                    <>
+                                                        <ProductBagCard key={index} loading={loading} id={product.idProduto} qt={product.quantidade} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} deleteProductFunction={deleteProductBag} />
+                                                    </>
+                                                )
+                                            })
+                                            :
+                                            null}
                                 </div>
                                 <div>
                                     <form onSubmit={addCoupon} className="box-cupom">
@@ -115,8 +120,15 @@ export function Bag(props) {
                                             :
                                             null
                                         }
-                                        <p>FRETE: <spam>R$ {shippingValue ? shippingValue : "00.00"}</spam></p>
-                                        <strong>TOTAL: <spam>R$ {((Number(amount) + Number(shippingValue)) - calculateDiscount()).toFixed(2)}</spam> </strong>
+                                        <p>FRETE: <spam>R$ {
+                                            loading ?
+                                                <Skeleton.Input style={{ width: 50 }} size="small" active />
+                                                : shippingValue ?
+                                                    shippingValue : "00.00"}</spam></p>
+                                        <strong>TOTAL: <spam>R$ {
+                                            loading ?
+                                                <Skeleton.Input style={{ width: 50 }} active />
+                                                : ((Number(amount) + Number(shippingValue)) - calculateDiscount()).toFixed(2)}</spam> </strong>
                                     </div>
                                     <Button onClick={() => data ? history.push('/compra') : null} size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
                                 </div>

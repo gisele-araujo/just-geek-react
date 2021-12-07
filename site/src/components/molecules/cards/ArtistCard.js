@@ -4,27 +4,26 @@ import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
 import { useHistory } from 'react-router-dom'
-
+import { Skeleton } from 'antd'
 
 export function ArtistsCard(props) {
     const {
         id,
-        image,
         name,
+        image,
         username,
+        loadingInfo,
         primary = true,
     } = props
 
     const history = useHistory()
     const [img, setImg] = useState([])
-    const [loading, setLoading] = useState(true)
 
     async function getPhoto() {
         const response = await Artist.getPhotoArtist(image)
 
         if (response.status) {
             setImg(response.data)
-            setLoading(false)
         } else {
             console.log('erro ao carregar foto de artista')
         }
@@ -38,10 +37,10 @@ export function ArtistsCard(props) {
                 onClick={() => history.push(`/artista/${id}`)}
                 primary={primary}>
                 <CardImage>
-                    <img src={img} />
+                    {loadingInfo ? <Skeleton.Image /> : <img src={img} /> }
                 </CardImage>
                 <CardName>
-                    <NameTitle text={username} />
+                    {loadingInfo ? <Skeleton.Input style={{ width: 150 }} active size="small" /> : <NameTitle text={username} />}
                 </CardName>
             </CardContainer>
         </>
@@ -69,6 +68,11 @@ img {
     object-fit: cover;
     height: 210px;
     border-radius: 5px 5px 0px 0px;
+}
+
+.ant-skeleton-element .ant-skeleton-image {
+    width: 240px;
+    height: 210px;
 }
 `
 

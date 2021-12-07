@@ -71,7 +71,7 @@ const Artists = () => {
             <Header />
             <ArtistsSection>
                 <BannerWarning text='ATENÇÃO! Você está visualizando uma vitrine, para realizar pedidos de camisetas com as artes de nossos artistas, baixe o aplicativo e garanta já sua peça única!' />
-                <ProfileArtist name={user.nome} username={user.apelido} bio={user.biografia} pic={img} />
+                <ProfileArtist loading={loading} name={user.nome} username={user.apelido} bio={user.biografia} pic={img} />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Galeria" key="1">
                         <PageTab>
@@ -89,7 +89,7 @@ const Artists = () => {
                     </TabPane>
                     <TabPane tab="Sobre" key="2">
                         <PageTab>
-                            <BioArtist bio={user.biografia} contact={user.contato} />
+                            <BioArtist loading={loading} bio={user.biografia} contact={user.contato} />
                         </PageTab>
                     </TabPane>
                 </Tabs>

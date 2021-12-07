@@ -31,11 +31,16 @@ export function ArtistsHome() {
                 <ArtistsGrade>
                     {
                         loading ?
-                        null
+                        <>
+                        <ArtistsCard primary={false} loadingInfo={loading} />
+                        <ArtistsCard primary={false} loadingInfo={loading} />
+                        <ArtistsCard primary={false} loadingInfo={loading} />
+                        <ArtistsCard primary={false} loadingInfo={loading} />
+                        </>
                         :
                         data.map((artist) => {
                             return (
-                                <ArtistsCard primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} username={artist.apelido} />
+                                <ArtistsCard loadingInfo={loading} primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} username={artist.apelido} />
                             )
                         })
                     }

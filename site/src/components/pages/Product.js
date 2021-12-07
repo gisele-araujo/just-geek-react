@@ -12,6 +12,7 @@ import { CardProduto } from '../molecules/cards/ProductCard';
 import { useParams, useHistory } from 'react-router';
 import { useEffect, useState } from "react";
 import { Shipping } from "../molecules/Shipping";
+import { Skeleton } from "antd";
 
 const Product = () => {
     const idUser = sessionStorage.getItem('idUser')
@@ -21,6 +22,7 @@ const Product = () => {
     const [product, setProduct] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [loadingPage, setLoadingPage] = useState(true)
     const [addProduct, setAddProduct] = useState(false)
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -47,6 +49,7 @@ const Product = () => {
 
         if (response.status) {
             setData(response.data)
+            setLoadingPage(false)
         } else {
             console.log('erro ao carregar produtos semelhantes')
         }
@@ -57,6 +60,7 @@ const Product = () => {
 
         if (response.status) {
             setProduct(response.data)
+            setLoadingPage(false)
         } else {
             console.log('erro ao carregar produto específico')
         }
@@ -66,7 +70,7 @@ const Product = () => {
         setLoading(true)
         const response = await ProductApi.addProductBag(idUser, idProduct, 1, size)
 
-        if(response.status) {
+        if (response.status) {
             setAddProduct(true)
         } else {
             console.log('não foi possível adicionar o produto ao carrinho')
@@ -99,7 +103,7 @@ const Product = () => {
                                         src={product.imagens ? product.imagens[0] : null} />
                                 </div>
                                 <div className="grid-images-two">
-                                    { product.imagens ?
+                                    {product.imagens ?
                                         product.imagens.slice(1, 4).map((img) => {
                                             return (
                                                 <Image
@@ -113,13 +117,35 @@ const Product = () => {
                             </div>
                         </Image.PreviewGroup>
                         <div className="buy-painel">
-                            <SubTitle text={product.nomeProduto} />
-                            <spam className="product-description"><spam>{product.descricao}</spam><a href='#description'> Leia +</a></spam>
+                            {loadingPage ?
+                                <>
+                                    <Skeleton.Input style={{ width: 200 }} active={true} size="small" />
+                                    <p><Skeleton.Input style={{ width: 250, marginTop: 20 }} active={true} size="small" /></p>
+                                </>
+
+                                :
+                                <>
+                                    <SubTitle text={product.nomeProduto} />
+                                    <spam className="product-description"><spam>{product.descricao}</spam><a href='#description'> Leia +</a></spam>
+                                </>
+                            }
                             <div className="box-values">
 
-                                <p className="product-info-generic"><spam>de </spam><s>R${(Number(product.preco) + (Number(product.preco) * 0.10)).toFixed(2)}</s></p>
-                                <spam className="product-info-generic">por </spam><strong className="price-value">R${product.preco} </strong> <spam className="product-info-generic">à vista</spam>
-                                <p className="product-info-generic">(ou até 5x de {(product.preco / 5).toFixed(2)} sem juros)</p>
+                                <p className="product-info-generic">
+                                    <spam>de </spam><s>R${loadingPage ?
+                                        <Skeleton.Input active={true} style={{ width: 50 }} size="small" />
+                                        :
+                                        (Number(product.preco) + (Number(product.preco) * 0.10)).toFixed(2)}</s></p>
+                                <spam className="product-info-generic">por </spam>
+                                <strong className="price-value">R$
+                                    {loadingPage ?
+                                        <Skeleton.Input active={true} style={{ width: 50 }} size="large" />
+                                        :
+                                        product.preco} </strong> <spam className="product-info-generic">à vista</spam>
+                                <p className="product-info-generic">
+                                    {loadingPage ? <Skeleton.Input active={true} style={{ width: 150 }} size="small" />
+                                        :
+                                        `(ou até 5x de ${(product.preco / 5).toFixed(2)} sem juros)`}</p>
                             </div>
                             <p className="title-important">Tamanho:</p>
                             <Radio.Group onChange={onChangeSize} buttonStyle="solid" value={size}>
@@ -141,20 +167,34 @@ const Product = () => {
                     </ProductInfo>
                     <div id="description">
                         <NameTitle text="Descrição do Produto" />
-                        <p className="product-description">{product.descricao}</p>
-                        <p className="product-description">{product.especificacoes}</p>
+                        {loadingPage ?
+                            <Skeleton active />
+                            :
+                            <>
+                                <p className="product-description">{product.descricao}</p>
+                                <p className="product-description">{product.especificacoes}</p>
+                            </>}
+
                     </div>
                 </ProductContainer>
                 <SimilarProducts>
                     <SubTitle text='Produtos semelhantes' />
                     <div className="container-similar-products">
-                        {data ?
-                            data.map((product) => {
-                                return (
-                                    <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
-                                )
-                            })
-                            : null
+                        {loadingPage ?
+                                <>
+                                    <CardProduto loading />
+                                    <CardProduto loading />
+                                    <CardProduto loading />
+                                    <CardProduto loading />
+                                </>
+                                :
+                                data ?
+                                    data.slice(0,4).map((product) => {
+                                        return (
+                                            <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
+                                        )
+                                    })
+                                    : null
                         }
                     </div>
                 </SimilarProducts>
@@ -164,7 +204,7 @@ const Product = () => {
             <ModalContainer>
                 <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                     <p>Faça login para adicionar produto ao carrinho!</p>
-                    <Button contentText='Fazer login' style={{width: '100%'}} onClick={() => history.push('/login')} />
+                    <Button contentText='Fazer login' style={{ width: '100%' }} onClick={() => history.push('/login')} />
                 </Modal>
             </ModalContainer>
         </>
@@ -327,7 +367,7 @@ text-align: center;
 }
 `
 
-const ModalContainer = styled.div `
+const ModalContainer = styled.div`
 font-family: 'Exo 2', sans-serif;
 `
 

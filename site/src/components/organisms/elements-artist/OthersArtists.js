@@ -32,7 +32,12 @@ export function OthersArtists({ id }) {
                 <OthersGrade>
                     {
                         loading ?
-                            null
+                            <>
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                            </>
                             :
                             data.map((artist) => {
                                 return (

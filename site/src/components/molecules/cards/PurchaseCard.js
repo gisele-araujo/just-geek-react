@@ -1,3 +1,4 @@
+import { Skeleton } from "antd"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Product } from "../../../services/Product"
@@ -10,6 +11,7 @@ export function PurchaseCard() {
     const couponValue = sessionStorage.getItem('couponValue')
     const couponName = sessionStorage.getItem('couponName')
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
     const [amount, setAmount] = useState(0.00)
 
     async function getProducts(id) {
@@ -17,6 +19,7 @@ export function PurchaseCard() {
 
         if (response.status) {
             setData(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao carregar produtos na sacola')
         }
@@ -37,8 +40,11 @@ export function PurchaseCard() {
             <ContainerPurchaseCard>
                 <div className="products-purchase">
                     <div className="container-products-purchase">
-
-                        {data ?
+                        {
+                            loading ?
+                            <ProductBagCard primary={false} loading />
+                            :
+                            data ?
                             data.map((product, index) => {
                                 return (
                                     <>
@@ -47,28 +53,30 @@ export function PurchaseCard() {
                                 )
                             })
                             :
-                            null}
+                            null }
                     </div>
                 </div>
                 <div className="products-info">
                     <p>
                         <strong>Subtotal</strong>
-                        <spam>R$ {amount}</spam>
+                        <spam>R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> : amount}</spam>
                     </p>
                     <p>
                         <strong>Frete</strong>
-                        <spam>R$ {shippingValue ? Number(shippingValue).toFixed(2) : "0.00"}</spam>
+                        <spam>R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> :shippingValue ? Number(shippingValue).toFixed(2) : "0.00"}</spam>
                     </p>
                     <p>
                         <strong>Cupom {couponName ? `(${couponName})` : null}</strong>
-                        <spam>- R$ {couponValue ?
+                        <spam>- R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> :
+                        couponValue ?
                             (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2)
                             : "0.00"}</spam>
                     </p>
                     <spam className="divisor"></spam>
                     <p>
                         <strong>Total</strong>
-                        <spam>R$ {((Number(amount) + Number(shippingValue)) - (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue)))).toFixed(2)}</spam>
+                        <spam>R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> :
+                        ((Number(amount) + Number(shippingValue)) - (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue)))).toFixed(2)}</spam>
                     </p>
                 </div>
 
