@@ -25,15 +25,12 @@ export function Header(props) {
     }
 
     useEffect(() => {
-        if(addProduct === true) setVisible(true)
+        if (addProduct === true) setVisible(true)
     }, [addProduct])
 
     return (
         <>
             <HeaderBox>
-                <CouponBanner>
-                    <p></p>
-                </CouponBanner>
                 <ContainerHeader>
                     <Logo onClick={() => history.push('/')}>
                         {/* <MenuOutlined style={IconsHeader} /> */}
@@ -47,12 +44,12 @@ export function Header(props) {
                         <UserOutlined onClick={() => username ? history.push('/perfil') : history.push('/login')} />
                         <div>
                             <p>Olá, {username ? username : "visitante"}!</p>
-                            {username ? 
-                            <p><u onClick={() => history.push('/perfil')}>Ver minha conta</u></p>
-                            :
-                            <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
+                            {username ?
+                                <p><u onClick={() => history.push('/perfil')}>Ver minha conta</u></p>
+                                :
+                                <p><u onClick={() => history.push('/login')}>Faça login</u> ou <u onClick={() => history.push('/cadastro')}>cadastre-se</u></p>
                             }
-                            
+
                         </div>
                     </ProfileHeader>
                     <Icons>
@@ -80,11 +77,7 @@ font-family: 'Exo 2', sans-serif;
 }
 `
 
-const CouponBanner = styled.div `
-
-`
-
-const ContainerHeader = styled.div `
+const ContainerHeader = styled.div`
 max-width: 1600px;
 height: 100%;
 margin: 0 auto;
