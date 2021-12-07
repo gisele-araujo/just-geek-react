@@ -178,7 +178,11 @@ background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
 width: 100%;
 height: 100%;
-padding-top: 85px;
+padding-top: 68px;
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+}
 `
 
 const ProductContainer = styled.div`

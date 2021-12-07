@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { SubTitle } from "../../atoms/Titles";
 
 export function Success() {
+    useEffect(() => window.scrollTo(0, 0),[])
     return (
         <>
             <SuccessPurchase>

@@ -147,12 +147,16 @@ const Cadastro = () => {
 export default Cadastro;
 
 const CadastroPage = styled.div`
-padding-top: 85px;
+padding-top: 68px;
 background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
 width: 100%;
 min-height: 100vh;
 display: flex;
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+}
 `
 const ContainerCadastro = styled.div`
 display: flex;

@@ -41,7 +41,7 @@ export function Header(props) {
                         <Search placeholder="O que você procura?" onSearch={onSearch} style={{ width: '100%' }} />
                     </SearchSpace>
                     <ProfileHeader className="profile">
-                        <UserOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil') : history.push('/login')} />
+                        <UserOutlined onClick={() => username ? history.push('/perfil') : history.push('/login')} />
                         <div>
                             <p>Olá, {username ? username : "visitante"}!</p>
                             {username ? 
@@ -53,8 +53,8 @@ export function Header(props) {
                         </div>
                     </ProfileHeader>
                     <Icons>
-                        <HeartOutlined style={IconsHeader} onClick={() => username ? history.push('/perfil/favoritos') : history.push('/login')} style={IconsHeader} />
-                        <ShoppingOutlined onClick={showDrawer} style={IconsHeader} />
+                        <HeartOutlined onClick={() => username ? history.push('/perfil/favoritos') : history.push('/login')} />
+                        <ShoppingOutlined onClick={showDrawer} />
                     </Icons>
                 </ContainerHeader>
             </HeaderBox>
@@ -67,10 +67,14 @@ const HeaderBox = styled.div`
 position: fixed;
 z-index: 1000;
 width: 100%;
-height: 85px;
+height: 68px;
 background-color: ${Colors.blue.darkPurple};
 padding: 0 2%;
 font-family: 'Exo 2', sans-serif;
+
+@media(min-width: 768px) {
+    height: 82px;
+}
 `
 
 const ContainerHeader = styled.div `
@@ -88,31 +92,34 @@ display: flex;
 align-items: center;
 
 h2 {
-    color: ${Colors.gray.white};
-    font-weight: 800;
-    font-size: 1.6rem;
-    margin: 0;
-    transition: 0.5s all;
+    display: none;
 }
 
 h2:hover {
     color: ${Colors.pink.hot};
 }
-
 img {
     height: 40px;
-    padding: 0 15px;
+    padding: 0 12px 0 8px;
 }
 
-@media(max-width: 768px) {
+@media(min-width: 991px) {
     h2 {
-        display: none;
+        display: block;
+        color: ${Colors.gray.white};
+        font-weight: 800;
+        font-size: 1.6rem;
+        margin: 0;
+        transition: 0.5s all;
+    }
+    img {
+        padding: 0 15px;
     }
 }
 `
 
 const SearchSpace = styled.div`
-width: 33%;
+width: 68%;
 
 .ant-input {
     height: 37px;
@@ -132,8 +139,8 @@ width: 33%;
     font-size: 18px;
 }
 
-@media(max-width: 768px) {
-display: none;
+@media(min-width: 768px) {
+width: 33%;
 }
 `
 
@@ -153,22 +160,38 @@ u {
 u:hover {
     color: ${Colors.blue.light};
 }
+.anticon svg {
+    color: ${Colors.gray.white};
+    font-size: 44px;
+    padding: 5px 10px;
+} 
 
-
-@media(max-width: 768px) {
+@media(max-width: 769px) {
     p, u {
         display: none;
-    }
+    } 
+}
+@media(min-width: 768px) {
+    .anticon svg {
+        font-size: 58px;
+        padding: 5px 15px;
+    }  
 }
 `
 
 const Icons = styled.div`
 display: flex;
-`
 
-const IconsHeader = {
-    cursor: 'pointer',
-    color: Colors.gray.white,
-    fontSize: '28px',
-    padding: '20px'
+.anticon svg {
+    color: ${Colors.gray.white};
+    font-size: 44px;
+    padding: 5px 10px;
+} 
+
+@media(min-width: 768px) {
+    .anticon svg {
+        font-size: 58px;
+        padding: 5px 15px;
+    }  
 }
+`

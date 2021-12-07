@@ -80,13 +80,17 @@ const Login = () => {
 export default Login;
 
 const CadastroPage = styled.div`
-padding-top: 85px;
+padding-top: 68px;
 background-color: ${Colors.gray.darkPurple};
 height: 100vh;
 display: flex;
 align-items: center;
 justify-content: center;
 font-family: 'Exo 2', sans-serif;
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+}
 `
 
 const ContainerLogin = styled.div`

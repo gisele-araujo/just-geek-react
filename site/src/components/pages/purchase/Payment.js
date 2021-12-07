@@ -3,9 +3,11 @@ import styled from "styled-components"
 import { Colors } from "../../../shared/Colors"
 import { NameTitle } from "../../atoms/Titles"
 import { CheckCircleOutlined } from '@ant-design/icons'
+import { useEffect } from "react"
 
 export function Payment(props) {
     const history = useHistory()
+    useEffect(() => window.scrollTo(0, 0) ,[])
 
     return(
         <>

@@ -106,9 +106,13 @@ const Artists = () => {
 export default Artists;
 
 const ArtistsSection = styled.section`
-padding-top: 85px;
+padding-top: 68px;
 background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+}
 `
 
 const PageTab = styled.section`

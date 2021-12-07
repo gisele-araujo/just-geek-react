@@ -6,7 +6,7 @@ import { Header } from "../organisms/Header"
 import { Search as SearchApi } from '../../services/Search'
 import { useEffect, useState } from "react"
 import { CardProduto } from "../molecules/cards/ProductCard"
-import { SubTitle } from "../atoms/Titles"
+import { NameTitle, SubTitle } from "../atoms/Titles"
 import { useParams } from "react-router"
 
 const Search = () => {
@@ -33,12 +33,19 @@ const Search = () => {
         }
     }
 
-    useEffect(() => getAllProducts(), [])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        getAllProducts()
+    }, [])
     useEffect(() => SearchProduct(), [id])
     return (
         <>
             <Header />
             <SearchPage>
+                <div className="info-search">
+                    <NameTitle text={`Você buscou por: ${id}`} />
+                    <p>{getSearch.length} produtos encontrados</p>
+                </div>
                 <ResultSection>
                     {getSearch ?
                         getSearch.map((product) => {
@@ -75,14 +82,36 @@ background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
 width: 100%;
 height: 100%;
-padding-top: 85px;
+padding-top: 68px;
+
+.info-search {
+    width: 90%;
+    margin: 30px auto;
+    text-align: center;
+    p {
+        color: ${Colors.blue.light};
+    }
+}
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+    .info-search {
+        text-align: start;
+        padding-left: 20px;
+    }      
+}
 `
 
-const ResultSection = styled.div `
+const ResultSection = styled.div`
 width: 90%;
 margin: 30px auto;
 display: flex;
+justify-content: center;
 flex-wrap: wrap;
+
+@media(min-width: 768px) {
+    justify-content: start;
+}
 `
 
 const OthersSection = styled.div`

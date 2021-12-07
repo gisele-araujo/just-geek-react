@@ -1,9 +1,11 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 import { Colors } from "../../../shared/Colors"
 import { Button } from "../../atoms/Button"
 import { AddressCard } from "../../molecules/cards/AddressCard"
 
 export function Delivery() {
+    useEffect(() => window.scrollTo(0, 0),[])
     return(
         <>
         <DeliveryCard>

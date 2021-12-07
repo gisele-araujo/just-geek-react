@@ -1,7 +1,7 @@
 import { Header } from "../../organisms/Header"
 import { useHistory } from "react-router"
 import { Steps } from 'antd';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { Button } from "../../atoms/Button";
@@ -63,6 +63,8 @@ const Purchase = () => {
         }
         setLoading(false)
     }
+
+    useEffect(() => window.scrollTo(0, 0),[])
     return (
         <>
             <Header />

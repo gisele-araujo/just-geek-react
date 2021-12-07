@@ -39,7 +39,11 @@ const Home = () => {
 export default Home;
 
 const Homepage = styled.div`
-padding-top: 85px;
+padding-top: 68px;
 background-color: ${Colors.gray.darkPurple};
 font-family: 'Exo 2', sans-serif;
+
+@media(min-width: 768px) {
+    padding-top: 82px;
+}
 `
