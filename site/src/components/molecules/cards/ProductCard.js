@@ -20,27 +20,30 @@ export function CardProduto(props) {
 
     return (
         <>
-            <Card
-                onClick={() => history.push(`/produto/${id}`)}
-                hoverable
-                style={CardStyle}
-                cover={<img style={{ backgroundColor: Colors.gray.light}} alt="example" src={loading ? ShirtLoading : img} />}
-            >
-                <CardDesc>
-                    {
-                        loading ?
-                        <Skeleton active />
-                        :
-                            <>
-                                <h3>{title}</h3>
-                                <span><s>R${(Number(preco) + (Number(preco) * 0.10)).toFixed(2)}</s> <strong>R${preco} </strong></span>
-                                <p>ou até 5x de R$ {(preco / 5).toFixed(2)} sem juros</p>
-                            </>
-                    }
+            <CardContainer>
+                <Card
+                    onClick={() => history.push(`/produto/${id}`)}
+                    hoverable
+                    style={CardStyle}
+                    cover={<img style={{ backgroundColor: Colors.gray.light }} alt="example" src={loading ? ShirtLoading : img} />}
+                >
+                    <CardDesc>
+                        {
+                            loading ?
+                                <Skeleton active />
+                                :
+                                <>
+                                    <h3>{title}</h3>
+                                    <span><s>R${(Number(preco) + (Number(preco) * 0.10)).toFixed(2)}</s> <strong>R${preco} </strong></span>
+                                    <p>ou até 5x de R$ {(preco / 5).toFixed(2)} sem juros</p>
+                                </>
+                        }
 
-                </CardDesc>
-                <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='Ver detalhes' />
-            </Card>
+                    </CardDesc>
+                    <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='Ver detalhes' />
+                </Card>
+            </CardContainer>
+
         </>
     )
 }
@@ -51,6 +54,13 @@ const CardStyle = {
     border: 'none',
     margin: '20px'
 }
+
+const CardContainer = styled.div `
+.ant-card-cover > * {
+    height: 280px;
+    object-fit: cover;
+}  
+`
 
 const CardDesc = styled.div`
 h3, p, span {

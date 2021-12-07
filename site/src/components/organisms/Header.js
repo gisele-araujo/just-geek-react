@@ -31,6 +31,9 @@ export function Header(props) {
     return (
         <>
             <HeaderBox>
+                <CouponBanner>
+                    <p></p>
+                </CouponBanner>
                 <ContainerHeader>
                     <Logo onClick={() => history.push('/')}>
                         {/* <MenuOutlined style={IconsHeader} /> */}
@@ -75,6 +78,10 @@ font-family: 'Exo 2', sans-serif;
 @media(min-width: 768px) {
     height: 82px;
 }
+`
+
+const CouponBanner = styled.div `
+
 `
 
 const ContainerHeader = styled.div `

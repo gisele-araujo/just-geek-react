@@ -59,7 +59,7 @@ const Search = () => {
                     <SubTitle text='Veja também' />
                     <div className='others-products'>
                         {allProducts ?
-                            allProducts.slice(2, 7).map((product) => {
+                            allProducts.slice(2, 6).map((product) => {
                                 return (
                                     <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
                                 )
