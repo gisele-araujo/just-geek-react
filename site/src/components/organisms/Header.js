@@ -20,7 +20,9 @@ export function Header(props) {
     const [visible, setVisible] = useState(false);
     const showDrawer = () => setVisible(true);
     const onClose = () => setVisible(false);
-    const onSearch = value => console.log(value)
+    const onSearch = value => {
+        history.push(`/pesquisa/${value}`)
+    }
 
     useEffect(() => {
         if(addProduct === true) setVisible(true)

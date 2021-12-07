@@ -13,7 +13,7 @@ import { createElement, useState } from "react";
 import { Route, useHistory } from "react-router";
 import Settings from "./Settings";
 import MyAddresses from "./MyAddresses";
-import setPassword from "./SetPassword";
+import SetPassword from "./SetPassword";
 import MyFavorites from "./MyFavorites";
 
 const { SubMenu } = Menu;
@@ -73,7 +73,7 @@ const Profile = () => {
                     collapsed={collapsed}>
                     <Route exact path='/perfil' component={Settings} />
                     <Route path='/perfil/meus-enderecos' component={MyAddresses} />
-                    <Route path='/perfil/alterar-senha' component={setPassword} />
+                    <Route path='/perfil/alterar-senha' component={SetPassword} />
                     <Route path='/perfil/favoritos' component={MyFavorites} />
                 </PageProfile>
             </UserProfile>

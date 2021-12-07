@@ -61,7 +61,9 @@ export function PurchaseCard() {
                     </p>
                     <p>
                         <strong>Cupom {couponName ? `(${couponName})` : null}</strong>
-                        <spam>- R$ {couponValue ? (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2) : "0.00"}</spam>
+                        <spam>- R$ {couponValue ?
+                            (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2)
+                            : "0.00"}</spam>
                     </p>
                     <spam className="divisor"></spam>
                     <p>

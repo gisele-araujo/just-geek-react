@@ -4,17 +4,20 @@ import { FormOutlined} from '@ant-design/icons'
 
 export function AddressCard(props) {
     const {
-
+        name,
+        address,
+        city,
+        cep
     } = props
     return (
         <>
             <ContainerAddressCard>
-                <strong>Denise Sousa Martinez</strong>
+                <strong>{name}</strong>
                 <div className='container-address'>
                    <div className='address-data'>
-                    <p>Rua Basílio da Gama, 149 B</p>
-                    <p>Jardim das Flores, Osasco</p>
-                    <p>CEP 09678-456</p>
+                    <p>{address}</p>
+                    <p>{city}</p>
+                    <p>{cep}</p>
                 </div>
                 <FormOutlined style={setAddress} /> 
                 </div>
