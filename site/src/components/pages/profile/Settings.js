@@ -1,33 +1,51 @@
+import { useEffect } from "react"
+import { useState } from "react/cjs/react.development"
 import styled from "styled-components"
+import { User } from "../../../services/User"
 import { Colors } from "../../../shared/Colors"
 import { Button } from "../../atoms/Button"
 import { SubTitle } from "../../atoms/Titles"
 
 const Settings = () => {
+    const idUser = sessionStorage.getItem('idUser')
+    const username = sessionStorage.getItem('username')
+    const [data, setData] = useState([])
+
+    async function getUser(id) {
+        const response = await User.getInfoUser(id)
+        if (response.status) {
+            setData(response.data)
+        } else {
+            console.log('erro ao carregar informações do usuário')
+        }
+    }
+
+    useEffect(() => getUser(idUser) ,[])
+
     return (
         <>
-            <SubTitle text='Olá, Gisele' />
+            <SubTitle text={`Olá, ${username}`} />
             <SettingsPage>
                 <SettingsTable>
                     <tr>
                         <th>Nome</th>
-                        <td>Gisele</td>
+                        <td>{data.nomeCompleto}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td>exemplo@gmail.com</td>
+                        <td>{data.email}</td>
                     </tr>
                     <tr>
                         <th>Telefone</th>
-                        <td>(11) 956376393</td>
+                        <td>{data.celular}</td>
                     </tr>
                     <tr>
                         <th>Data de nascimento</th>
-                        <td>11/12/1997</td>
+                        <td>{data.dataNascimento}</td>
                     </tr>
                     <tr>
                         <th>CPF</th>
-                        <td>49073676860</td>
+                        <td>{data.cpf}</td>
                     </tr>
                 </SettingsTable>
                 <Button contentText='Alterar dados cadastrais' style={{width: '100%'}} />

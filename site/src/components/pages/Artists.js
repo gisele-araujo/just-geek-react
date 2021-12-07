@@ -32,7 +32,7 @@ const Artists = () => {
             setUser(response.data)
             setLoading(false)
         } else {
-            console.log('erro ao carregar artistas')
+            console.log('erro ao carregar artista')
         }
     }
 

@@ -53,4 +53,19 @@ export const User = {
             }
         }
     },
+
+    async getInfoUser(id) {
+        try {
+            const response = await api.get(`/account/${id}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
 }
