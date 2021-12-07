@@ -8,6 +8,7 @@ export function PurchaseCard() {
     const idUser = sessionStorage.getItem('idUser')
     const shippingValue = sessionStorage.getItem('shippingValue')
     const couponValue = sessionStorage.getItem('couponValue')
+    const couponName = sessionStorage.getItem('couponName')
     const [data, setData] = useState([])
     const [amount, setAmount] = useState(0.00)
 
@@ -38,10 +39,10 @@ export function PurchaseCard() {
                     <div className="container-products-purchase">
 
                         {data ?
-                            data.map((product) => {
+                            data.map((product, index) => {
                                 return (
                                     <>
-                                        <ProductBagCard primary={false} deleteProduct={false} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} qt={product.quantidade} />
+                                        <ProductBagCard key={index} primary={false} deleteProduct={false} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} qt={product.quantidade} />
                                     </>
                                 )
                             })
@@ -59,7 +60,7 @@ export function PurchaseCard() {
                         <spam>R$ {shippingValue ? Number(shippingValue).toFixed(2) : "0.00"}</spam>
                     </p>
                     <p>
-                        <strong>Cupom</strong>
+                        <strong>Cupom {couponName ? `(${couponName})` : null}</strong>
                         <spam>- R$ {couponValue ? (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2) : "0.00"}</spam>
                     </p>
                     <spam className="divisor"></spam>

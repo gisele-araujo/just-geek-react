@@ -227,14 +227,12 @@ padding: 40px 0;
     .grid-images-one .image-pattern {
         width: 100%;
         height: 400px;
-        border: 1px solid ${Colors.blue.light};
         border-radius: 2px;
         object-fit: cover;
     }
     .grid-images-two .image-item {
         width: 80px;
         height: 80px;
-        border: 1px solid ${Colors.blue.light};
         border-radius: 2px;
         object-fit: cover;
     }

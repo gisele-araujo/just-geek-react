@@ -123,6 +123,20 @@ export const Product = {
         }
     },
 
+    async deleteProductBag(idUser, idProduct, qt, size) {
+        try {
+            const response = await api.delete(`/purchases/${idUser}/${idProduct}/${qt}/${size}`)
+            return {
+                status: response.status
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
     async getCoupon(coupon) {
         try {
             const response = await api.get(`/coupons/${coupon}`)

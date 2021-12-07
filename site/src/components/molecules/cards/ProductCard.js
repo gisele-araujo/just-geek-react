@@ -14,8 +14,6 @@ export function CardProduto(props) {
         id,
         title,
         preco,
-        specification,
-        description,
         img,
         loading = false
     } = props

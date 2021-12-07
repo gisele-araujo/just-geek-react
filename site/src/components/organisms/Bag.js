@@ -18,11 +18,14 @@ export function Bag(props) {
 
     } = props
     const idUser = sessionStorage.getItem('idUser')
+    const shippingValue = sessionStorage.getItem('shippingValue')
+    const couponValue = sessionStorage.getItem('couponValue')
+    const couponName = sessionStorage.getItem('couponName')
     const history = useHistory()
-    const [coupon, setCoupon] = useState('')
-    const [infoCoupon, setInfoCoupon] = useState([])
-    const [amount, setAmount] = useState(0.00)
     const [data, setData] = useState([])
+    const [deleteProduct, setDeleteProduct] = useState(false)
+    const [coupon, setCoupon] = useState('')
+    const [amount, setAmount] = useState(0.00)
 
     async function getProducts(id) {
         const response = await Product.getProductsBag(id)
@@ -34,15 +37,19 @@ export function Bag(props) {
         }
     }
 
+    async function deleteProductBag(idProduct, size) {
+        await Product.deleteProductBag(idUser, idProduct, 1, size)
+        setDeleteProduct(true)
+        
+    }
+
     async function addCoupon(e) {
         e.preventDefault()
         const response = await Product.getCoupon(coupon)
 
         if (response.status) {
-            setInfoCoupon(response.data)
             sessionStorage.setItem('couponValue', response.data.porcentagemDesconto)
             sessionStorage.setItem('couponName', response.data.nomeCupom)
-            console.log(response.data)
         } else {
             console.log('cupom invalido')
         }
@@ -57,16 +64,24 @@ export function Bag(props) {
         }
     }
 
+    function calculateDiscount() {
+        let calculate = 0.00
+        
+        if (couponValue) {
+            calculate = (Number(couponValue) / 100 * (Number(amount) + Number(shippingValue))).toFixed(2)
+        }
+        return calculate
+    }
+
     useEffect(() => {
         getProducts(idUser)
-    }, [addProduct])
-
+    }, [addProduct, deleteProduct])
     useEffect(() => {
         calculatePurchaseAmount()
     }, [data])
     return (
         <>
-            <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={400} className="drawer-bag">
+            <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={window.screen.width <= 768 ? 375 :420} className="drawer-bag">
                 {
                     data && idUser || addProduct ?
                         <>
@@ -74,10 +89,10 @@ export function Bag(props) {
                             <BagModal>
                                 <div className="box-products">
                                     {data ?
-                                        data.map((product) => {
+                                        data.map((product, index) => {
                                             return (
                                                 <>
-                                                    <ProductBagCard image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} qt={product.quantidade} />
+                                                    <ProductBagCard key={index} id={product.idProduto} image={product.imagens[0]} name={product.nomeProduto} value={product.preco} size={product.tamanho} deleteProductFunction={deleteProductBag} />
                                                 </>
                                             )
                                         })
@@ -94,8 +109,14 @@ export function Bag(props) {
                                             required />
                                         <Button type='submit' size="small" primary={false} contentText="Aplicar" />
                                     </form>
-                                    <div>
-                                        <strong className="amount">TOTAL: R$ {amount}  </strong>
+                                    <div className="amount">
+                                        {couponValue ?
+                                            <p>CUPOM ({couponName}): <spam>- R$ {calculateDiscount()}</spam></p>
+                                            :
+                                            null
+                                        }
+                                        <p>FRETE: <spam>R$ {shippingValue ? shippingValue : "00.00"}</spam></p>
+                                        <strong>TOTAL: <spam>R$ {((Number(amount) + Number(shippingValue)) - calculateDiscount()).toFixed(2)}</spam> </strong>
                                     </div>
                                     <Button onClick={() => data ? history.push('/compra') : null} size="large" action="positive" primary={false} contentText="Finalizar compra" style={{ width: '100%' }} />
                                 </div>
@@ -150,11 +171,21 @@ button {
     margin-left: 6px;
 }
 }
-
 .amount {
-    font-size: 16px;
-    color: ${Colors.gray.white};
     padding: 20px 0;
-    display: inline-block;
+}
+.amount p, .amount strong {
+    display: flex;
+    justify-content: space-between;
+}
+.amount p{
+    color: ${Colors.gray.white};
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+.amount strong{
+    color: ${Colors.gray.white};
+    font-size: 16px;
+    margin-top: 12px;
 }
 `
