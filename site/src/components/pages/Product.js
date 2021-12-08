@@ -230,7 +230,7 @@ const Product = () => {
                 <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                     <p>Faça login para comprar e favoritar seus produtos preferidos!</p>
                     <Button contentText='Fazer login' style={{ width: '100%' }}
-                        onClick={() => history.push('/login')} />
+                        onClick={() => history.push(`/login/produto/${id}`)} />
                 </Modal>
             </ModalContainer>
         </>

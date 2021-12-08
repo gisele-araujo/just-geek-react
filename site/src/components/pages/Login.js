@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './../../assets/css/override.css'
 import styled from "styled-components";
 import { Colors } from "../../shared/Colors";
@@ -38,7 +38,6 @@ const Login = () => {
             alert('Email ou senha inválidos, tente novamente')
         }
     }
-
 
     return (
         <>

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { Artist } from "../../../services/Artist";
 import styled from "styled-components";
 import { Colors } from "../../../shared/Colors";
 import { NameTitle } from "../../atoms/Titles";
@@ -9,26 +7,13 @@ import { Skeleton } from 'antd'
 export function ArtistsCard(props) {
     const {
         id,
-        name,
+        image,
         username,
         loadingInfo,
         primary,
     } = props
 
     const history = useHistory()
-    const [image, setImage] = useState([])
-
-    async function getPhoto() {
-        const response = await Artist.getPhotoArtist(id)
-        if(response.status) {
-            setImage(response.data)
-        } else {
-            console.log('Não foi possível carregar imagem de perfil')
-        }
-        
-    }
-
-    useEffect(() => getPhoto(), [])
 
     return (
         <>

@@ -37,7 +37,6 @@ width: 250px;
 height: 250px;
 transition: 0.5s all;
 filter: grayscale(1);
-border: 3px solid ${Colors.gray.darkPurple};
 border-radius: 4px;
 `
 
