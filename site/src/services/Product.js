@@ -9,7 +9,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -24,7 +24,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -39,7 +39,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -54,7 +54,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -69,7 +69,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -85,7 +85,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -100,7 +100,7 @@ export const Product = {
             return {
                 status: response.status
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -115,7 +115,7 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -129,7 +129,7 @@ export const Product = {
             return {
                 status: response.status
             }
-        } catch(err) {
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false
@@ -144,7 +144,37 @@ export const Product = {
                 status: response.status,
                 data: response.data
             }
-        } catch(err) {
+        } catch (err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
+    async getFavorites(idUser) {
+        try {
+            const response = await api.get(`/favorites/${idUser}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch (err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
+    async addFavoriteProduct(idUser, idProduct) {
+        try {
+            const response = await api.post(`/products/${idUser}/${idProduct}`)
+            return {
+                status: response.status,
+                data: response.data
+            }
+        } catch (err) {
             console.log('Erro:', err)
             return {
                 status: false

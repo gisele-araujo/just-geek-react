@@ -62,9 +62,9 @@ export const Artist = {
         }
     },
 
-    async getPhotoArtist(endpoint) {
+    async getPhotoArtist(id) {
         try {
-            const response = await api.get(`${endpoint}`)
+            const response = await api.get(`/artist-image/perfil/${id}`)
             return {
                 status: response.status,
                 data: response.data

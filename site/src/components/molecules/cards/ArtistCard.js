@@ -10,23 +10,22 @@ export function ArtistsCard(props) {
     const {
         id,
         name,
-        image,
         username,
         loadingInfo,
-        primary = true,
+        primary,
     } = props
 
     const history = useHistory()
-    const [img, setImg] = useState([])
+    const [image, setImage] = useState([])
 
     async function getPhoto() {
-        const response = await Artist.getPhotoArtist(image)
-
-        if (response.status) {
-            setImg(response.data)
+        const response = await Artist.getPhotoArtist(id)
+        if(response.status) {
+            setImage(response.data)
         } else {
-            console.log('erro ao carregar foto de artista')
+            console.log('Não foi possível carregar imagem de perfil')
         }
+        
     }
 
     useEffect(() => getPhoto(), [])
@@ -37,7 +36,7 @@ export function ArtistsCard(props) {
                 onClick={() => history.push(`/artista/${id}`)}
                 primary={primary}>
                 <CardImage>
-                    {loadingInfo ? <Skeleton.Image /> : <img src={img} /> }
+                    {loadingInfo ? <Skeleton.Image /> : <img src={image} />}
                 </CardImage>
                 <CardName>
                     {loadingInfo ? <Skeleton.Input style={{ width: 150 }} active size="small" /> : <NameTitle text={username} />}

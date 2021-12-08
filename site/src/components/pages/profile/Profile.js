@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Colors } from "../../../shared/Colors"
 import { Header } from "../../organisms/Header"
 import { Button } from '../../atoms/Button';
-import { Menu } from 'antd';
+import { Menu, Modal } from 'antd';
 import {
     SkinOutlined,
     UserOutlined,
@@ -15,16 +15,51 @@ import Settings from "./Settings";
 import MyAddresses from "./MyAddresses";
 import SetPassword from "./SetPassword";
 import MyFavorites from "./MyFavorites";
+import { User } from "../../../services/User";
 
 const { SubMenu } = Menu;
 
 const Profile = () => {
     const history = useHistory()
+    const idUser = sessionStorage.getItem('idUser')
     const [collapsed, setCollapsed] = useState(false)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [loading, setLoading] = useState(false)
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed)
     };
+
+    const logout = async (e) => {
+        e.preventDefault()
+
+        setLoading(true)
+
+        const response = await User.logoutUser(idUser)
+
+        if (response.status) {
+            console.log('logout realizado com sucesso!')
+            setLoading(false)
+            sessionStorage.clear('idUser')
+            sessionStorage.clear('username')
+            history.push('/')
+        } else {
+            console.log('erro ao logout')
+        }
+    }
+
     return (
         <>
             <Header />
@@ -66,7 +101,7 @@ const Profile = () => {
                     </div>
 
                     <div className="box-button-exit">
-                        <Button primary={false} size="small" contentText="Sair" style={{ width: '100%' }} />
+                        <Button onClick={showModal} primary={false} size="small" contentText="Sair" style={{ width: '100%' }} />
                     </div>
                 </SidebarProfile>
                 <PageProfile
@@ -77,6 +112,13 @@ const Profile = () => {
                     <Route path='/perfil/favoritos' component={MyFavorites} />
                 </PageProfile>
             </UserProfile>
+            <ModalContainer>
+                <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Tem certeza que deseja sair?</p>
+                    <Button loading={loading} onClick={logout} action='negative' primary={false} contentText='Sim, fazer logout' style={{width: "100%"}} size="small" />
+                    <Button primary={false} contentText='Não' style={{width: "100%", marginTop: "16px"}} size="small" onClick={handleCancel} />
+                </Modal>
+            </ModalContainer>
         </>
     )
 }
@@ -158,3 +200,15 @@ padding: 20px;
     padding: 40px;
 }
 `
+
+const ModalContainer = styled.div`
+font-family: 'Exo 2', sans-serif;
+`
+
+const bodyModal = {
+    backgroundColor: Colors.gray.light,
+    color: Colors.gray.white,
+    fontSize: '18px',
+    padding: '50px',
+    textAlign: 'center',
+}

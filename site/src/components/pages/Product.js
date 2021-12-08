@@ -13,6 +13,8 @@ import { useParams, useHistory } from 'react-router';
 import { useEffect, useState } from "react";
 import { Shipping } from "../molecules/Shipping";
 import { Skeleton } from "antd";
+import { HeartFilled } from '@ant-design/icons'
+import { Alert } from "../atoms/Alert";
 
 const Product = () => {
     const idUser = sessionStorage.getItem('idUser')
@@ -25,6 +27,7 @@ const Product = () => {
     const [loadingPage, setLoadingPage] = useState(true)
     const [addProduct, setAddProduct] = useState(false)
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [alertSize, setAlertSize] = useState(false)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -41,6 +44,7 @@ const Product = () => {
 
     const onChangeSize = (e) => {
         setSize(e.target.value)
+        setAlertSize(false)
     }
 
     async function getOtherProducts(id) {
@@ -54,6 +58,7 @@ const Product = () => {
             console.log('erro ao carregar produtos semelhantes')
         }
     }
+
     async function getProduct(id) {
 
         const response = await ProductApi.getProduct(id)
@@ -78,6 +83,17 @@ const Product = () => {
         setLoading(false)
 
     }
+
+    function FavoriteProduct(idUser, idProduct) {
+        const response = ProductApi.addFavoriteProduct(idUser, idProduct)
+
+        if (response.status) {
+            console.log('sucesso ai favoritar produto')
+
+        } else {
+            console.log('erro ao favoritar produto')
+        }
+    }
     useEffect(() => {
         window.scrollTo(0, 0)
         getProduct(id)
@@ -91,8 +107,8 @@ const Product = () => {
                     <Breadcrumb>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>Camisetas</Breadcrumb.Item>
-                        <Breadcrumb.Item>Anime</Breadcrumb.Item>
-                        <Breadcrumb.Item>Naruto</Breadcrumb.Item>
+                        <Breadcrumb.Item>{product.categoria}</Breadcrumb.Item>
+                        <Breadcrumb.Item>{product.nomeProduto}</Breadcrumb.Item>
                     </Breadcrumb>
                     <ProductInfo>
                         <Image.PreviewGroup>
@@ -147,6 +163,9 @@ const Product = () => {
                                         :
                                         `(ou até 5x de ${(product.preco / 5).toFixed(2)} sem juros)`}</p>
                             </div>
+                            {
+                                alertSize ? <Alert text="Selecione o tamanho" /> : null
+                            }
                             <p className="title-important">Tamanho:</p>
                             <Radio.Group onChange={onChangeSize} buttonStyle="solid" value={size}>
                                 <Radio.Button value="PP">PP</Radio.Button>
@@ -155,13 +174,19 @@ const Product = () => {
                                 <Radio.Button value="G">G</Radio.Button>
                                 <Radio.Button value="GG">GG</Radio.Button>
                             </Radio.Group>
-                            <Button onClick={() => idUser ? addProductBag(idUser, id, size) : showModal()}
-                                action='positive'
-                                primary={false}
-                                size="large"
-                                loading={loading}
-                                contentText="Adicionar ao carrinho"
-                                style={{ margin: '40px 0' }} />
+                            <div className="grid-add-product">
+                                <Button
+                                    onClick={() => !size ? setAlertSize(true) : idUser ?
+                                        addProductBag(idUser, id, size) :
+                                        showModal()}
+                                    action='positive'
+                                    primary={false}
+                                    size="large"
+                                    loading={loading}
+                                    contentText="Adicionar ao carrinho"
+                                    style={{ margin: '40px 0' }} />
+                                <HeartFilled onClick={() => idUser ? FavoriteProduct(idUser, id) : showModal()} />
+                            </div>
                             <Shipping />
                         </div>
                     </ProductInfo>
@@ -181,20 +206,20 @@ const Product = () => {
                     <SubTitle text='Produtos semelhantes' />
                     <div className="container-similar-products">
                         {loadingPage ?
-                                <>
-                                    <CardProduto loading />
-                                    <CardProduto loading />
-                                    <CardProduto loading />
-                                    <CardProduto loading />
-                                </>
-                                :
-                                data ?
-                                    data.slice(0,4).map((product) => {
-                                        return (
-                                            <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
-                                        )
-                                    })
-                                    : null
+                            <>
+                                <CardProduto loading />
+                                <CardProduto loading />
+                                <CardProduto loading />
+                                <CardProduto loading />
+                            </>
+                            :
+                            data ?
+                                data.slice(0, 4).map((product) => {
+                                    return (
+                                        <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
+                                    )
+                                })
+                                : null
                         }
                     </div>
                 </SimilarProducts>
@@ -203,8 +228,9 @@ const Product = () => {
             </ProductSection>
             <ModalContainer>
                 <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <p>Faça login para adicionar produto ao carrinho!</p>
-                    <Button contentText='Fazer login' style={{ width: '100%' }} onClick={() => history.push('/login')} />
+                    <p>Faça login para comprar e favoritar seus produtos preferidos!</p>
+                    <Button contentText='Fazer login' style={{ width: '100%' }}
+                        onClick={() => history.push('/login')} />
                 </Modal>
             </ModalContainer>
         </>
@@ -314,6 +340,18 @@ padding: 40px 0;
         color: ${Colors.gray.ultraLight};
         font-size: 16px;
         text-transform: uppercase;
+    }
+    .grid-add-product {
+        display: flex;
+        align-items: center;
+
+        .anticon svg {
+            fill: ${Colors.blue.light};
+            font-size: 28px;
+            margin-left: 16px;
+            cursor: pointer;
+            transition: 0.5s all;
+        }
     }
 }
 

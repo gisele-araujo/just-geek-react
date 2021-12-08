@@ -37,7 +37,7 @@ const Artists = () => {
     }
 
     async function getPhoto(id) {
-        const response = await Artist.getPhotoArtist(`/artist-image/perfil/${id}`)
+        const response = await Artist.getPhotoArtist(id)
 
         if (response.status) {
             setImg(response.data)

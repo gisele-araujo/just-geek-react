@@ -54,6 +54,28 @@ export const User = {
         }
     },
 
+    async logoutUser(id) {
+
+        if(
+            !id
+        ) {
+            throw Error('É necessário o id do usuário para fazer logout')
+        }
+
+        try {
+            const response = await api.post(`/account/logout/${id}`)
+            return {
+                status: response.status
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
+
+
     async getInfoUser(id) {
         try {
             const response = await api.get(`/account/${id}`)

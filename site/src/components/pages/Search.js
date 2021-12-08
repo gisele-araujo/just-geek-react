@@ -11,6 +11,7 @@ import { useParams } from "react-router"
 
 const Search = () => {
     const { id } = useParams()
+    const [loading, setLoading] = useState(true)
     const [allProducts, setAllProducts] = useState([]);
     const [getSearch, setGetSearch] = useState([])
 
@@ -19,6 +20,7 @@ const Search = () => {
 
         if (response.status) {
             setGetSearch(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao carregar produtos')
         }
@@ -28,6 +30,7 @@ const Search = () => {
 
         if (response.status) {
             setAllProducts(response.data)
+            setLoading(false)
         } else {
             console.log('erro ao carregar produtos')
         }
@@ -47,24 +50,40 @@ const Search = () => {
                     <p>{getSearch.length} produtos encontrados</p>
                 </div>
                 <ResultSection>
-                    {getSearch ?
-                        getSearch.map((product) => {
-                            return (
-                                <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
-                            )
-                        })
-                        : null}
-                </ResultSection>
-                <OthersSection>
-                    <SubTitle text='Veja também' />
-                    <div className='others-products'>
-                        {allProducts ?
-                            allProducts.slice(2, 6).map((product) => {
+                    {loading ?
+                        <>
+                            <CardProduto loading />
+                            <CardProduto loading />
+                            <CardProduto loading />
+                            <CardProduto loading />
+                        </>
+                        :
+                        getSearch ?
+                            getSearch.map((product) => {
                                 return (
                                     <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
                                 )
                             })
                             : null}
+                </ResultSection>
+                <OthersSection>
+                    <SubTitle text='Veja também' />
+                    <div className='others-products'>
+                        {loading ?
+                            <>
+                                <CardProduto loading />
+                                <CardProduto loading />
+                                <CardProduto loading />
+                                <CardProduto loading />
+                            </>
+                            :
+                            allProducts ?
+                                allProducts.slice(2, 6).map((product) => {
+                                    return (
+                                        <CardProduto id={product.idProduto} title={product.nomeProduto} preco={product.preco} img={product.imagens[0]} />
+                                    )
+                                })
+                                : null}
                     </div>
                 </OthersSection>
 

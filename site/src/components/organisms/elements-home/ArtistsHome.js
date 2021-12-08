@@ -13,7 +13,7 @@ export function ArtistsHome() {
     async function getArtists() {
         const response = await Artist.getAllArtists()
 
-        if(response.status) {
+        if (response.status) {
             setData(response.data)
             setLoading(false)
         } else {
@@ -31,18 +31,20 @@ export function ArtistsHome() {
                 <ArtistsGrade>
                     {
                         loading ?
-                        <>
-                        <ArtistsCard primary={false} loadingInfo={loading} />
-                        <ArtistsCard primary={false} loadingInfo={loading} />
-                        <ArtistsCard primary={false} loadingInfo={loading} />
-                        <ArtistsCard primary={false} loadingInfo={loading} />
-                        </>
-                        :
-                        data.map((artist) => {
-                            return (
-                                <ArtistsCard loadingInfo={loading} primary={false} id={artist.idArtista} image={artist.imagemPerfil} name={artist.nome} username={artist.apelido} />
-                            )
-                        })
+                            <>
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                                <ArtistsCard primary={false} loadingInfo={loading} />
+                            </>
+                            :
+                            data ?
+                                data.map((artist) => {
+                                    return (
+                                        <ArtistsCard primary={false} id={artist.idArtista} name={artist.nome} username={artist.apelido} />
+                                    )
+                                })
+                                : null
                     }
                 </ArtistsGrade>
             </ArtistsSection>
@@ -56,7 +58,7 @@ text-align: center;
 background-color: ${Colors.gray.dark};
 `
 
-const ArtistsGrade = styled.div `
+const ArtistsGrade = styled.div`
 display: flex;
 justify-content: center;
 flex-wrap: wrap;

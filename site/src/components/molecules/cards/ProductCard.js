@@ -15,8 +15,17 @@ export function CardProduto(props) {
         title,
         preco,
         img,
+        hasButton = true,
+        primary = true,
         loading = false
     } = props
+
+    const CardStyle = {
+        width: 240,
+        backgroundColor: primary ? Colors.gray.dark : Colors.gray.darkPurple,
+        border: 'none',
+        margin: '20px'
+    }
 
     return (
         <>
@@ -40,19 +49,12 @@ export function CardProduto(props) {
                         }
 
                     </CardDesc>
-                    <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='Ver detalhes' />
+                    {hasButton ? <Button action='positive' primary={false} style={{ width: '100%', marginTop: '25px' }} contentText='Ver detalhes' />: null}
                 </Card>
             </CardContainer>
 
         </>
     )
-}
-
-const CardStyle = {
-    width: 240,
-    backgroundColor: Colors.gray.dark,
-    border: 'none',
-    margin: '20px'
 }
 
 const CardContainer = styled.div `
