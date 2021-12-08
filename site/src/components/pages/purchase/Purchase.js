@@ -40,10 +40,8 @@ const Purchase = () => {
         setCurrent(current + 1);
 
         if(current === 1) {
-            console.log(current)
-            payPurchase()
-            
-          }
+            payPurchase()  
+        }
     };
 
     const prev = () => {

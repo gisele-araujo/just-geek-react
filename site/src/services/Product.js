@@ -171,8 +171,7 @@ export const Product = {
         try {
             const response = await api.post(`/products/${idUser}/${idProduct}`)
             return {
-                status: response.status,
-                data: response.data
+                status: response.data.status,
             }
         } catch (err) {
             console.log('Erro:', err)

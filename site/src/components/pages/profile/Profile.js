@@ -52,8 +52,7 @@ const Profile = () => {
         if (response.status) {
             console.log('logout realizado com sucesso!')
             setLoading(false)
-            sessionStorage.clear('idUser')
-            sessionStorage.clear('username')
+            sessionStorage.clear()
             history.push('/')
         } else {
             console.log('erro ao logout')

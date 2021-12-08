@@ -5,9 +5,12 @@ import { User } from "../../../services/User"
 import { Colors } from "../../../shared/Colors"
 import { Button } from "../../atoms/Button"
 import { AddressCard } from "../../molecules/cards/AddressCard"
+import { Shipping } from '../../molecules/Shipping'
+import { Alert } from '../../atoms/Alert'
 
 export function Delivery() {
     const idUser = sessionStorage.getItem('idUser')
+    const shippingValue = sessionStorage.getItem('shippingValue')
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -28,6 +31,8 @@ export function Delivery() {
     return (
         <>
             <DeliveryCard>
+            { !shippingValue ? <Alert primary text="Calcule o frete para continuar" /> : null}
+                <Shipping primary={false} />
                 {loading ?
                     <AddressCard loading />
                     :

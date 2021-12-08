@@ -1,11 +1,15 @@
 import { Input } from "antd"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import { Product } from "../../services/Product"
 import { Colors } from "../../shared/Colors"
 import { Button } from "../atoms/Button"
 
-export function Shipping() {
+export function Shipping(props) {
+    const {
+        primary = true,
+    } = props
+
     const [cep, setCep] = useState('')
     const [shipping, setShipping] = useState([])
     const [displayShipping, setDisplayShipping] = useState(false)
@@ -30,7 +34,8 @@ export function Shipping() {
 
     return (
         <>
-            <ContainerFrete>
+            <ContainerFrete
+            primary={primary}>
                 <strong className="title-important">Receba em casa!</strong>
                 <p className="product-description">Consulte o frete e o prazo para sua região</p>
                 <form className="input-frete" onSubmit={handleSubmit}>
@@ -41,6 +46,7 @@ export function Shipping() {
                         name="cep"
                         required />
                     <Button primary={false}
+                        loading={loading}
                         size="small"
                         contentText="Calcular"
                         type='submit' />
@@ -91,8 +97,8 @@ const ContainerFrete = styled.div`
 
 @media(min-width: 768px) {
     max-width: 450px;
-    padding: 20px 16px;
-    background-color: ${Colors.gray.dark};
+    padding: ${props => props.primary ? "20px 16px": "20px 0"};
+    background-color: ${props => props.primary ? Colors.gray.dark : "transparent"};
     border-radius: 4px;
     .input-frete {
         display: flex;

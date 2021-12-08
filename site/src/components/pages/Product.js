@@ -27,7 +27,7 @@ const Product = () => {
     const [loadingPage, setLoadingPage] = useState(true)
     const [addProduct, setAddProduct] = useState(false)
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [alertSize, setAlertSize] = useState(false)
+    const [alertText, setAlertText] = useState('')
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -44,7 +44,7 @@ const Product = () => {
 
     const onChangeSize = (e) => {
         setSize(e.target.value)
-        setAlertSize(false)
+        setAlertText('')
     }
 
     async function getOtherProducts(id) {
@@ -84,14 +84,15 @@ const Product = () => {
 
     }
 
-    function FavoriteProduct(idUser, idProduct) {
-        const response = ProductApi.addFavoriteProduct(idUser, idProduct)
+    async function FavoriteProduct(idUser, idProduct) {
+        const response = await ProductApi.addFavoriteProduct(idUser, idProduct)
 
         if (response.status) {
             console.log('sucesso ai favoritar produto')
-
+            setAlertText('Favoritado com sucesso')
         } else {
             console.log('erro ao favoritar produto')
+            setAlertText('Houve um erro ao favoritar produto')
         }
     }
     useEffect(() => {
@@ -164,7 +165,7 @@ const Product = () => {
                                         `(ou até 5x de ${(product.preco / 5).toFixed(2)} sem juros)`}</p>
                             </div>
                             {
-                                alertSize ? <Alert text="Selecione o tamanho" /> : null
+                                alertText ? <Alert text={alertText} /> : null
                             }
                             <p className="title-important">Tamanho:</p>
                             <Radio.Group onChange={onChangeSize} buttonStyle="solid" value={size}>
@@ -176,7 +177,7 @@ const Product = () => {
                             </Radio.Group>
                             <div className="grid-add-product">
                                 <Button
-                                    onClick={() => !size ? setAlertSize(true) : idUser ?
+                                    onClick={() => !size ? setAlertText('Selecione o tamanho') : idUser ?
                                         addProductBag(idUser, id, size) :
                                         showModal()}
                                     action='positive'
@@ -199,7 +200,6 @@ const Product = () => {
                                 <p className="product-description">{product.descricao}</p>
                                 <p className="product-description">{product.especificacoes}</p>
                             </>}
-
                     </div>
                 </ProductContainer>
                 <SimilarProducts>

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { EmptyStateBag } from "../molecules/EmptyStateBag";
 import { useHistory } from 'react-router';
 import { Drawer, Skeleton } from 'antd';
+import {CloseCircleOutlined} from '@ant-design/icons'
 
 export function Bag(props) {
     const {
@@ -25,6 +26,7 @@ export function Bag(props) {
     const [data, setData] = useState([])
     const [deleteProduct, setDeleteProduct] = useState(false)
     const [coupon, setCoupon] = useState('')
+    const [showCoupon, setShowCoupon] = useState(false)
     const [amount, setAmount] = useState(0.00)
     const [loading, setLoading] = useState(true)
 
@@ -51,6 +53,7 @@ export function Bag(props) {
         if (response.status) {
             sessionStorage.setItem('couponValue', response.data.porcentagemDesconto)
             sessionStorage.setItem('couponName', response.data.nomeCupom)
+            setShowCoupon(true)
         } else {
             console.log('cupom invalido')
         }
@@ -79,7 +82,7 @@ export function Bag(props) {
     }, [addProduct, deleteProduct])
     useEffect(() => {
         calculatePurchaseAmount()
-    }, [data])
+    }, [data, couponValue])
     return (
         <>
             <Drawer placement="right" onClose={onCloseDrawer} visible={visibleDrawer} width={window.screen.width <= 768 ? 375 : 420} className="drawer-bag">
@@ -115,7 +118,7 @@ export function Bag(props) {
                                         <Button type='submit' size="small" primary={false} contentText="Aplicar" />
                                     </form>
                                     <div className="amount">
-                                        {couponValue ?
+                                        {couponValue || showCoupon ?
                                             <p>CUPOM ({couponName}): <spam>- R$ {calculateDiscount()}</spam></p>
                                             :
                                             null
