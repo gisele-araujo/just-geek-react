@@ -56,6 +56,9 @@ const Purchase = () => {
         if (response.status) {
             console.log(response.data)
             window.open(response.data.url, "_blank")
+            sessionStorage.removeItem('shippingValue')
+            sessionStorage.removeItem('couponName')
+            sessionStorage.removeItem('couponValue')
         } else {
             console.log('erro ao realizar pagamento')
         }
