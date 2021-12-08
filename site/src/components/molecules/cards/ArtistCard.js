@@ -32,16 +32,22 @@ export function ArtistsCard(props) {
 }
 
 const CardContainer = styled.div`
-width: 240px;
-height: 270px;
+width: 140px;
+height: 236px;
 background-color: ${props => props.primary ? Colors.purple.secondDark : Colors.gray.darkPurple};
 border-radius: 4px;
-margin: 20px 15px;
+margin: 15px 10px;
 transition: .5s all;
 cursor: pointer;
 
 &:hover {
     filter: brightness(0.8);
+}
+
+@media(min-width: 768px) {
+    margin: 20px 15px;
+    width: 240px;
+    height: 270px;
 }
 `
 
@@ -50,13 +56,19 @@ const CardImage = styled.div`
 img {
     width: 100%;
     object-fit: cover;
-    height: 210px;
+    height: 180px;
     border-radius: 5px 5px 0px 0px;
 }
 
 .ant-skeleton-element .ant-skeleton-image {
     width: 240px;
     height: 210px;
+}
+
+@media(min-width: 768px) {
+    img {
+        height: 210px;
+    }
 }
 `
 

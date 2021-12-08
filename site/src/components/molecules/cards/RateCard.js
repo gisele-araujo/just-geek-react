@@ -24,11 +24,11 @@ export function RateCard(props) {
 
 const RateCardContainer = styled.div ` 
 width: 300px;
-min-height: 180px;
+min-height: 160px;
 background-color: ${Colors.gray.light};
 border-radius: 3px;
-padding: 20px;
-margin: 20px 10px;
+padding: 15px;
+margin: 10px 10px;
 text-align: start;
 
 p {
@@ -36,5 +36,12 @@ p {
     color: ${Colors.gray.white};
     font-size: 16px;
     font-weight: 300;
+}
+
+@media(min-width: 768px) {
+    width: 300px;
+    min-height: 180px;
+    padding: 20px;
+    margin: 20px 10px;
 }
 `

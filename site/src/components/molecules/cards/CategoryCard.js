@@ -23,8 +23,8 @@ export function CategoryCard(props) {
 }
 const CardContainer = styled.div `
 width: 100%;
-height: 150px;
-margin: 15px 30px;
+height: 115px;
+margin: 8px 30px;
 object-fit: cover;
 overflow: hidden;
 cursor: pointer;
@@ -32,6 +32,7 @@ cursor: pointer;
 @media(min-width: 768px) {
     width: 250px;
     height: 250px;
+    margin: 15px;
 }
 `
 const CardImage = styled.div`
@@ -39,7 +40,7 @@ background-image: url(${props => props.image});
 background-position: start;
 background-size: cover;
 width: 100%;
-height: 150px;
+height: 115px;
 transition: 0.5s all;
 filter: grayscale(1);
 border-radius: 4px;
@@ -53,14 +54,15 @@ border-radius: 4px;
 
 const CardText = styled.div `
 width: 100%;
-height: 150px;
-padding: 20px;
+height: 115px;
+padding: 12px;
 display: flex;
 align-items: flex-end;
 
 @media(min-width: 768px) {
     width: 250px;
     height: 250px;
+    padding: 20px;
     background-position: center;
 }
 

@@ -5,7 +5,7 @@ import PostIt from './../../assets/img/conhecer-cliente.png'
 import { Colors } from "../../shared/Colors";
 import { Header } from "../organisms/Header";
 import { Button } from '../atoms/Button';
-import { Input } from "antd";
+import { Input, Modal } from "antd";
 import { useHistory } from "react-router";
 import { User } from "../../services/User";
 
@@ -19,6 +19,21 @@ const Cadastro = () => {
     const [celular, setCelular] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [textModal, setTextModal] = useState('')
+    const [success, setSuccess] = useState(false)
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -40,14 +55,14 @@ const Cadastro = () => {
         const response = await User.signUpUser(data)
 
         if (response.status) {
-            console.log('cadastro realizado com sucesso!')
-            alert('Cadastro realizado com sucesso! Faça login para continuar')
+            setTextModal('Cadastro realizado com sucesso! Faça login para continuar')
+            setSuccess(true)
             setLoading(false)
-            history.push('/login')
+            showModal()
         } else {
+            setTextModal('Erro ao cadastrar, tente novamente')
             setLoading(false)
-            alert('Erro ao cadastrar, tente novamente')
-            console.log('erro ao cadastrar')
+            showModal()
         }
     }
 
@@ -139,6 +154,10 @@ const Cadastro = () => {
                 <ImgPostIt>
                     <img src={PostIt} />
                 </ImgPostIt>
+                <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <p>{textModal}</p>
+                    <Button primary={false} contentText={success ? 'Fazer login' : 'Tentar novamente'} size="small" style={{ width: '100%' }} onClick={() => success ? history.push('/login') : handleCancel()} />
+                </Modal>
             </CadastroPage>
         </>
     )
@@ -250,5 +269,13 @@ img {
     }
 }
 `
+
+const bodyModal = {
+    backgroundColor: Colors.gray.light,
+    color: Colors.gray.white,
+    fontSize: '18px',
+    padding: '50px',
+    textAlign: 'center',
+}
 
 

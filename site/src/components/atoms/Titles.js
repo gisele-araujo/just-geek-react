@@ -62,7 +62,7 @@ font-size: 20px;
 const NameTitleText = styled.h4 `
 color: ${Colors.gray.white};
 font-weight: 500;
-font-size: 18px;
+font-size: 16px;
 
 @media(min-width: 768px) {
   font-size: 20px;  
@@ -72,9 +72,9 @@ font-size: 18px;
 const SecondaryTitleText = styled.h4 `
 color: ${Colors.gray.white};
 font-weight: 300;
-font-size: 16px;
+font-size: 14px;
 
 @media(min-width: 768px) {
-  font-size: 18px;  
+  font-size: 16px;  
 }
 `

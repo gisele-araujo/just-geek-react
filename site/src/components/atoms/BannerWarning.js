@@ -23,7 +23,7 @@ export function BannerWarning(props) {
 
 const ContainerBanner = styled.div` 
 width: 100%;
-background-color: ${Colors.gray.hot};
+background-color: #100e0e;
 
 `
 
@@ -31,7 +31,7 @@ const ContainerText = styled.div `
 max-width: 1600px;
 width: 100%;
 margin: 0 auto;
-padding: 10px 2%;
+padding: 14px 2%;
 display: flex;
 
 .icon-warning svg {

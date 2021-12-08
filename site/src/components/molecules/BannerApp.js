@@ -41,6 +41,7 @@ width: 100%;
 }
 
 @media(max-width: 768px) {
+    padding: 30px 5% 40px;
     .banner-img {
         display: none;
     }

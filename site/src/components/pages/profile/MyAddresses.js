@@ -46,7 +46,7 @@ const MyAddresses = () => {
                                 )
                             })
                             : 
-                            <Empty style={{ margin: "50px" }} description="Você não possui endereços cadastrados, adicione um novo para comprar " />
+                            <Empty style={{ margin: "50px", color: '#fff' }} description="Você não possui endereços cadastrados, adicione um novo para comprar " />
                 }
             </AddressPage>
         </>

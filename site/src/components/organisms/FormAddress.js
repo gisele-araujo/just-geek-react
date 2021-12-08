@@ -9,7 +9,8 @@ import { SubTitle } from "../atoms/Titles"
 
 export function FormAddress(props) {
     const {
-        addAddress = true
+        addAddress = true,
+        delivery = false,
     } = props
 
     const idUser = sessionStorage.getItem('idUser')
@@ -150,12 +151,12 @@ export function FormAddress(props) {
                 </div>
 
                 <Button type='submit' action="positive" primary={false} type='submit' contentText='Salvar' style={{ width: '100%', margin: '20px 0' }} loading={loading} />
-                <Button type='button' primary={false} onClick={() => history.push('/perfil/meus-enderecos')} contentText='Voltar' style={{ width: '100%' }} />
+                {!delivery ? <Button type='button' primary={false} onClick={() => history.push('/perfil/meus-enderecos')} contentText='Voltar' style={{ width: '100%' }} /> : null}
             </ContainerForm>
             <ModalContainer>
                 <Modal width={400} centered={true} bodyStyle={bodyModal} footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                     <p>{textModal}</p>
-                    <Button primary={false} contentText='Concluído' size="small" style={{ width: '100%' }} onClick={() => history.push('/perfil/meus-enderecos')} />
+                    <Button primary={false} contentText='Concluído' size="small" style={{ width: '100%' }} onClick={() => delivery ? window.location.reload() : history.push('/perfil/meus-enderecos')} />
                 </Modal>
             </ModalContainer>
         </>

@@ -7,12 +7,14 @@ import { Button } from "../../atoms/Button"
 import { AddressCard } from "../../molecules/cards/AddressCard"
 import { Shipping } from '../../molecules/Shipping'
 import { Alert } from '../../atoms/Alert'
+import { FormAddress } from '../../organisms/FormAddress'
 
 export function Delivery() {
     const idUser = sessionStorage.getItem('idUser')
     const shippingValue = sessionStorage.getItem('shippingValue')
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [addAddress, setAddAddress] = useState(false)
 
     async function getAllAddresses() {
         const response = await User.getAddressesByUser(idUser)
@@ -45,7 +47,14 @@ export function Delivery() {
                         :
                         <Empty style={{ margin: "50px" }} description="Você não possui endereços cadastrados, adicione para continuar " />
                 }
-                <Button size='small' primary={false} contentText={data ? 'Adicionar outro endereço' : 'Adicionar novo endereço'} style={{ margin: '20px 0 10px' }} />
+                <Button onClick={() => setAddAddress(true)} size='small' primary={false} contentText={data ? 'Adicionar outro endereço' : 'Adicionar novo endereço'} style={{ margin: '20px 0 10px' }} />
+
+                {
+                    addAddress ?
+                    <FormAddress delivery addAddress={false} />
+                    :
+                    null
+                }
 
             </DeliveryCard>
         </>

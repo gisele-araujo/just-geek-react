@@ -1,3 +1,4 @@
+import { Empty } from "antd"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Product } from "../../../services/Product"
@@ -44,7 +45,7 @@ const MyFavorites = () => {
                                     )
                                 })
                                 :
-                                null
+                                <Empty style={{ margin: "50px", color: '#fff' }} description="Você não possi produtos favoritados" />
                     }
 
                 </FavoriteProducts>
@@ -79,6 +80,8 @@ display: flex;
 overflow-x: scroll;
 
 @media(min-width: 768px) {
+    width: 100%;
+    justify-content: center;
     flex-wrap: wrap;
     overflow-x: hidden;
 }

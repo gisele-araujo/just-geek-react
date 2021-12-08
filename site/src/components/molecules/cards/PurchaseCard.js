@@ -95,6 +95,7 @@ display: none;
     background-color: ${Colors.gray.medium};
     padding: 20px 25px;
     width: 38%;
+    height: 481px;
 
     .products-purchase {
         max-height: 230px;
