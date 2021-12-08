@@ -59,7 +59,7 @@ export function PurchaseCard() {
                 <div className="products-info">
                     <p>
                         <strong>Subtotal</strong>
-                        <spam>R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> : amount}</spam>
+                        <spam>R$ {loading ? <Skeleton.Input style={{ width: 50 }} active size="small" /> : (amount).toFixed(2)}</spam>
                     </p>
                     <p>
                         <strong>Frete</strong>
