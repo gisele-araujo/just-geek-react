@@ -16,6 +16,7 @@ import MyAddresses from "./MyAddresses";
 import SetPassword from "./SetPassword";
 import MyFavorites from "./MyFavorites";
 import { User } from "../../../services/User";
+import { FormAddress } from "../../organisms/FormAddress";
 
 const { SubMenu } = Menu;
 
@@ -107,6 +108,7 @@ const Profile = () => {
                     collapsed={collapsed}>
                     <Route exact path='/perfil' component={Settings} />
                     <Route path='/perfil/meus-enderecos' component={MyAddresses} />
+                    <Route path='/perfil/adicionar-endereco' component={FormAddress} />
                     <Route path='/perfil/alterar-senha' component={SetPassword} />
                     <Route path='/perfil/favoritos' component={MyFavorites} />
                 </PageProfile>
@@ -182,7 +184,6 @@ display: none;
 const PageProfile = styled.section`
 display: ${props => props.collapsed ? 'block' : 'none'};
 width: 100%;
-height: 100vh;
 overflow-y: scroll;
 padding: 20px;
 

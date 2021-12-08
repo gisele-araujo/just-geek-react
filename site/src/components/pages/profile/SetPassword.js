@@ -92,7 +92,7 @@ max-width: 360px;
 label {
     color: ${Colors.gray.white};
     padding: 20px 0;
-    font-size: 16px;
+    font-size: 14px;
     display: inline-block;
     padding-bottom: 5px;
 }

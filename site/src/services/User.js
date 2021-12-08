@@ -119,7 +119,20 @@ export const User = {
                 status: false
             }
         }
-    }
+    },
 
+    async addAddressByUser(id, data) {
 
+        try {
+            const response = await api.post(`/addresses/register-address/${id}`, data)
+            return {
+                status: response.status
+            }
+        } catch(err) {
+            console.log('Erro:', err)
+            return {
+                status: false
+            }
+        }
+    },
 }
