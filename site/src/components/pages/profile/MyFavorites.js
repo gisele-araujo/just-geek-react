@@ -77,4 +77,9 @@ const FavoriteProducts = styled.div`
 padding: 20px 0;
 display: flex;
 overflow-x: scroll;
+
+@media(min-width: 768px) {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+}
 `
