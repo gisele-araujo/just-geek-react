@@ -10,6 +10,7 @@ import { EmptyStateBag } from "../molecules/EmptyStateBag";
 import { useHistory } from 'react-router';
 import { Drawer, Skeleton } from 'antd';
 import {CloseCircleOutlined} from '@ant-design/icons'
+import { Alert } from "../atoms/Alert";
 
 export function Bag(props) {
     const {
@@ -29,6 +30,8 @@ export function Bag(props) {
     const [showCoupon, setShowCoupon] = useState(false)
     const [amount, setAmount] = useState(0.00)
     const [loading, setLoading] = useState(true)
+    const [loadingBtn, setLoadingBtn] = useState(false)
+    const [invalidCoupon, setInvalidCoupon] = useState(false)
 
     async function getProducts(id) {
         const response = await Product.getProductsBag(id)
@@ -48,14 +51,20 @@ export function Bag(props) {
 
     async function addCoupon(e) {
         e.preventDefault()
+
+        setLoadingBtn(true)
         const response = await Product.getCoupon(coupon)
 
         if (response.status) {
             sessionStorage.setItem('couponValue', response.data.porcentagemDesconto)
             sessionStorage.setItem('couponName', response.data.nomeCupom)
             setShowCoupon(true)
+            setLoadingBtn(false)
+            setInvalidCoupon(false)
         } else {
             console.log('cupom invalido')
+            setLoadingBtn(false)
+            setInvalidCoupon(true)
         }
     }
 
@@ -115,8 +124,13 @@ export function Bag(props) {
                                             id="coupon"
                                             name="coupon"
                                             required />
-                                        <Button type='submit' size="small" primary={false} contentText="Aplicar" />
+                                        <Button loading={loadingBtn} type='submit' size="small" primary={false} contentText="Aplicar" />
                                     </form>
+                                    {
+                                        invalidCoupon ?
+                                        <Alert text="Cupom inválido" />
+                                        : null
+                                    }
                                     <div className="amount">
                                         {couponValue || showCoupon ?
                                             <p>CUPOM ({couponName}): <spam>- R$ {calculateDiscount()}</spam></p>
