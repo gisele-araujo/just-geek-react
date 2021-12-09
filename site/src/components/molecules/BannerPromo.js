@@ -7,8 +7,8 @@ export function BannerPromo() {
     return (
         <>
             <Banner>
-                <h3 className="promotion-text">ATÉ <strong>70% OFF</strong></h3>
-                <SubTitle text='Veja as nossas promoções semanais' />
+                <h3 className="promotion-text">CUPOM <strong>GEEK15</strong></h3>
+                <SubTitle text='Tenha 15% OFF na sua compra' />
             </Banner>
         </>
     )

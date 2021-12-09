@@ -51,7 +51,7 @@ const Settings = () => {
                         <td>{loading ? <Skeleton.Input style={{ width: 200 }} active={true} size="small" /> : data.cpf}</td>
                     </tr>
                 </SettingsTable>
-                <Button contentText='Alterar dados cadastrais' style={{width: '100%'}} />
+                {/* <Button contentText='Alterar dados cadastrais' style={{width: '100%'}} /> */}
             </SettingsPage>
         </>
     )
